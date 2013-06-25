@@ -1,0 +1,54 @@
+%%% For the presentation slides
+% \documentclass{beamer}
+
+%%% Handouts
+\documentclass[handout,style=authortitle]{beamer}
+% \usepackage{handoutWithNotes}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{3 on 1 with notes big}[a4paper,border shrink=7mm]
+% \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+% \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+% \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+
+
+
+\include{preamble}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\title[Introduction to pbdR]{Introducing R: \\  from Your Laptop to HPC and Big Data}
+
+\author[\color{white}{http://r-pbd.org} \hspace{2.4cm} pbdR Core Team]{%
+  Drew Schmidt$^1$ and George Ostrouchov$^{1,2}$ \\ 
+%     \begin{tabular}{l}
+%       1. University of Tennessee, USA \\ 
+%       2. Oak Ridge National Laboratory, USA \\
+%     \end{tabular}
+    \vspace{-.8cm}
+}
+
+\date{July 8, 2013 \\[.5cm] \centering\includegraphics[scale=.6]{pics/logos}} 
+
+\logo{\begin{tabular}{r}\includegraphics[height=.34cm]{pics/utk_logo.png} \\ \includegraphics[height=.34cm]{pics/ornl.jpg}\end{tabular}}
+
+\newcommand{\mytitlea}{Introduction to pbdR \hspace{3cm} \insertframenumber\,/\,\inserttotalframenumber}
+\newcommand{\mytitleb}{Introduction to pbdR}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% \include{0_firstfew}
+% \include{1_introduction}
+% \include{2_pbdR}
+% \include{3_mpi_intro}
+% \include{4_mpi}
+% \include{intermission}
+% \include{5_stats}
+% \include{6_dmat}
+% \include{7_dmatstats}
+% \include{6_example2}
+\include{zzz_closing}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

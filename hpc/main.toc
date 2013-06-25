@@ -1,0 +1,34 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Introduction to R}{8}{0}{1}
+\beamer@subsectionintoc {1}{1}{What is R?}{9}{0}{1}
+\beamer@subsectionintoc {1}{2}{Basic Numerical Operations in R}{16}{0}{1}
+\beamer@subsectionintoc {1}{3}{R Syntax for Data Science: Not A Matlab Clone!}{23}{0}{1}
+\beamer@sectionintoc {2}{In-Depth Example Examining the Iris Dataset}{29}{0}{2}
+\beamer@subsectionintoc {2}{1}{Examining the Iris Dataset}{30}{0}{2}
+\beamer@subsectionintoc {2}{2}{Cluster}{33}{0}{2}
+\beamer@subsectionintoc {2}{3}{Plot}{36}{0}{2}
+\beamer@sectionintoc {3}{pbdR}{38}{0}{3}
+\beamer@subsectionintoc {3}{1}{Problems with R}{39}{0}{3}
+\beamer@subsectionintoc {3}{2}{The pbdR Project}{42}{0}{3}
+\beamer@subsectionintoc {3}{3}{Installing pbdR}{48}{0}{3}
+\beamer@sectionintoc {4}{Brief Intermission}{50}{0}{4}
+\beamer@sectionintoc {5}{Introduction to pbdMPI}{51}{0}{5}
+\beamer@subsectionintoc {5}{1}{Basic MPI}{52}{0}{5}
+\beamer@subsectionintoc {5}{2}{The SPMD Data Structure}{57}{0}{5}
+\beamer@sectionintoc {6}{Examples Using pbdMPI}{64}{0}{6}
+\beamer@subsectionintoc {6}{1}{pbdMPI Example: Monte Carlo Simulation}{65}{0}{6}
+\beamer@subsectionintoc {6}{2}{pbdMPI Example: Sample Covariance}{69}{0}{6}
+\beamer@subsectionintoc {6}{3}{pbdMPI Example: Linear Regression}{72}{0}{6}
+\beamer@sectionintoc {7}{Introduction to pbdDMAT}{75}{0}{7}
+\beamer@subsectionintoc {7}{1}{Introduction to Distributed Matrices}{76}{0}{7}
+\beamer@subsectionintoc {7}{2}{DMAT Distributions}{81}{0}{7}
+\beamer@subsectionintoc {7}{3}{pbdDMAT}{92}{0}{7}
+\beamer@sectionintoc {8}{Examples Using pbdDMAT}{95}{0}{8}
+\beamer@subsectionintoc {8}{1}{pbdDMAT Example: Old Examples Revisited}{95}{0}{8}
+\beamer@subsectionintoc {8}{2}{pbdDMAT Example: Generating Data}{97}{0}{8}
+\beamer@subsectionintoc {8}{3}{pbdDMAT Example: Converting Between SPMD and DMAT}{101}{0}{8}
+\beamer@sectionintoc {9}{In-Depth Example Examining the Iris Dataset with pbdR}{103}{0}{9}
+\beamer@subsectionintoc {9}{1}{Examining the Iris Dataset}{104}{0}{9}
+\beamer@subsectionintoc {9}{2}{Cluster}{107}{0}{9}
+\beamer@subsectionintoc {9}{3}{Plot}{110}{0}{9}
+\beamer@sectionintoc {10}{Wrapup}{112}{0}{10}
