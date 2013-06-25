@@ -1,0 +1,17 @@
+\begin {block}{Plot}\pause
+\begin{lstlisting}
+### Display on first 2 components
+if(comm.rank() == 0){
+  pdf("dmat_plot.pdf")
+
+  par(mfrow = c(2, 2))
+  plot(X.prj, col = X.cid + 1, pch = X.cid,
+       main = "iris (true)", xlab = "PC1", ylab = "PC2")
+  plot(X.prj, col = X.kms.cid + 1, pch = X.kms.cid,
+       main = paste("iris (kmeans)", sprintf("%.4f", X.kms.adjR)),
+       xlab = "PC1", ylab = "PC2")
+
+  dev.off()
+}
+\end{lstlisting}
+\end{block}
