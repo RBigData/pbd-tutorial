@@ -107,7 +107,56 @@ COMM.RANK = 0
 
 
 
-\subsection{Reductions and Gathers}
+\subsection{Reduce, Gather, Broadcast, and Barrier}
+
+
+\begin{frame}
+  \begin{block}{MPI Operations}
+    \begin{enumerate}
+      \item Reduce
+      \item Gather
+      \item Broadcast
+      \item Barrier
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Reductions --- Combine results into single result}
+    \begin{center}
+      \includegraphics[scale=.6]{pics/mpi_reduce}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Gather --- Many-to-one}
+    \begin{center}
+      \includegraphics[scale=.6]{pics/mpi_gather}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Broadcast --- One-to-many}
+    \begin{center}
+      \includegraphics[scale=.6]{pics/mpi_bcast}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Barrier --- Synchronization}
+    \begin{center}
+      \includegraphics[scale=.38]{pics/mpi_barrier}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
 
 \begin{frame}[shrink]
   \begin{block}{MPI Operations (2 of 3)}\pause
@@ -123,9 +172,12 @@ COMM.RANK = 0
       \item \textbf{Broadcast}: one processor has a number \code{x} that every other processor should also have.\\
       \code{bcast(x)}
       \\[.4cm]
+      \item \textbf{Barrier}: ``computation wall''; no processor can proceed until \emph{all} processors can proceed.\\
+\code{barrier()}
     \end{itemize}
   \end{block}
 \end{frame}
+
 
 
 
@@ -207,32 +259,14 @@ COMM.RANK = 1
 \end{frame}
 
 
-\subsection{Other}
-
-\begin{frame}[shrink]
-  \begin{block}{MPI Operations (3 of 3)}\pause
-    \begin{itemize}
-      \item \textbf{Barrier}: ``computation wall''; no processor can proceed until \emph{all} processors can proceed.\\
-      \code{barrier()}\\[.4cm]
-      %
-      \item \textbf{Random Seeds}:  Random number seeds.\\
-      \code{comm.set.seed(diff=TRUE)} --- Independent streams via \pkg{rlecuyer}\\
-      \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use the same seed.\\[.4cm]
-      %
-      \item \textbf{*ply}:  Functions in the *ply family.\\
-      \code{pbdApply(X, MARGIN, FUN, \dots)} --- analogue of \code{apply()}\\
-      \code{pbdLapply(X, FUN, \dots)} --- analogue of \code{lapply()}\\
-      \code{pbdSapply(X, FUN, \dots)} --- analogue of \code{sapply()}\\
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-
 \begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Quick Example 3}
-\begin{lstlisting}[title=Barrier: 3\_barrier.r]
+  \begin{exampleblock}{Quick Example 5}
+\begin{lstlisting}[title=Barrier: 5\_barrier.r]
 library(pbdMPI, quiet = TRUE)
 init()
+
+.SPMD.CT$msg.barrier <- TRUE
+.SPMD.CT$print.quiet <- TRUE
 
 for (rank in 1:comm.size()-1){
   if (comm.rank() == rank){
@@ -241,16 +275,16 @@ for (rank in 1:comm.size()-1){
   barrier()
 }
 
-comm.cat("\n", quiet=TRUE)
+comm.cat("\n")
 
-comm.cat(paste("Hello from process", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE, quiet=TRUE)
+comm.cat(paste("Hello from process", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
 
 finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
 \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this script via:]
-mpirun -np 2 Rscript barrier.r
+mpirun -np 2 Rscript 5_barrier.r
 \end{lstlisting}
     \end{column}
     \hfill
@@ -266,73 +300,33 @@ Hello from process 2 of 2
 
 
 \begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Quick Example 4}
-  \centering
-\begin{lstlisting}[title=Timing: timer.r]
-library(pbdMPI, quiet = TRUE)
+  \begin{exampleblock}{Quick Example 6}
+\begin{lstlisting}[title=Timing: 6\_timer.r]
+library(pbdMPI, quiet=TRUE)
 init()
 
-.SPMD.CT$msg.barrier <- TRUE
-.SPMD.CT$print.quiet <- TRUE
+comm.set.seed(diff=T)
 
-for (rank in 1:comm.size()-1){
-  if (comm.rank() == rank){
-    cat(paste("Hello from process", rank+1, "of", comm.size(), "\n"))
-  }
-  barrier()
+test <- function(timed)
+{
+  ltime <- system.time(timed)[3]
+  
+  mintime <- allreduce(ltime, op='min')
+  maxtime <- allreduce(ltime, op='max')
+  meantime <- allreduce(ltime, op='sum')/comm.size()
+
+  return(data.frame(min=mintime, mean=meantime, max=maxtime))
 }
 
-comm.cat("\n")
-
-comm.cat(paste("Hello from process", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
+times <- test(rnorm(1e6)) # ~7.6MiB of data
+comm.print(times)
 
 finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
 \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this script via:]
-mpirun -np 2 Rscript 4_timer.r
-\end{lstlisting}
-    \end{column}
-    \hfill
-    \begin{column}{0.4\textwidth}
-\begin{lstlisting}[title=Sample Output:]
-   min  mean   max
-1 0.17 0.173 0.176
-\end{lstlisting}
-    \end{column}
-​  \end{columns}
-  \end{exampleblock}
-\end{frame}
-
-
-
-\begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Quick Example 4}
-\begin{lstlisting}[title=Timing: timer.r]
-library(pbdMPI, quiet = TRUE)
-init()
-
-.SPMD.CT$msg.barrier <- TRUE
-.SPMD.CT$print.quiet <- TRUE
-
-for (rank in 1:comm.size()-1){
-  if (comm.rank() == rank){
-    cat(paste("Hello from process", rank+1, "of", comm.size(), "\n"))
-  }
-  barrier()
-}
-
-comm.cat("\n")
-
-comm.cat(paste("Hello from process", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
-
-finalize()
-\end{lstlisting}
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this script via:]
-mpirun -np 2 Rscript 4_timer.r
+mpirun -np 2 Rscript 6_timer.r
 \end{lstlisting}
 \end{column}
     \hfill
@@ -347,6 +341,27 @@ mpirun -np 2 Rscript 4_timer.r
 \end{frame}
 
 
+
+
+
+
+
+\subsection{Other}
+
+\begin{frame}
+  \begin{block}{MPI Operations (3 of 3)}\pause
+    \begin{itemize}
+      \item \textbf{Random Seeds}:  Random number seeds.\\
+      \code{comm.set.seed(diff=TRUE)} --- Independent streams via the \pkg{rlecuyer} package.\\
+      \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use the same seed.\\[.4cm]
+      %
+      \item \textbf{*ply}:  Functions in the *ply family.\\
+      \code{pbdApply(X, MARGIN, FUN, \dots)} --- analogue of \code{apply()}\\
+      \code{pbdLapply(X, FUN, \dots)} --- analogue of \code{lapply()}\\
+      \code{pbdSapply(X, FUN, \dots)} --- analogue of \code{sapply()}\\
+    \end{itemize}
+  \end{block}
+\end{frame}
 
 
 \begin{frame}[fragile]

@@ -21,11 +21,12 @@
     \end{column}
     \begin{column}{0.65\textwidth}
   \begin{itemize}[<+-|alert@+>]
-    \item Series of \emph{free}\footnote{MPL, BSD, and GPL licensed} R packages.
-    \item Scalable, big data analytics with high-level syntax.
-    \item Implicit management of distributed data details.
+    \item \emph{Free}\footnote{MPL, BSD, and GPL licensed} R packages.
+    \item Bridging high-performance C with high-productivity of R
+    \item Scalable, big data analytics.
+    \item Distributed data details implicitly managed.
     \item Methods have syntax \emph{identical} to R.
-    \item Powered by state of the art numerical libraries (MPI, ScaLAPACK, PBLAS, BLACS, LAPACK, BLAS, \dots)
+    \item Powered by state of the art numerical libraries (MPI, ScaLAPACK, \dots)
   \end{itemize}
     \end{column}
 ​  \end{columns}
@@ -35,10 +36,19 @@
 
 
 
-\begin{frame}[shrink]
+\begin{frame}
   \begin{block}{pbdR Packages}
     \begin{center}
-        \includegraphics[width=7cm, height=7cm]{pics/pbdpacks}
+%         \includegraphics[width=7cm, height=7cm]{pics/pbdpacks}
+      \begin{columns}
+        \begin{column}{.52\textwidth}
+      \includegraphics[scale=.4]{pics/pbdR}
+        \end{column}
+        \hfill
+        \begin{column}{.4\textwidth}
+      \includegraphics[scale=.45]{pics/libs}
+        \end{column}
+      \end{columns}
     \end{center}
   \end{block}
 \end{frame}
@@ -58,8 +68,8 @@
 %     \\[.2cm]
     Future Development:
   \begin{itemize}[<+-|alert@+>]
-    \item Profiling tools
-    \item Client/server interface for interactive sessions
+    \item Updates and expansions
+    \item \href{http://rwiki.sciviews.org/doku.php?id=developers:projects:gsoc2013:mpiprofiler}{Profiling Tools for Parallel Computing with R}
     \item \dots
   \end{itemize}
   \end{block}
@@ -86,103 +96,87 @@ ans <- svd(solve(xtx))
 
 \subsection{pbdR Paradigms}
 
-%%%%%% FIXME
-%% distributed
-%% batch
-%% spmd
-%% OO
-%% ...?
-
-
-\begin{frame}
-  \begin{block}{pbdR Focus:  Distributed Machines}
-   \begin{center}
-    \begin{minipage}[t]{.47\textwidth}
-    \begin{block}{\centering Shared Memory Machines}
-    \begin{center}
-    Thousands of cores\\[.2cm]
-    \includegraphics[scale=.65]{pics/nautilus}\\
-    {\tiny \emph{Nautilus}, University of Tennessee\\1024 cores}
-    \end{center}
-    \end{block}
-    \end{minipage}
-    \hspace{.1cm}
-    \begin{minipage}[t]{.47\textwidth}
-    \begin{block}{\centering Distributed Memory Machines}
-    \begin{center}
-    Hundreds of thousands of cores\\[.2cm]
-    \includegraphics[width=.95\textwidth]{pics/kraken}\\
-    {\tiny \emph{Kraken}, University of Tennessee\\ 112,896 cores}
-    \end{center}
-    \end{block}
-    \end{minipage}
-    \end{center}
-    \end{block}
-\end{frame}
-
 \begin{frame}
   \begin{block}{pbdR Paradigms}
-  Programs that use pbdR are meant to utilize the:
+  Programs that use pbdR are utilize:
   \begin{itemize}[<+-|alert@+>]
-   \item Data Parallelism method
+   \item Batch execution
    \item Single Program/Multiple Data (SPMD) style
+%    \item Object Oriented Programming (OOP)
+   \\[.2cm]
+   \end{itemize}
+    And generally utilize:
+   \begin{itemize}
+   \item Data Parallelism
   \end{itemize}
   \end{block}
 \end{frame}
 
 
+\begin{frame}[fragile]
+  \begin{block}{Batch Execution}\pause
+    \begin{itemize}
+      \item Non-interactive
+      \item Use
+\vspace{-.4cm}
+\begin{lstlisting}[language=sh]
+Rscript my_script.r
+\end{lstlisting}
+or\vspace{-.4cm}
+\begin{lstlisting}[language=sh]
+R CMD BATCH my_script.r
+\end{lstlisting}
+      \item In parallel:
+\vspace{-.4cm}
+\begin{lstlisting}[language=sh]
+mpirun -np 2 Rscript my_par_script.r
+\end{lstlisting}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 
 \begin{frame}
-  \begin{block}{SPMD}\pause
-  The pbdR Packages enable high-level ``Single Program/Multiple Data'' (SPMD) programming:
+  \begin{block}{Single Program/Multiple Data (SPMD)}\pause
     \begin{itemize}
       \item SPMD is a programming \emph{paradigm}.
-      \item Arguably the simplest extension of serial programming.
-      \item Sort of like trying to explain breathing \dots
       \item Not to be confused with SIMD.
       \item SPMD utilizes MIMD architecture computers.
-      \item Only one program is written, executed in batch independently on all processors.
+      \item Arguably the simplest extension of serial programming.
+      \item Difficult to describe, easy to do\dots
+      \item Only one program is written, executed in batch on all processors.
       \item Different processors are autonomous; there is no manager.
-%       \item Like ``Map/Reduce'', you probably used it without knowing it even had a name.
+      \item The dominant programming model for large machines.
     \end{itemize}
   \end{block}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \begin{block}{SPMD}\pause
-      SPMD codes are run in batch (non-interactively):
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=From the Shell]
-mpirun -np 4 Rscript my_script.R
+  \begin{block}{SPMD}
+    \begin{center}
+%       \begin{columns}
+        \begin{minipage}{.47\textwidth}
+        \begin{block}{Manager/Worker}
+\begin{lstlisting}[language=sh]
+
 \end{lstlisting}
+        \end{block}
+        \end{minipage}
+        \hspace{.1cm}
+        \begin{minipage}{.47\textwidth}
+        \begin{block}{SPMD}
+\begin{lstlisting}[language=sh]
+
+\end{lstlisting}
+        \end{block}
+        \end{minipage}
+%       \end{columns}
+    \end{center}
   \end{block}
 \end{frame}
 
 
-\begin{frame}
-  \begin{block}{pbdR Paradigms:  Data Parallelism}
-  With data parallelism:
-  \begin{itemize}[<+-|alert@+>]
-   \item No one processor/node owns all the data.
-   \item Processors own local pieces of a (conceptually) global object
-  \end{itemize}
-  \end{block}
-\end{frame}
-
-
-\begin{frame}
-  \begin{block}{pbdR Paradigms:  SPMD}
-  \begin{itemize}[<+-|alert@+>]
-   \item Natural extension of writing serial codes.
-   \item Different from Manager/Worker.
-   \item No one processor is in charge. Each thinks it's the boss (``it's like academia'').
-   \item One program written, executed independently by all processors.
-   \item Each processor owns a local sub-piece of data from the (conceptual) whole.
-  \end{itemize}
-  \end{block}
-\end{frame}
-
-% 
 % \begin{frame}
 %   \begin{block}{Manager/Worker vs SPMD}
 %    \begin{center}
