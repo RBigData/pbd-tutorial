@@ -1,5 +1,5 @@
 \beamer@sectionintoc {1}{Introduction to pbdMPI}{1}{0}{1}
 \beamer@subsectionintoc {1}{1}{Managing a Communicator}{2}{0}{1}
 \beamer@subsectionintoc {1}{2}{Reduce, Gather, Broadcast, and Barrier}{6}{0}{1}
-\beamer@subsectionintoc {1}{3}{Other}{16}{0}{1}
+\beamer@subsectionintoc {1}{3}{Other }{14}{0}{1}
 \beamer@endinputifotherversion {3.10pt}

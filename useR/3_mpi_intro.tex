@@ -22,7 +22,7 @@
 
 
 \begin{frame}
-  \begin{block}{MPI Operations (1 of 3)}\pause
+  \begin{block}{MPI Operations (1 of 2)}\pause
     \begin{itemize}
       \item \textbf{Managing a Communicator}:  Create and destroy communicators.\\
       \code{init()} --- initialize communicator\\
@@ -159,7 +159,7 @@ COMM.RANK = 0
 
 
 \begin{frame}[shrink]
-  \begin{block}{MPI Operations (2 of 3)}\pause
+  \begin{block}{MPI Operations (2 of 2)}\pause
     \begin{itemize}
       \item \textbf{Reduction}:  each processor has a number \code{x}; add all of them up, find the largest/smallest, \dots .\\
       \code{reduce(x, op='sum')} --- reduce to one\\
@@ -259,6 +259,25 @@ COMM.RANK = 1
 \end{frame}
 
 
+
+
+
+
+
+\subsection{Other }
+
+
+\begin{frame}
+  \begin{block}{MPI Package Controls}
+The \code{.SPMD.CT} object allows for setting different package options with \pkg{pbdMPI}.  See the entry \emph{SPMD Control} of the \pkg{pbdMPI} manual for information about the \code{.SPMD.CT} object:
+\begin{center}
+{ \small
+\url{http://cran.r-project.org/web/packages/pbdMPI/pbdMPI.pdf}
+}
+\end{center}
+  \end{block}
+\end{frame}
+
 \begin{frame}[fragile,shrink]
   \begin{exampleblock}{Quick Example 5}
 \begin{lstlisting}[title=Barrier: 5\_barrier.r]
@@ -270,14 +289,14 @@ init()
 
 for (rank in 1:comm.size()-1){
   if (comm.rank() == rank){
-    cat(paste("Hello from process", rank+1, "of", comm.size(), "\n"))
+    cat(paste("Hello", rank+1, "of", comm.size(), "\n"))
   }
   barrier()
 }
 
 comm.cat("\n")
 
-comm.cat(paste("Hello from process", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
+comm.cat(paste("Hello", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
 
 finalize()
 \end{lstlisting}
@@ -290,13 +309,26 @@ mpirun -np 2 Rscript 5_barrier.r
     \hfill
     \begin{column}{0.4\textwidth}
 \begin{lstlisting}[title=Sample Output:]
-Hello from process 1 of 2 
-Hello from process 2 of 2 
+Hello 1 of 2 
+Hello 2 of 2 
 \end{lstlisting}
     \end{column}
 ​  \end{columns}
   \end{exampleblock}
 \end{frame}
+
+
+\begin{frame}
+  \begin{block}{Random Seeds}\pause
+  \pkg{pbdMPI} offers a simple interface for managing random seeds:
+    \begin{itemize}
+      \item \code{comm.set.seed(diff=TRUE)} --- Independent streams via the \pkg{rlecuyer} package.
+      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use the same seed \code{seed=1234}
+      \item \code{comm.set.seed(diff=FALSE)} --- All processors use the same seed, determined by processor 0 (using the system clock and PID of processor 0).
+    \end{itemize}
+  \end{block}
+\end{frame}
+
 
 
 \begin{frame}[fragile,shrink]
@@ -342,18 +374,12 @@ mpirun -np 2 Rscript 6_timer.r
 
 
 
-
-
-
-
-\subsection{Other}
-
 \begin{frame}
-  \begin{block}{MPI Operations (3 of 3)}\pause
+  \begin{block}{Other Helper Tools}\pause
+  \pkg{pbdMPI} Also contains useful tools for Manager/Worker and task parallelism codes:
     \begin{itemize}
-      \item \textbf{Random Seeds}:  Random number seeds.\\
-      \code{comm.set.seed(diff=TRUE)} --- Independent streams via the \pkg{rlecuyer} package.\\
-      \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use the same seed.\\[.4cm]
+      \item \textbf{Task Subsetting}: Distributing a list of jobs/tasks\\ 
+      \code{get.jid(n)}
       %
       \item \textbf{*ply}:  Functions in the *ply family.\\
       \code{pbdApply(X, MARGIN, FUN, \dots)} --- analogue of \code{apply()}\\
@@ -362,6 +388,10 @@ mpirun -np 2 Rscript 6_timer.r
     \end{itemize}
   \end{block}
 \end{frame}
+
+
+
+
 
 
 \begin{frame}[fragile]
