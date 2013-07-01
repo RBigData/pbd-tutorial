@@ -43,7 +43,7 @@
   \begin{block}{Parallelism}\pause
     \begin{center}
     \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Serial Programming}
+    \begin{block}{Serial Programming}
       \begin{center}
       \includegraphics[width=.975\textwidth]{pics/analogy_serial}
       \end{center}
@@ -51,9 +51,9 @@
     \end{minipage}
     \hspace{.15cm}
     \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Parallel Programming}
+    \begin{block}{Parallel Programming}
       \begin{center}
-      \includegraphics[width=.975\textwidth]{pics/analogy_parallel}
+      \includegraphics[height=5.45cm,width=.975\textwidth]{pics/analogy_parallel}
       \end{center}
       \end{block}
     \end{minipage}
@@ -74,10 +74,21 @@
 % \end{frame}
 
 \begin{frame}
-  \begin{block}{What is Parallelism?}\pause
+  \begin{block}{Kinds of Parallelism}\pause
     \begin{itemize}[<+-|alert@+>]
-   \item \emph{Task Parallelism}:  Splitting the problem by task
-   \item \emph{Data Parallelism}:  
+      \item \emph{Data Parallelism}:  Data is distributed
+      \item \emph{Task Parallelism}:  Tasks are distributed
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{pbdR Paradigms:  Data Parallelism}
+  With data parallelism:
+  \begin{itemize}[<+-|alert@+>]
+   \item No one processor/node owns all the data.
+   \item Processors own local pieces of a (conceptually) global object
   \end{itemize}
   \end{block}
 \end{frame}
@@ -106,19 +117,163 @@
 \end{frame}
 
 
+
+
+\subsection{Common Terminology}
+
+
 \begin{frame}
-  \begin{block}{Common Terms}
+  \begin{block}{Difficulty}
   \begin{enumerate}[<+-|alert@+>]
-    \item \emph{Embarrassingly Parallel}:  Also called \emph{loosely coupled}.  Obvious how to make parallel; lots of independence in computations.
-    \item \emph{Tightly Coupled}:  Opposite of embarrassingly parallel; lots of dependence in computations.
     \item \emph{Implicit parallelism}:  Parallel details hidden from user
     \item \emph{Explicit parallelism}:  Some assembly required\dots
+    \item \emph{Embarrassingly Parallel}:  Also called \emph{loosely coupled}.  Obvious how to make parallel; lots of independence in computations.
+    \item \emph{Tightly Coupled}:  Opposite of embarrassingly parallel; lots of dependence in computations.
   \end{enumerate}  
   \end{block}
 \end{frame}
 
+\begin{frame}
+  \begin{block}{Scalability}
+   \emph{Scalability}:  unitless measure of performance;
+  \begin{align*}
+    \frac{\tau_i}{\tau_0}
+  \end{align*}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Types of Scalability:  Strong and Weak}
+   \begin{center}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Strong}
+      Fix \emph{total} data size
+      \centering
+      \includegraphics[width=.95\textwidth]{pics/scale_strong}
+    \end{block}
+    \end{minipage}
+    \hspace{.1cm}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Weak}
+      Fix \emph{local} data size
+      \centering
+      \includegraphics[width=.95\textwidth]{pics/scale_weak}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \begin{block}{Shared and Distributed Memory Machines}
+   \begin{center}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Shared Memory}
+    Different processors can directly access and modify each others' memory.  There is only one node.
+      \begin{center}
+      \includegraphics[width=.95\textwidth]{pics/arch_shared}
+      \end{center}
+      \vspace{.4cm} \ 
+    \end{block}
+    \end{minipage}
+    \hspace{.1cm}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Distributed}
+    Different processors/nodes can not directly access/modify different processors'/nodes' memory.
+      \begin{center}
+      \includegraphics[width=.95\textwidth]{pics/arch_distributed}
+      \end{center}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Shared and Distributed Memory Machines}
+   \begin{center}
+    \begin{minipage}[t]{.47\textwidth}
+    \begin{block}{Shared Memory Machines}
+    \begin{center}
+    Thousands of cores\\[.2cm]
+    \includegraphics[scale=.65]{pics/nautilus}\\
+    {\tiny \emph{Nautilus}, University of Tennessee\\1024 cores}
+    \end{center}
+    \end{block}
+    \end{minipage}
+    \hspace{.1cm}
+    \begin{minipage}[t]{.47\textwidth}
+    \begin{block}{Distributed Memory Machines}
+    \begin{center}
+    Hundreds of thousands of cores\\[.2cm]
+    \includegraphics[width=.95\textwidth]{pics/kraken}\\
+    {\tiny \emph{Kraken}, University of Tennessee\\ 112,896 cores}
+    \end{center}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    \end{block}
+\end{frame}
+
+
+
 
 \subsection{R and Parallelism}
+
+
+\begin{frame}
+%  \addtocounter{framenumber}{-1}
+  \begin{block}{R and Parallelism}\pause
+  What about R?
+  \end{block}
+\end{frame}
+
+\begin{frame}
+%  \addtocounter{framenumber}{-1}
+  \begin{block}{Problems with Serial R}\pause
+  \begin{enumerate}[<+-|alert@+>]
+    \item Slow.
+    \item If you don't know what you're doing, it's \emph{really} slow.
+    \item Performance improvements usually for small machines.
+    \item Very ram intensive.
+    \item Chokes on big data.
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Parallel R Packages}
+   \begin{center}
+    \begin{minipage}{.45\textwidth}
+    \begin{block}{Shared Memory}
+      \begin{enumerate}[<+-|alert@+>]
+        \item \pkg{foreach}
+        \item \pkg{parallel}
+        \item \pkg{snow}
+        \item \pkg{multicore}
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \hspace{.2cm}
+    \begin{minipage}{.45\textwidth}
+    \begin{block}{Distributed}
+      \begin{enumerate}[<+-|alert@+>]
+        \item \pkg{Rmpi}
+        \item R+Hadoop
+        \item \pkg{pbdR}
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    \end{block}
+\end{frame}
+
+
 
 \begin{frame}[shrink]
   \begin{block}{R and Parallelism}
@@ -128,8 +283,8 @@
     \begin{block}{\centering What we have}
       \begin{enumerate}[<+-|alert@+>]
         \item Mostly serial.
-        \item Parallelism mostly not distributed (foreach, parallel/snow/multicore, \dots)
-        \item Data parallelism mostly explicit (Rmpi, R+Hadoop, \dots)
+        \item Mostly not distributed
+        \item Data parallelism mostly explicit
       \end{enumerate}
     \end{block}
     \end{minipage}
@@ -156,22 +311,6 @@
       \item Necessary for many problems.
       \item Like it or not, it's coming.
       \item \emph{It's really cool.}
-  \end{enumerate}
-  \end{block}
-\end{frame}
-
-
-
-
-\begin{frame}
-%  \addtocounter{framenumber}{-1}
-  \begin{block}{Problems with R}\pause
-  \begin{enumerate}[<+-|alert@+>]
-    \item Slow.
-    \item If you don't know what you're doing, it's \emph{really} slow.
-    \item Performance improvements usually for small machines.
-    \item Very ram intensive.
-    \item Chokes on big data.
   \end{enumerate}
   \end{block}
 \end{frame}

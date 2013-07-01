@@ -1,242 +1,46 @@
-\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\sectionentry {1}{pbdMPI}{1}{Introduction to pbdMPI}{0}}
+\headcommand {\beamer@sectionpages {1}{0}}
+\headcommand {\beamer@subsectionpages {1}{0}}
+\headcommand {\slideentry {1}{0}{1}{1/1}{}{0}}
 \headcommand {\beamer@framepages {1}{1}}
-\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{2}{Managing a Communicator}}\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\slideentry {1}{1}{1}{2/2}{Managing a Communicator}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\slideentry {0}{0}{3}{3/3}{}{0}}
+\headcommand {\slideentry {1}{1}{2}{3/3}{Managing a Communicator}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\slideentry {0}{0}{4}{4/4}{}{0}}
+\headcommand {\slideentry {1}{1}{3}{4/4}{Managing a Communicator}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\slideentry {0}{0}{5}{5/5}{}{0}}
+\headcommand {\slideentry {1}{1}{4}{5/5}{Managing a Communicator}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\slideentry {0}{0}{6}{6/6}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{6}{Reduce, Gather, Broadcast, and Barrier}}\headcommand {\beamer@subsectionpages {2}{5}}
+\headcommand {\slideentry {1}{2}{1}{6/6}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\slideentry {0}{0}{7}{7/7}{}{0}}
+\headcommand {\slideentry {1}{2}{2}{7/7}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\beamer@endinputifotherversion {3.10pt}
-\headcommand {\sectionentry {1}{Introduction}{8}{Introduction}{0}}
-\headcommand {\beamer@sectionpages {1}{7}}
-\headcommand {\beamer@subsectionpages {1}{7}}
-\headcommand {\slideentry {1}{0}{8}{8/8}{}{0}}
+\headcommand {\slideentry {1}{2}{3}{8/8}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@subsectionentry {0}{1}{1}{9}{A Concise Introduction to Parallelism}}\headcommand {\beamer@subsectionpages {8}{8}}
-\headcommand {\slideentry {1}{1}{1}{9/9}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{4}{9/9}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {1}{1}{2}{10/10}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{5}{10/10}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {1}{1}{3}{11/11}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{6}{11/11}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {1}{1}{4}{12/12}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{7}{12/12}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\slideentry {1}{1}{5}{13/13}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{8}{13/13}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {1}{1}{6}{14/14}{A Concise Introduction to Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{9}{14/14}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{15}{R and Parallelism}}\headcommand {\beamer@subsectionpages {9}{14}}
-\headcommand {\slideentry {1}{2}{1}{15/15}{R and Parallelism}{0}}
+\headcommand {\slideentry {1}{2}{10}{15/15}{Reduce, Gather, Broadcast, and Barrier}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {1}{2}{2}{16/16}{R and Parallelism}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{16}{Other}}\headcommand {\beamer@subsectionpages {6}{15}}
+\headcommand {\slideentry {1}{3}{1}{16/16}{Other}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {1}{2}{3}{17/17}{R and Parallelism}{0}}
+\headcommand {\slideentry {1}{3}{2}{17/17}{Other}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\sectionentry {2}{pbdR}{18}{pbdR}{0}}
-\headcommand {\beamer@sectionpages {8}{17}}
-\headcommand {\beamer@subsectionpages {15}{17}}
-\headcommand {\slideentry {2}{0}{4}{18/18}{}{0}}
-\headcommand {\beamer@framepages {18}{18}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{19}{The pbdR Project}}\headcommand {\beamer@subsectionpages {18}{18}}
-\headcommand {\slideentry {2}{1}{1}{19/19}{The pbdR Project}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {2}{1}{2}{20/20}{The pbdR Project}{0}}
-\headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {2}{1}{3}{21/21}{The pbdR Project}{0}}
-\headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {2}{1}{4}{22/22}{The pbdR Project}{0}}
-\headcommand {\beamer@framepages {22}{22}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{23}{pbdR Paradigms}}\headcommand {\beamer@subsectionpages {19}{22}}
-\headcommand {\slideentry {2}{2}{1}{23/23}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\slideentry {2}{2}{2}{24/24}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {2}{2}{3}{25/25}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {25}{25}}
-\headcommand {\slideentry {2}{2}{4}{26/26}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {26}{26}}
-\headcommand {\slideentry {2}{2}{5}{27/27}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {27}{27}}
-\headcommand {\slideentry {2}{2}{6}{28/28}{pbdR Paradigms}{0}}
-\headcommand {\beamer@framepages {28}{28}}
-\headcommand {\sectionentry {3}{pbdMPI}{29}{Introduction to pbdMPI}{0}}
-\headcommand {\beamer@sectionpages {18}{28}}
-\headcommand {\beamer@subsectionpages {23}{28}}
-\headcommand {\slideentry {3}{0}{7}{29/29}{}{0}}
-\headcommand {\beamer@framepages {29}{29}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{30}{Managing a Communicator}}\headcommand {\beamer@subsectionpages {29}{29}}
-\headcommand {\slideentry {3}{1}{1}{30/30}{Managing a Communicator}{0}}
-\headcommand {\beamer@framepages {30}{30}}
-\headcommand {\slideentry {3}{1}{2}{31/31}{Managing a Communicator}{0}}
-\headcommand {\beamer@framepages {31}{31}}
-\headcommand {\slideentry {3}{1}{3}{32/32}{Managing a Communicator}{0}}
-\headcommand {\beamer@framepages {32}{32}}
-\headcommand {\slideentry {3}{1}{4}{33/33}{Managing a Communicator}{0}}
-\headcommand {\beamer@framepages {33}{33}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{34}{Reductions and Gathers}}\headcommand {\beamer@subsectionpages {30}{33}}
-\headcommand {\slideentry {3}{2}{1}{34/34}{Reductions and Gathers}{0}}
-\headcommand {\beamer@framepages {34}{34}}
-\headcommand {\slideentry {3}{2}{2}{35/35}{Reductions and Gathers}{0}}
-\headcommand {\beamer@framepages {35}{35}}
-\headcommand {\slideentry {3}{2}{3}{36/36}{Reductions and Gathers}{0}}
-\headcommand {\beamer@framepages {36}{36}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{37}{Other}}\headcommand {\beamer@subsectionpages {34}{36}}
-\headcommand {\slideentry {3}{3}{1}{37/37}{Other}{0}}
-\headcommand {\beamer@framepages {37}{37}}
-\headcommand {\slideentry {3}{3}{2}{38/38}{Other}{0}}
-\headcommand {\beamer@framepages {38}{38}}
-\headcommand {\slideentry {3}{3}{3}{39/39}{Other}{0}}
-\headcommand {\beamer@framepages {39}{39}}
-\headcommand {\slideentry {3}{3}{4}{40/40}{Other}{0}}
-\headcommand {\beamer@framepages {40}{40}}
-\headcommand {\slideentry {3}{3}{5}{41/41}{Other}{0}}
-\headcommand {\beamer@framepages {41}{41}}
-\headcommand {\sectionentry {4}{GBD}{42}{The Generalized Block Distribution}{0}}
-\headcommand {\beamer@sectionpages {29}{41}}
-\headcommand {\beamer@subsectionpages {37}{41}}
-\headcommand {\slideentry {4}{0}{6}{42/42}{}{0}}
-\headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@subsectionentry {0}{4}{1}{43}{The GBD Data Structure}}\headcommand {\beamer@subsectionpages {42}{42}}
-\headcommand {\slideentry {4}{1}{1}{43/43}{The GBD Data Structure}{0}}
-\headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {4}{1}{2}{44/44}{The GBD Data Structure}{0}}
-\headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {4}{1}{3}{45/45}{The GBD Data Structure}{0}}
-\headcommand {\beamer@framepages {45}{45}}
-\headcommand {\beamer@subsectionentry {0}{4}{2}{46}{GBD: Example 1}}\headcommand {\beamer@subsectionpages {43}{45}}
-\headcommand {\slideentry {4}{2}{1}{46/46}{GBD: Example 1}{0}}
-\headcommand {\beamer@framepages {46}{46}}
-\headcommand {\slideentry {4}{2}{2}{47/47}{GBD: Example 1}{0}}
-\headcommand {\beamer@framepages {47}{47}}
-\headcommand {\slideentry {4}{2}{3}{48/48}{GBD: Example 1}{0}}
-\headcommand {\beamer@framepages {48}{48}}
-\headcommand {\beamer@subsectionentry {0}{4}{3}{49}{GBD: Example 2}}\headcommand {\beamer@subsectionpages {46}{48}}
-\headcommand {\slideentry {4}{3}{1}{49/49}{GBD: Example 2}{0}}
-\headcommand {\beamer@framepages {49}{49}}
-\headcommand {\slideentry {4}{3}{2}{50/50}{GBD: Example 2}{0}}
-\headcommand {\beamer@framepages {50}{50}}
-\headcommand {\slideentry {4}{3}{3}{51/51}{GBD: Example 2}{0}}
-\headcommand {\beamer@framepages {51}{51}}
-\headcommand {\sectionentry {5}{Break}{52}{Brief Intermission}{0}}
-\headcommand {\beamer@sectionpages {42}{51}}
-\headcommand {\beamer@subsectionpages {49}{51}}
-\headcommand {\slideentry {5}{0}{4}{52/52}{}{0}}
-\headcommand {\beamer@framepages {52}{52}}
-\headcommand {\sectionentry {6}{Stats eg's}{53}{Basic Statistics Examples}{0}}
-\headcommand {\beamer@sectionpages {52}{52}}
-\headcommand {\beamer@subsectionpages {52}{52}}
-\headcommand {\slideentry {6}{0}{5}{53/53}{}{0}}
-\headcommand {\beamer@framepages {53}{53}}
-\headcommand {\beamer@subsectionentry {0}{6}{1}{54}{pbdMPI Example: Monte Carlo Simulation}}\headcommand {\beamer@subsectionpages {53}{53}}
-\headcommand {\slideentry {6}{1}{1}{54/54}{pbdMPI Example: Monte Carlo Simulation}{0}}
-\headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {6}{1}{2}{55/55}{pbdMPI Example: Monte Carlo Simulation}{0}}
-\headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {6}{1}{3}{56/56}{pbdMPI Example: Monte Carlo Simulation}{0}}
-\headcommand {\beamer@framepages {56}{56}}
-\headcommand {\slideentry {6}{1}{4}{57/57}{pbdMPI Example: Monte Carlo Simulation}{0}}
-\headcommand {\beamer@framepages {57}{57}}
-\headcommand {\beamer@subsectionentry {0}{6}{2}{58}{pbdMPI Example: Sample Covariance}}\headcommand {\beamer@subsectionpages {54}{57}}
-\headcommand {\slideentry {6}{2}{1}{58/58}{pbdMPI Example: Sample Covariance}{0}}
-\headcommand {\beamer@framepages {58}{58}}
-\headcommand {\slideentry {6}{2}{2}{59/59}{pbdMPI Example: Sample Covariance}{0}}
-\headcommand {\beamer@framepages {59}{59}}
-\headcommand {\slideentry {6}{2}{3}{60/60}{pbdMPI Example: Sample Covariance}{0}}
-\headcommand {\beamer@framepages {60}{60}}
-\headcommand {\beamer@subsectionentry {0}{6}{3}{61}{pbdMPI Example: Linear Regression}}\headcommand {\beamer@subsectionpages {58}{60}}
-\headcommand {\slideentry {6}{3}{1}{61/61}{pbdMPI Example: Linear Regression}{0}}
-\headcommand {\beamer@framepages {61}{61}}
-\headcommand {\slideentry {6}{3}{2}{62/62}{pbdMPI Example: Linear Regression}{0}}
-\headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {6}{3}{3}{63/63}{pbdMPI Example: Linear Regression}{0}}
-\headcommand {\beamer@framepages {63}{63}}
-\headcommand {\sectionentry {7}{pbdDMAT}{64}{Introduction to pbdDMAT}{0}}
-\headcommand {\beamer@sectionpages {53}{63}}
-\headcommand {\beamer@subsectionpages {61}{63}}
-\headcommand {\slideentry {7}{0}{4}{64/64}{}{0}}
-\headcommand {\beamer@framepages {64}{64}}
-\headcommand {\beamer@subsectionentry {0}{7}{1}{65}{Introduction to Distributed Matrices}}\headcommand {\beamer@subsectionpages {64}{64}}
-\headcommand {\slideentry {7}{1}{1}{65/65}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {65}{65}}
-\headcommand {\slideentry {7}{1}{2}{66/66}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {7}{1}{3}{67/67}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {67}{67}}
-\headcommand {\slideentry {7}{1}{4}{68/68}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {68}{68}}
-\headcommand {\slideentry {7}{1}{5}{69/69}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {69}{69}}
-\headcommand {\beamer@subsectionentry {0}{7}{2}{70}{DMAT Distributions}}\headcommand {\beamer@subsectionpages {65}{69}}
-\headcommand {\slideentry {7}{2}{0}{70/70}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {70}{70}}
-\headcommand {\slideentry {7}{2}{1}{71/71}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {71}{71}}
-\headcommand {\slideentry {7}{2}{2}{72/72}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {72}{72}}
-\headcommand {\slideentry {7}{2}{3}{73/73}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {73}{73}}
-\headcommand {\slideentry {7}{2}{4}{74/74}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {74}{74}}
-\headcommand {\slideentry {7}{2}{5}{75/75}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {75}{75}}
-\headcommand {\slideentry {7}{2}{6}{76/76}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {76}{76}}
-\headcommand {\slideentry {7}{2}{7}{77/77}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {77}{77}}
-\headcommand {\slideentry {7}{2}{8}{78/78}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {78}{78}}
-\headcommand {\slideentry {7}{2}{9}{79/79}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {79}{79}}
-\headcommand {\slideentry {7}{2}{10}{80/80}{Introduction to Distributed Matrices}{0}}
-\headcommand {\beamer@framepages {80}{80}}
-\headcommand {\beamer@subsectionentry {0}{7}{3}{81}{pbdDMAT}}\headcommand {\beamer@subsectionpages {65}{80}}
-\headcommand {\slideentry {7}{3}{1}{81/81}{pbdDMAT}{0}}
-\headcommand {\beamer@framepages {81}{81}}
-\headcommand {\slideentry {7}{3}{2}{82/82}{pbdDMAT}{0}}
-\headcommand {\beamer@framepages {82}{82}}
-\headcommand {\slideentry {7}{3}{3}{83/83}{pbdDMAT}{0}}
-\headcommand {\beamer@framepages {83}{83}}
-\headcommand {\sectionentry {8}{pbdDMAT eg's}{84}{Examples Using pbdDMAT}{0}}
-\headcommand {\beamer@sectionpages {64}{83}}
-\headcommand {\beamer@subsectionpages {81}{83}}
-\headcommand {\beamer@subsectionentry {0}{8}{1}{84}{Statistics Examples with pbdDMAT}}\headcommand {\beamer@subsectionpages {84}{83}}
-\headcommand {\slideentry {8}{1}{1}{84/84}{Statistics Examples with pbdDMAT}{0}}
-\headcommand {\beamer@framepages {84}{84}}
-\headcommand {\slideentry {8}{1}{2}{85/85}{Statistics Examples with pbdDMAT}{0}}
-\headcommand {\beamer@framepages {85}{85}}
-\headcommand {\slideentry {8}{1}{3}{86/86}{Statistics Examples with pbdDMAT}{0}}
-\headcommand {\beamer@framepages {86}{86}}
-\headcommand {\beamer@subsectionentry {0}{8}{2}{87}{pbdDMAT Example: Generating Data}}\headcommand {\beamer@subsectionpages {84}{86}}
-\headcommand {\slideentry {8}{2}{1}{87/87}{pbdDMAT Example: Generating Data}{0}}
-\headcommand {\beamer@framepages {87}{87}}
-\headcommand {\slideentry {8}{2}{2}{88/88}{pbdDMAT Example: Generating Data}{0}}
-\headcommand {\beamer@framepages {88}{88}}
-\headcommand {\slideentry {8}{2}{3}{89/89}{pbdDMAT Example: Generating Data}{0}}
-\headcommand {\beamer@framepages {89}{89}}
-\headcommand {\slideentry {8}{2}{4}{90/90}{pbdDMAT Example: Generating Data}{0}}
-\headcommand {\beamer@framepages {90}{90}}
-\headcommand {\beamer@subsectionentry {0}{8}{3}{91}{pbdDMAT Example: Converting Between GBD and DMAT}}\headcommand {\beamer@subsectionpages {87}{90}}
-\headcommand {\slideentry {8}{3}{1}{91/91}{pbdDMAT Example: Converting Between GBD and DMAT}{0}}
-\headcommand {\beamer@framepages {91}{91}}
-\headcommand {\slideentry {8}{3}{2}{92/92}{pbdDMAT Example: Converting Between GBD and DMAT}{0}}
-\headcommand {\beamer@framepages {92}{92}}
-\headcommand {\sectionentry {9}{Wrapup}{93}{Wrapup}{0}}
-\headcommand {\beamer@sectionpages {84}{92}}
-\headcommand {\beamer@subsectionpages {91}{92}}
-\headcommand {\slideentry {9}{0}{3}{93/93}{}{0}}
-\headcommand {\beamer@framepages {93}{93}}
-\headcommand {\slideentry {9}{0}{4}{94/94}{}{0}}
-\headcommand {\beamer@framepages {94}{94}}
-\headcommand {\slideentry {10}{0}{5}{95/95}{}{0}}
-\headcommand {\beamer@framepages {95}{95}}
-\headcommand {\beamer@partpages {1}{95}}
-\headcommand {\beamer@subsectionpages {95}{95}}
-\headcommand {\beamer@sectionpages {95}{95}}
-\headcommand {\beamer@documentpages {95}}
-\headcommand {\def \inserttotalframenumber {79}}
+\beamer@endinputifotherversion {3.10pt}
+\headcommand {\beamer@partpages {1}{17}}
+\headcommand {\beamer@subsectionpages {16}{17}}
+\headcommand {\beamer@sectionpages {1}{17}}
+\headcommand {\beamer@documentpages {17}}
+\headcommand {\def \inserttotalframenumber {16}}
