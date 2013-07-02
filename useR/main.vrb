@@ -1,35 +1,22 @@
-\fontsize {8pt}{10}\selectfont
-  \begin{block}{The \code{DMAT} Data Structure}\pause
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{0.59\textwidth}
-      \begin{enumerate}
-        \item \code{DMAT} is \emph{distributed}.  No one processor owns all of the matrix.
-        \item \code{DMAT} is \emph{non-overlapping}. Any piece owned by one processor is owned by no other processors.\\\hrule
-        \item \code{DMAT} can be row-contiguous or not, depending on the processor grid and blocking factor used.
-        \item \code{DMAT} is locally column-major and globally, it depends\dots
-      \end{enumerate}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      \begin{align*}
-\left[
-      \begin{array}{ll|ll|l}
-      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} \\
-      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} \\\hline
-      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} \\
-      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & \color{g23}x_{45} \\\hline
-      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & \color{g13}x_{55} \\
-      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & \color{g13}x_{65} \\\hline
-      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & \color{g23}x_{75} \\
-      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} \\\hline
-      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} \\
-      \end{array}
-      \right]
-      \end{align*}
-    \end{column}
-  \end{columns}
-  \begin{enumerate}
-    \setcounter{enumi}{5}
-        \item \code{GBD} is a generalization of the one-dimensional block \code{DMAT} distribution.  Otherwise there is no relation.
-        \item \code{DMAT} is confusing, but very robust.
-    \end{enumerate}
-  \end{block}
+\begin {exampleblock}{Example \countex:  Random Distributed Matrix Generation}\pause
+\begin{lstlisting}[title=Convert between GBD and DMAT]
+library(pbdDEMO, quiet=TRUE)
+init.grid()
+
+comm.set.seed(diff = TRUE)
+
+N.gbd <- 1 + comm.rank()
+X.gbd <- matrix(rnorm(N.gbd * 3), ncol = 3)
+
+# convert GBD to DMAT
+X.dmat <- gbd2dmat(X.gbd)
+
+# convert DMAT to GBD
+new.X.gbd <- dmat2gbd(X.dmat)
+
+# undistribute
+X <- as.matrix(X.dmat)
+
+finalize()
+\end{lstlisting}
+  \end{exampleblock}
