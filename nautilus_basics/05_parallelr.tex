@@ -1,0 +1,205 @@
+
+\lsc{The Basics of Parallel R Nautilus}
+R has a strange quality, in that it has so many useful options for easily parallelizing your code that choosing one can often be harder than actually implementing the parallel solution.  Here we attempt to give a brief overview of the main methods for parallelism in R, with some small discussion of the various pros and cons.  This is by no means complete or comprehensive.  For more information, see the \href{http://cran.r-project.org/web/views/HighPerformanceComputing.html}{High Performance Computing and Parallel Computing with R CRAN Taskview}.\\\\
+%
+Before proceeding, it is worth taking a moment to describe the types of things in your script which can be parallelized.  Generally, \texttt{for} loops and things from the *ply family of functions (\texttt{apply()}, \texttt{lapply()}, etc.) are good candidates.  While this is by no means an exhaustive list, such structures are very good starting places.  Generally the things which you will parallelize are those involving lengthy computations, numerous computations, as well as numerous lengthy computations, especially if they are (or can easily be made to be) occurring independently.\\\\
+%
+It goes without saying that the goal of parallelism is to cut down run times.  Before moving to a parallel solution, you should probably have some idea of where the bottlenecks are in your code.  Additionally, slow serial code produces slow parallel code, so always keep good old fashioned numerical optimization, as well as R-style vectorization in mind.
+
+% \href{https://en.wikipedia.org/wiki/Fork_%28operating_system%29}{forking}
+
+\lsuc{Multicore}
+The \href{http://cran.r-project.org/web/packages/multicore/index.html}{Multicore package} relies on the system's \texttt{fork} command in for parallelism.  As such, this is only available on POSIX-like operating systems (such as the one on Nautilus).  Generally when using the Multicore package, you will wish to use the high level, implicitly parallel function \texttt{mclapply()}.  As the name suggests, this is a multicore lapply function.  It's usually very easy to ``drop-in'' replace calls of \texttt{lapply()} with \texttt{mclapply()}, and often performs very well in providing speedup.  Compared to other methods of parallelism in R, this is generally one of the quickest, both in terms of development and run time.
+% Additionally, since \texttt{mclapply()} relies on forking, one can sometimes set the number of cores available to be higher than reality and get some slight speedup (although the possibility for returns quickly diminish as the number of forks grows past the number of actual cores).
+\\\\
+%
+However, there are two possible drawbacks to this approach.  First, this will not work on Windows, so if you exclusively use Windows on your workstation, then you will not be able to do small scale development and testing on your workstation.  Second, Multicore can only use cores from the same node.  For Nautilus users, this is a non-issue, and so you can use all 1024 cores of Nautilus with Multicore.  However, if you ever intend to run the script on a distributed memory machine, you could not (exclusively) use Multicore.\\\\
+%
+That said, generally \texttt{mclapply()} is a good first place to start for Nautilus users, and will often be sufficient for the analysis.
+
+\lsuc{SNOW}
+The \href{http://cran.r-project.org/web/packages/snow/index.html}{SNOW} package is an abstraction layer which works by managing communication across nodes for the user.  This can be used with a shared memory machine (such as your workstation and Nautilus) as well as several other configurations.  Notably, SNOW can be used as an interface for Rmpi.\\\\
+%
+Using snow is a little more complicated than Multicore, so there is no one function from this package that you will use for parallelization.  Several of the more important functions from SNOW are summarized in the table below.
+\begin{table}[h]
+ \centering
+ \begin{tabular}{ll}\hline
+  Function & Purpose\\\hline
+  \texttt{makeCluster()} & Create the workers\\
+  \texttt{stopCluster()} & Kill the workers (don't forget this!)\\
+  \texttt{clusterExport()} & Pass objects to the workers\\
+  \texttt{clusterApply()} & Send tasks to the workers\\
+  \texttt{clusterApplyLB()} & Load balanced version of above\\
+  \texttt{parLapply()} & Parallel \texttt{lapply()}\\\hline
+ \end{tabular}
+\end{table}
+A quick word of warning:  \texttt{clusterApply()} is not much of an analogue of R's family of \texttt{apply()} functions.  It is more so an extension to the \texttt{eval()} function.  In this sense, it provides a way of interacting with ``the'' R terminal (across the different workers).  You are strongly encouraged to thoroughly read the complete SNOW documentation.\\\\
+%
+One major advantage SNOW has over Multicore is that it is multiplatform; it will work on POSIX-like operating systems (Mac, Linux, etc.) as well as Windows.  Further, it can be used as an interface for Rmpi.  This could be a major advantage if someone wanted to, say, do early development and small scale testing on a Windows computer, run an analysis on Nautilus, and then perhaps in the future run the analysis on a distributed memory cluster with Rmpi.\\\\
+%
+The major disadvantage of SNOW is that it is not nearly as simple to use as Multicore.  Additionally, setting up the workers with SNOW will take much more time than the system forking used in Multicore, but for big jobs (the reason you're on a supercomputer), this should not have any major impact on total time run for the job.
+
+\lsuc{Parallel}
+As of R version 2.14.0, R comes bundled with the base package parallel.  This package mostly recreates the functionality of each of the Multicore and SNOW packages.  Parallel is slightly different than either, however, and you are encouraged to read the documentation thoroughly.  The easiest way to do so is to start an R session with version at least 2.14.0 and enter
+\begin{lstlisting}[language=rr]
+library(parallel)
+?parallel
+\end{lstlisting}
+
+
+\lsuc{Rmpi}
+The \href{http://cran.r-project.org/web/packages/Rmpi/index.html}{Rmpi} package provides a powerful API for parallel computation with \href{https://en.wikipedia.org/wiki/Message_Passing_Interface}{MPI}.\\\\
+%
+Like SNOW, Rmpi is more complicated to use than Multicore.  Of course, with the added complication comes some added power and flexibility.  There is a very nice tutorial on Rmpi located at the \href{http://math.acadiau.ca/ACMMaC/Rmpi/}{Acadia Centre for Mathematical Modelling and Computation}.  However, we very much encourage you to thoroughly \href{http://cran.r-project.org/web/packages/Rmpi/Rmpi.pdf}{read the official documentation for Rmpi}.  You should consider reading the Rmpi documentation mandatory if you wish to use Rmpi.\\\\
+%
+As with SNOW, we summarize several of the more important functions from Rmpi.
+\begin{table}[h]
+ \centering
+ \begin{tabular}{ll}\hline
+  Function & Purpose\\\hline
+  \texttt{mpi.spawn.Rslaves()} & Create the workers\\
+  \texttt{mpi.close.Rslaves()} & Shut down workers (don't forget this!)\\
+  \texttt{mpi.exit()} & Detaches Rmpi library\\
+  \texttt{mpi.quit()} & Detaches Rmpi library and terminates R session\\
+  \texttt{mpi.bcast.cmd()} & Send command to the workers (quiet)\\
+  \texttt{mpi.remote.exec()} & Send command to the workers (print output)\\
+  \texttt{mpi.bcast.Robj2slave()} & Send R object to the workers\\
+  \texttt{mpi.parLapply()} & Parallel \texttt{lapply()}\\\hline
+ \end{tabular}
+\end{table}
+
+Here, \texttt{mpi.bcastcmd()} and \texttt{mpi.remote.exec()} are, in essence, rough equivalents to SNOW's \texttt{clusterApply} family.\\\\
+%
+Additionally, when using Rmpi on Nautilus, you require a special .Rprofile in order to be able to spawn the slaves.  You merely need to save this special .Rprofile file in the work directory of your R script that is to be run with Rmpi (be aware that this will override your .Rprofile in your home directory if you have one).\\\\
+%
+A copy of the .Rprofile you need is provided below:
+\begin{lstlisting}[language=rr]
+# This R profile can be used when a cluster does not allow spawning or a job 
+# scheduler is required to launch any parallel jobs. Saving this file as 
+# .Rprofile in the working directory or root directory. For unix platform, run
+# mpirexec -n [cpu numbers] R --no-save -q
+# For windows platform with mpich2, use mpiexec wrapper and specify a working 
+# directory where .Rprofile is inside.
+# Cannot be used as Rprofile.site because it will not work
+
+# Following system libraries are not loaded automatically. So manual loads are 
+# needed.
+library(utils)
+library(stats)
+library(datasets)
+library(grDevices)
+library(graphics)
+library(methods)
+
+if (!invisible(library(Rmpi,logical.return = TRUE))){
+    warning("Rmpi cannot be loaded")
+    q(save = "no")
+}
+
+options(error=quote(assign(".mpi.err", FALSE, env = .GlobalEnv)))
+
+if (mpi.comm.size(0) > 1)
+    invisible(mpi.comm.dup(0,1))
+
+if (mpi.comm.rank(0) >0){
+    #sys.load.image(".RData",TRUE)
+    options(echo=FALSE)
+    .comm <- 1
+    mpi.barrier(0)
+    repeat 
+        try(eval(mpi.bcast.cmd(rank=0,comm=.comm)),TRUE)
+        #try(eval(mpi.bcast.cmd(rank=0,comm=.comm),env=sys.parent()),TRUE)
+    #mpi.barrier(.comm)
+    if (is.loaded("mpi_comm_disconnect")) 
+        mpi.comm.disconnect(.comm)
+    else mpi.comm.free(.comm)
+    mpi.quit()
+}
+    
+if (mpi.comm.rank(0)==0) {
+    #options(echo=TRUE)
+    mpi.barrier(0)
+    if(mpi.comm.size(0) > 1)
+        slave.hostinfo(1)
+}
+
+.Last <- function(){
+    if (is.loaded("mpi_initialize")){
+        if (mpi.comm.size(1) > 1){
+            print("Please use mpi.close.Rslaves() to close slaves")
+            mpi.close.Rslaves(comm=1)
+        }
+    }
+    print("Please use mpi.quit() to quit R")
+    mpi.quit()
+}
+\end{lstlisting}
+
+
+\lsuc{foreach}
+The \href{http://cran.r-project.org/web/packages/foreach/index.html}{foreach} package aims to provide a generic front-end for parallelism in R.  The idea is that you would write your parallel code in the foreach format (which vaguely resembles a \texttt{for} loop), and then you register whichever back-end you need, to make cross-platform development and testing easier.  
+
+\begin{table}[h]
+ \centering
+ \begin{tabular}{lll}\hline
+  Package & Backend & Backend Register Function\\\hline
+  doMC & Multicore & \texttt{registerDoMC()}\\
+  doMPI & Rmpi & \texttt{registerDoMPI()}\\
+  doSNOW & SNOW & \texttt{registerDoSNOW()}\\\hline
+ \end{tabular}
+\end{table}
+To use foreach, you first register your parallel backend by loading the appropriate package and using the corresponding function above.  You then make a call to the \texttt{foreach} function, which for R users has a strange syntax.  But after registering the desired parallel backend, most uses of foreach will look something like this
+\begin{lstlisting}[language=rr]
+mylist <- foreach(i=1:n) %dopar% {
+  # main work of your for loop
+  ...
+}
+\end{lstlisting}
+There are many additional options, some related to your specific backend, some universal.  As always you are highly encouraged to read the official documentation.\\\\
+%
+There are several disadvantages to this approach.  First, while foreach \emph{looks} like a \texttt{for} loop, it does not entirely behave like one.  It is a parallel \texttt{for} loop (as are, effectively, the above high level ``ply''-like functions, such as \texttt{mclapply()}, \texttt{parLapply()}, etc.).  As such, doing very ``\texttt{for} loopish'' things like
+\begin{lstlisting}[language=rr]
+foreach(i=1:n) %dopar% {
+  x <- calculate(stuff)
+  if (is.better.than(x, best)){
+    best <- x
+  }
+}
+\end{lstlisting}
+will not work.  So the version of parallel abstraction brought to you in foreach may not be buying you exactly what you think it is.  If there is such a thing as a typical parallel implementation using the above API's, then it, at a basic level, amounts to declaring a function to do your main work for you and then calling the appropriate parallel ``loop-like'' function to call that function many times.  Foreach is really no different in that respect, other than masking to some degree the explicit declaration and calling of a function (since it looks like a loop).\\\\
+%
+Additionally, foreach has a non-trivial amount of added overhead through its use of the iterators package.  This is probably due to a bug because the run time grows astronomically as the order magnitude of your index set grows.  For example, if you were to perform many coinflips in parallel with the various parallel packages, they would all start out taking roughly the same amount of time.  But as your index set grows into the thousands of rows, tens of thousands, hundreds of thousands..., foreach has runaway time usage (which can take much longer than single core run time).  This is independent of the number of cores you throw at the problem.  Indeed, the runtime balloons up during a serial call whereby the special S4 class of iterating set foreach requires is constructed.\\\\
+%
+The 
+\ifpdf
+figures below give some idea of just how high these costs can be.
+\begin{figure}[h]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{partimes.pdf}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{parlogtimes.pdf}
+  \end{subfigure}%
+\end{figure}
+\else
+figure below gives some idea of just how high these costs can be.
+  \begin{center}
+   \includegraphics[width=\textwidth]{parlogtimes.pdf}
+  \end{center}
+\fi
+
+%
+All that said, if your iterating set is ``small'' (on the order of a few thousand, upwards of 10,000), and the functions you are calling in parallel are time consuming (way more intensive than a coinflip), then foreach is fine and will generally produce results in roughly on the order of time required by its registered backend.
+
+
+% \lsuc{gputools}
+\lsuc{Generating Random Numbers in Parallel}
+Depending on what you are doing and which parallel R API you decide to use, you may need the use of an additional package to ensure that independence is maintained as you generate random numbers in parallel.  \\\\
+%
+This should not be a problem for \texttt{mclapply()} as it comes with an option \texttt{mc.set.seed} which defaults to \texttt{TRUE}, meaning that parallel processes automatically set their seed to something different.  You could of course set this value to \texttt{FALSE} if you wanted, and then all the processes would start with the same seed (the current one).\\\\
+%
+The main reason you will need these is if you are using Rmpi (or anything else else using Rmpi, e.g. SNOW with \texttt{type="MPI"}, foreach with doMPI, etc).  There are currently two packages for dealing with this issue:  \href{http://cran.r-project.org/web/packages/rlecuyer/index.html}{rlecuyer} and \href{http://cran.r-project.org/web/packages/rsprng/index.html}{rsprng}.\\\\
+%
+Additionally, if you are using foreach, there is the \href{http://cran.r-project.org/web/packages/doRNG/index.html}{doRNG} package.

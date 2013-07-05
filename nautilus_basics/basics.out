@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{What is Nautilus?}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Getting an Account}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Interacting with Nautilus}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Connecting to Nautilus}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Connecting from Mac and Linux}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Connecting from Windows}{subsection.2.1}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Your Nautilus Password}{subsection.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Basic Commands}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Loading Software}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Choosing a Text Editor}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.5}{Transferring Files}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Small File Transfer}{subsection.2.5}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Large File Transfer}{subsection.2.5}% 14
+\BOOKMARK [1][-]{section.3}{The Job Queue System}{}% 15
+\BOOKMARK [1][-]{section.4}{R on Nautilus}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Packages and Libraries}{section.4}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Using the Existing Library}{subsection.4.1}% 18
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Managing Your Own R Library}{subsection.4.1}% 19
+\BOOKMARK [2][-]{subsection.4.2}{Different R Versions}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.3}{Running Batch Jobs}{section.4}% 21
