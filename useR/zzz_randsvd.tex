@@ -35,15 +35,10 @@
 % 217--88}
 %   \end{block}
 % \end{frame}
-
-
-
-
-
 \begin{frame}[fragile]
-%  \fontsize{8pt}{10}\selectfont
+\fontsize{8pt}{10}\selectfont
 \begin{block}{Randomized SVD\footnotemark}
-  \begin{minipage}{.51\textwidth}
+  \begin{minipage}{.55\textwidth}
     \begin{center}
       \includegraphics[width=.95\textwidth]{pics/randSVDalg}
       \\
@@ -51,7 +46,7 @@
     \end{center}
   \end{minipage}
 %   \hspace{.01cm}
-  \begin{minipage}{0.471\textwidth}
+  \begin{minipage}{0.430\textwidth}
 \begin{lstlisting}[title=Serial 
 R,basicstyle=\tiny,backgroundcolor=\color{grayish} 
 ,numberstyle=\tiny\color{black},keywordstyle=\color{black},commentstyle=\color{ 
@@ -59,7 +54,8 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- matrix(rnorm(n*2*k), nrow=n, ncol=2*k)
+    Omega <- (*@ matrix(rnorm(n*2*k),@*) 
+            (*@ nrow=n, ncol=2*k) @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -77,25 +73,21 @@ randSVD <- function(A, k, q=3)
     U <- Q %*% U
     U[, 1:k]
   }
-\end{lstlisting}
-  \end{minipage}
-    \footnotetext{ \fontsize{6pt}{10}\selectfont $^1$Halko N, Martinsson P-G 
-and Tropp J A 2011 Finding structure with randomness: probabilistic algorithms 
-for constructing approximate matrix decompositions \emph{SIAM} Rev. \textbf{53} 
-217--88}
+\end{lstlisting} %balance$
+\end{minipage}
+{\fontsize{6pt}{10}\selectfont $^1$Halko N, Martinsson P-G 
+  and Tropp J A 2011 Finding structure with randomness: probabilistic algorithms 
+  for constructing approximate matrix decompositions \emph{SIAM Rev.} \textbf{53} 
+  217--88}
 \end{block}
 \end{frame}
-
-
-
-
 
 
 \begin{frame}[fragile]
  \fontsize{8pt}{10}\selectfont
 \begin{block}{Randomized SVD}
-  \hspace{.1cm}
-  \begin{minipage}{0.475\textwidth}
+  \hfill
+  \begin{minipage}{0.430\textwidth}
 \begin{lstlisting}[title=Serial 
 R,basicstyle=\tiny,backgroundcolor=\color{grayish} 
 ,numberstyle=\tiny\color{black},keywordstyle=\color{black},commentstyle=\color{ 
@@ -122,18 +114,18 @@ randSVD <- function(A, k, q=3)
     U <- Q %*% U
     U[, 1:k]
   }
-\end{lstlisting}
+\end{lstlisting} %balance$
   \end{minipage}
-  \hspace{.05cm}
-  \begin{minipage}{0.475\textwidth}
+  \hfill
+  \begin{minipage}{0.430\textwidth}
 \begin{lstlisting}[title=Parallel pbdR,basicstyle=\tiny,backgroundcolor=\color{
 grayish}, numberstyle=\tiny\color{black},keywordstyle=\color{black},
 commentstyle=\color{dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm", nrow=n,} @*)
-         (*@ \textcolor{blue}{ncol=2*k)} @*)
+    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)
+         (*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)      
@@ -151,8 +143,18 @@ randSVD <- function(A, k, q=3)
     U <- Q %*% U     
     U[, 1:k]
   }
-\end{lstlisting}
+\end{lstlisting}  % balancing $
   \end{minipage}
+\hfill
 \end{block}
 \end{frame}
 
+\begin{frame}
+  \begin{block}{Randomized SVD}
+    \begin{center}
+      \includegraphics[width=.45\textwidth]{pics/randSVDSpeedup.pdf}
+      \hfill
+      \includegraphics[width=.45\textwidth]{pics/randSpeedupSVD.pdf}
+    \end{center}
+  \end{block}
+\end{frame}

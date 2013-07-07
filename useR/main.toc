@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.10pt}
+\beamer@endinputifotherversion {3.20pt}
 \beamer@sectionintoc {1}{Introduction}{8}{0}{1}
 \beamer@subsectionintoc {1}{1}{Quick Overview of Parallel Hardware}{9}{0}{1}
 \beamer@subsectionintoc {1}{2}{A Concise Introduction to Parallelism}{20}{0}{1}
