@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 JUL 2013 05:54
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  8 JUL 2013 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1248,7 +1248,7 @@ File: pics/ParallelHardware3.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics/ParallelHardware3.pdf used on input line 28.
 (pdftex.def)             Requested size: 291.92444pt x 198.41302pt.
 
-Overfull \vbox (6.05675pt too high) detected at line 28
+Overfull \vbox (5.42758pt too high) detected at line 28
  []
 
 File: pics/utk_logo.png Graphic file (type png)
@@ -1265,7 +1265,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 28.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware4.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware4.pdf, id=1879, 1027.84pt x 698.61pt>
+<pics/ParallelHardware4.pdf, id=1876, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware4.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware4.pdf>
@@ -1289,7 +1289,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 34.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware5.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware5.pdf, id=2065, 1027.84pt x 698.61pt>
+<pics/ParallelHardware5.pdf, id=2059, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware5.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware5.pdf>
@@ -1313,7 +1313,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 40.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware6.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware6.pdf, id=2251, 1027.84pt x 698.61pt>
+<pics/ParallelHardware6.pdf, id=2245, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware6.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware6.pdf>
@@ -1337,7 +1337,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 46.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware7.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware7.pdf, id=2571, 1027.84pt x 698.61pt>
+<pics/ParallelHardware7.pdf, id=2565, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware7.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware7.pdf>
@@ -1361,7 +1361,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 52.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware8.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware8.pdf, id=2929, 1027.84pt x 698.61pt>
+<pics/ParallelHardware8.pdf, id=2923, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware8.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware8.pdf>
@@ -1385,7 +1385,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 58.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware9.pdf): PDF inclusion: fo
 und PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware9.pdf, id=3205, 1027.84pt x 698.61pt>
+<pics/ParallelHardware9.pdf, id=3200, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware9.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware9.pdf>
@@ -1409,7 +1409,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 64.
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware10.pdf): PDF inclusion: f
 ound PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware10.pdf, id=3480, 1027.84pt x 698.61pt>
+<pics/ParallelHardware10.pdf, id=3476, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware10.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware10.pdf>
@@ -1438,7 +1438,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 
 pdfTeX warning: pdflatex (file ./pics/ParallelHardware11.pdf): PDF inclusion: f
 ound PDF version <1.6>, but at most version <1.5> allowed
-<pics/ParallelHardware11.pdf, id=3756, 1027.84pt x 698.61pt>
+<pics/ParallelHardware11.pdf, id=3753, 1027.84pt x 698.61pt>
 File: pics/ParallelHardware11.pdf Graphic file (type pdf)
 
 <use pics/ParallelHardware11.pdf>
@@ -1476,14 +1476,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 88.
  [20
 
 ]
-<pics/parallelism1.png, id=4234, 577.40718pt x 357.58594pt>
+<pics/parallelism1.png, id=4231, 577.40718pt x 357.58594pt>
 File: pics/parallelism1.png Graphic file (type png)
 
 <use pics/parallelism1.png>
 Package pdftex.def Info: pics/parallelism1.png used on input line 110.
 (pdftex.def)             Requested size: 137.82236pt x 85.35312pt.
 
-<pics/parallelism2.png, id=4235, 577.40718pt x 357.58594pt>
+<pics/parallelism2.png, id=4232, 577.40718pt x 357.58594pt>
 File: pics/parallelism2.png Graphic file (type png)
 
 <use pics/parallelism2.png>
@@ -1501,14 +1501,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 110.
 [21
 
  <./pics/parallelism1.png> <./pics/parallelism2.png>]
-<pics/analogy_serial.png, id=4358, 333.49594pt x 374.90062pt>
+<pics/analogy_serial.png, id=4355, 333.49594pt x 374.90062pt>
 File: pics/analogy_serial.png Graphic file (type png)
 
 <use pics/analogy_serial.png>
 Package pdftex.def Info: pics/analogy_serial.png used on input line 132.
 (pdftex.def)             Requested size: 137.82236pt x 154.93443pt.
 
-<pics/analogy_parallel.png, id=4359, 339.51843pt x 346.29375pt>
+<pics/analogy_parallel.png, id=4356, 339.51843pt x 346.29375pt>
 File: pics/analogy_parallel.png Graphic file (type png)
 
 <use pics/analogy_parallel.png>
@@ -1550,14 +1550,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 164.
  [24
 
 ]
-<pics/parallelism_data.png, id=4710, 722.7pt x 542.025pt>
+<pics/parallelism_data.png, id=4707, 722.7pt x 542.025pt>
 File: pics/parallelism_data.png Graphic file (type png)
 
 <use pics/parallelism_data.png>
 Package pdftex.def Info: pics/parallelism_data.png used on input line 187.
 (pdftex.def)             Requested size: 137.82236pt x 103.36626pt.
 
-<pics/parallelism_task.png, id=4711, 722.7pt x 542.025pt>
+<pics/parallelism_task.png, id=4708, 722.7pt x 542.025pt>
 File: pics/parallelism_task.png Graphic file (type png)
 
 <use pics/parallelism_task.png>
@@ -1599,14 +1599,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 213.
  [27
 
 ]
-<pics/scale_strong.pdf, id=5065, 504.88625pt x 504.88625pt>
+<pics/scale_strong.pdf, id=5062, 504.88625pt x 504.88625pt>
 File: pics/scale_strong.pdf Graphic file (type pdf)
 
 <use pics/scale_strong.pdf>
 Package pdftex.def Info: pics/scale_strong.pdf used on input line 235.
 (pdftex.def)             Requested size: 138.66588pt x 138.6631pt.
 
-<pics/scale_weak.pdf, id=5066, 504.88625pt x 504.88625pt>
+<pics/scale_weak.pdf, id=5063, 504.88625pt x 504.88625pt>
 File: pics/scale_weak.pdf Graphic file (type pdf)
 
 <use pics/scale_weak.pdf>
@@ -1623,14 +1623,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 235.
  [28
 
  <./pics/scale_strong.pdf> <./pics/scale_weak.pdf>]
-<pics/arch_shared.png, id=5197, 721.94719pt x 243.15843pt>
+<pics/arch_shared.png, id=5194, 721.94719pt x 243.15843pt>
 File: pics/arch_shared.png Graphic file (type png)
 
 <use pics/arch_shared.png>
 Package pdftex.def Info: pics/arch_shared.png used on input line 263.
 (pdftex.def)             Requested size: 138.66588pt x 46.70146pt.
 
-<pics/arch_distributed.png, id=5198, 722.7pt x 386.94562pt>
+<pics/arch_distributed.png, id=5195, 722.7pt x 386.94562pt>
 File: pics/arch_distributed.png Graphic file (type png)
 
 <use pics/arch_distributed.png>
@@ -1652,13 +1652,13 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 [29
 
  <./pics/arch_shared.png> <./pics/arch_distributed.png>]
-<pics/nautilus.png, id=5317, 101.62968pt x 122.70844pt>
+<pics/nautilus.png, id=5314, 101.62968pt x 122.70844pt>
 File: pics/nautilus.png Graphic file (type png)
 
 <use pics/nautilus.png>
 Package pdftex.def Info: pics/nautilus.png used on input line 290.
 (pdftex.def)             Requested size: 66.0585pt x 79.75952pt.
- <pics/kraken.jpg, id=5318, 301.125pt x 170.6375pt>
+ <pics/kraken.jpg, id=5315, 301.125pt x 170.6375pt>
 File: pics/kraken.jpg Graphic file (type jpg)
 
 <use pics/kraken.jpg>
@@ -1777,7 +1777,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 7.
 
 
 
-] <pics/simple.png, id=6139, 1037.8775pt x 480.79625pt>
+] <pics/simple.png, id=6136, 1037.8775pt x 480.79625pt>
 File: pics/simple.png Graphic file (type png)
 
 <use pics/simple.png>
@@ -1811,7 +1811,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 
 [37
 
- <./pics/simple.png>] <pics/pbdR.png, id=6259, 455.45157pt x 351.56343pt>
+ <./pics/simple.png>] <pics/pbdR.png, id=6256, 455.45157pt x 351.56343pt>
 File: pics/pbdR.png Graphic file (type png)
 
 <use pics/pbdR.png>
@@ -1822,7 +1822,7 @@ Overfull \hbox (22.38536pt too wide) in paragraph at lines 54--54
 [][]  
  []
 
-<pics/libs.png, id=6260, 242.40562pt x 128.73094pt>
+<pics/libs.png, id=6257, 242.40562pt x 128.73094pt>
 File: pics/libs.png Graphic file (type png)
  <use pics/libs.png>
 Package pdftex.def Info: pics/libs.png used on input line 54.
@@ -2067,7 +2067,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 
 [50
 
-] <pics/mpi_reduce.png, id=7783, 343.2825pt x 197.98969pt>
+] <pics/mpi_reduce.png, id=7780, 343.2825pt x 197.98969pt>
 File: pics/mpi_reduce.png Graphic file (type png)
 
 <use pics/mpi_reduce.png>
@@ -2089,7 +2089,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 [51
 
  <./pics/mpi_reduce.png>]
-<pics/mpi_gather.png, id=7901, 319.1925pt x 271.0125pt>
+<pics/mpi_gather.png, id=7898, 319.1925pt x 271.0125pt>
 File: pics/mpi_gather.png Graphic file (type png)
 
 <use pics/mpi_gather.png>
@@ -2111,7 +2111,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 [52
 
  <./pics/mpi_gather.png>]
-<pics/mpi_bcast.png, id=8019, 353.82187pt x 262.73157pt>
+<pics/mpi_bcast.png, id=8016, 353.82187pt x 262.73157pt>
 File: pics/mpi_bcast.png Graphic file (type png)
 
 <use pics/mpi_bcast.png>
@@ -2133,7 +2133,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 [53
 
  <./pics/mpi_bcast.png>]
-<pics/mpi_barrier.png, id=8137, 409.53pt x 520.94624pt>
+<pics/mpi_barrier.png, id=8134, 409.53pt x 520.94624pt>
 File: pics/mpi_barrier.png Graphic file (type png)
 
 <use pics/mpi_barrier.png>
@@ -2558,7 +2558,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 12.
 
 
 
-] <pics/pi.pdf, id=10712, 504.88625pt x 504.88625pt>
+] <pics/pi.pdf, id=10709, 504.88625pt x 504.88625pt>
 File: pics/pi.pdf Graphic file (type pdf)
  <use pics/pi.pdf>
 Package pdftex.def Info: pics/pi.pdf used on input line 29.
@@ -2783,21 +2783,21 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 
 [87
 
-] <pics/dmat_block.png, id=12123, 435.87843pt x 315.42844pt>
+] <pics/dmat_block.png, id=12120, 435.87843pt x 315.42844pt>
 File: pics/dmat_block.png Graphic file (type png)
 
 <use pics/dmat_block.png>
 Package pdftex.def Info: pics/dmat_block.png used on input line 52.
 (pdftex.def)             Requested size: 92.18231pt x 142.26395pt.
 
-<pics/dmat_cyclic.png, id=12124, 437.38406pt x 310.15875pt>
+<pics/dmat_cyclic.png, id=12121, 437.38406pt x 310.15875pt>
 File: pics/dmat_cyclic.png Graphic file (type png)
 
 <use pics/dmat_cyclic.png>
 Package pdftex.def Info: pics/dmat_cyclic.png used on input line 52.
 (pdftex.def)             Requested size: 92.18706pt x 142.26302pt.
 
-<pics/dmat_blockcyclic.png, id=12125, 435.87843pt x 329.73187pt>
+<pics/dmat_blockcyclic.png, id=12122, 435.87843pt x 329.73187pt>
 File: pics/dmat_blockcyclic.png Graphic file (type png)
 
 <use pics/dmat_blockcyclic.png>
@@ -2819,21 +2819,21 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 [88
 
  <./pics/dmat_block.png> <./pics/dmat_cyclic.png> <./pics/dmat_blockcyclic.png>
-] <pics/dmat_block2d.png, id=12247, 435.87843pt x 315.42844pt>
+] <pics/dmat_block2d.png, id=12244, 435.87843pt x 315.42844pt>
 File: pics/dmat_block2d.png Graphic file (type png)
 
 <use pics/dmat_block2d.png>
 Package pdftex.def Info: pics/dmat_block2d.png used on input line 84.
 (pdftex.def)             Requested size: 92.18231pt x 142.26395pt.
 
-<pics/dmat_cyclic2d.png, id=12248, 436.63126pt x 286.06876pt>
+<pics/dmat_cyclic2d.png, id=12245, 436.63126pt x 286.06876pt>
 File: pics/dmat_cyclic2d.png Graphic file (type png)
 
 <use pics/dmat_cyclic2d.png>
 Package pdftex.def Info: pics/dmat_cyclic2d.png used on input line 84.
 (pdftex.def)             Requested size: 92.18828pt x 142.26578pt.
 
-<pics/dmat_blockcyclic2d.png, id=12249, 435.87843pt x 266.49562pt>
+<pics/dmat_blockcyclic2d.png, id=12246, 435.87843pt x 266.49562pt>
 File: pics/dmat_blockcyclic2d.png Graphic file (type png)
 
 <use pics/dmat_blockcyclic2d.png>
@@ -2890,7 +2890,7 @@ Overfull \hbox (1.84158pt too wide) has occurred while \output is active
 
 [91
 
-] <pics/dmat_dist.png, id=12605, 624.08156pt x 178.41656pt>
+] <pics/dmat_dist.png, id=12602, 624.08156pt x 178.41656pt>
 File: pics/dmat_dist.png Graphic file (type png)
 
 <use pics/dmat_dist.png>
@@ -3430,7 +3430,7 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 49.
 
 pdfTeX warning: pdflatex (file ./pics/randSVDalg.pdf): PDF inclusion: found PDF
  version <1.6>, but at most version <1.5> allowed
-<pics/randSVDalg.pdf, id=15754, 352.31625pt x 225.84375pt>
+<pics/randSVDalg.pdf, id=15751, 352.31625pt x 225.84375pt>
 File: pics/randSVDalg.pdf Graphic file (type pdf)
 
 <use pics/randSVDalg.pdf>
@@ -3440,7 +3440,7 @@ Package pdftex.def Info: pics/randSVDalg.pdf used on input line 5.
 
 pdfTeX warning: pdflatex (file ./pics/randSVDalg4_4.pdf): PDF inclusion: found 
 PDF version <1.6>, but at most version <1.5> allowed
-<pics/randSVDalg4_4.pdf, id=15755, 352.31625pt x 144.54pt>
+<pics/randSVDalg4_4.pdf, id=15752, 352.31625pt x 144.54pt>
 File: pics/randSVDalg4_4.pdf Graphic file (type pdf)
 
 <use pics/randSVDalg4_4.pdf>
@@ -3477,14 +3477,14 @@ Package pdftex.def Info: pics/ornl.jpg used on input line 150.
 
 [120
 
-] <pics/randSVDSpeedup.pdf, id=16123, 289.08pt x 361.35pt>
+] <pics/randSVDSpeedup.pdf, id=16120, 289.08pt x 361.35pt>
 File: pics/randSVDSpeedup.pdf Graphic file (type pdf)
 
 <use pics/randSVDSpeedup.pdf>
 Package pdftex.def Info: pics/randSVDSpeedup.pdf used on input line 160.
 (pdftex.def)             Requested size: 138.2795pt x 172.84503pt.
 
-<pics/randSpeedupSVD.pdf, id=16124, 289.08pt x 361.35pt>
+<pics/randSpeedupSVD.pdf, id=16121, 289.08pt x 361.35pt>
 File: pics/randSpeedupSVD.pdf Graphic file (type pdf)
 
 <use pics/randSpeedupSVD.pdf>
@@ -3534,7 +3534,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
 Here is how much of TeX's memory you used:
  20313 strings out of 493488
  366972 string characters out of 3141326
- 720071 words of memory out of 3000000
+ 720072 words of memory out of 3000000
  22684 multiletter control sequences out of 15000+200000
  28552 words of font info for 106 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -3567,10 +3567,10 @@ ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive
 2/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2012/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on main.pdf (121 pages, 3904721 bytes).
+Output written on main.pdf (121 pages, 3856524 bytes).
 PDF statistics:
- 16390 PDF objects out of 18468 (max. 8388607)
- 14700 compressed objects within 147 object streams
+ 16387 PDF objects out of 18468 (max. 8388607)
+ 14699 compressed objects within 147 object streams
  278 named destinations out of 1000 (max. 500000)
  596 words of extra memory for PDF output out of 10000 (max. 10000000)
 
