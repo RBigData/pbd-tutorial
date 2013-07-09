@@ -10,7 +10,41 @@
 
 \subsection{The GBD Data Structure}
 
-%motivation...
+
+\begin{frame}
+  \begin{block}{Distributing Data}
+  \centering
+\textbf{Problem:}  How to distribute the data
+\begin{center}
+    \begin{minipage}{0.47\textwidth}
+     \begin{center}
+      \begin{align*}
+      x &= \left[
+            \begin{array}{lll}
+            x_{1,1} & x_{1,2} & x_{1,3} \\
+            x_{2,1} & x_{2,2} & x_{2,3} \\
+            x_{3,1} & x_{3,2} & x_{3,3} \\
+            x_{4,1} & x_{4,2} & x_{4,3} \\
+            x_{5,1} & x_{5,2} & x_{5,3} \\
+            x_{6,1} & x_{6,2} & x_{6,3} \\
+            x_{7,1} & x_{7,2} & x_{7,3} \\
+            x_{8,1} & x_{8,2} & x_{8,3} \\
+            x_{9,1} & x_{9,2} & x_{9,3} \\
+            x_{10,1} & x_{10,2} & x_{10,3} \\
+            \end{array}
+      \right]_{10\times 3}
+      \end{align*}
+     \end{center}
+    \end{minipage}
+    \begin{minipage}{0.47\textwidth}
+    \centering
+      {\fontsize{12cm}{1cm}\selectfont ? }
+    \end{minipage}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
 
 \begin{frame}
 \begin{exampleblock}{Distributing a Matrix Across 4 Processors: Block Distribution}
@@ -66,7 +100,7 @@
             \color{g12}x_{6,1} & \color{g12}x_{6,2} & \color{g12}x_{6,3} \\\hline
             \color{g13}x_{7,1} & \color{g13}x_{7,2} & \color{g13}x_{7,3} \\
             \color{g13}x_{8,1} & \color{g13}x_{8,2} & \color{g13}x_{8,3} \\\hline
-            \color{g21}x_{9,1} & \color{g21}x_{9,2} & \color{g21}x_{9,3} \\\
+            \color{g21}x_{9,1} & \color{g21}x_{9,2} & \color{g21}x_{9,3} \\
             \color{g21}x_{10,1} & \color{g21}x_{10,2} & \color{g21}x_{10,3} \\
             \end{array}
       \right]_{10\times 3}

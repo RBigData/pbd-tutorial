@@ -64,6 +64,7 @@
     \item \pkg{pbdDMAT}: Distributed matrices (mostly implicit, high-level)
     \item \pkg{pbdNCDF4}: Parallel NetCDF4 reader
     \item \pkg{pbdDEMO}: Package demonstrations, examples, vignette written in textbook style
+    \item \pkg{pmclust}: Parallel model-based clustering.
   \end{itemize}
 %     \\[.2cm]
     Future Development:
@@ -88,6 +89,15 @@ ans <- svd(solve(xtx))
   \begin{center}
   \pause Look familiar?\\[.4cm] \pause
   \emph{The above runs on 1 core with R or 10,000 cores with pbdR}
+  \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Least Squares Benchmark}\pause
+  \begin{center}
+  \includegraphics[height=.89\textheight]{pics/lmfit_bench}
   \end{center}
   \end{block}
 \end{frame}
@@ -143,6 +153,14 @@ mpirun -np 2 Rscript my_par_script.r
       \item Not to be confused with SIMD.
       \item SPMD utilizes MIMD architecture computers.
       \item Arguably the simplest extension of serial programming.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Single Program/Multiple Data (SPMD)}\pause
+    \begin{itemize}
       \item Difficult to describe, easy to do\dots
       \item Only one program is written, executed in batch on all processors.
       \item Different processors are autonomous; there is no manager.
@@ -158,17 +176,23 @@ mpirun -np 2 Rscript my_par_script.r
 %       \begin{columns}
         \begin{minipage}{.47\textwidth}
         \begin{block}{Manager/Worker}
-\begin{lstlisting}[language=sh]
-
-\end{lstlisting}
+        \begin{itemize}
+          \item Fascism
+          \item Resentment
+          \item Fealty
+        \end{itemize}
         \end{block}
         \end{minipage}
+        %
         \hspace{.1cm}
+        %
         \begin{minipage}{.47\textwidth}
         \begin{block}{SPMD}
-\begin{lstlisting}[language=sh]
-
-\end{lstlisting}
+        \begin{itemize}
+          \item Democracy
+          \item Cooperation
+          \item Freeedom
+        \end{itemize}
         \end{block}
         \end{minipage}
 %       \end{columns}
