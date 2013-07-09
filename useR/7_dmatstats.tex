@@ -96,30 +96,59 @@ mpirun -np 2 Rscript 3_extract.r
 \begin{frame}[fragile]
   \begin{exampleblock}{Example \countex:  GBD and DMAT}\pause
 \begin{lstlisting}
-library(pbdDEMO, quiet=TRUE)
+library(pbdDMAT, quiet=TRUE)
 init.grid()
 
-comm.set.seed(diff = TRUE)
+x.dmat <- ddmatrix(1:30, nrow=10)
 
-N.gbd <- 1 + comm.rank()
-X.gbd <- matrix(rnorm(N.gbd * 3), ncol = 3)
+y.dmat <- x.dmat + 1:7
 
-# convert GBD to DMAT
-X.dmat <- gbd2dmat(X.gbd)
+z.dmat <- scale(x.dmat, center=TRUE, scale=TRUE)
 
-# convert DMAT to GBD
-new.X.gbd <- dmat2gbd(X.dmat)
+y <- as.matrix(y.dmat)
+z <- as.matrix(z.dmat)
 
-# undistribute
-X <- as.matrix(X.dmat)
+comm.print(y)
+comm.print(z)
 
 finalize()
 \end{lstlisting}
 \begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
-mpirun -np 2 Rscript 4_convert.r
+mpirun -np 2 Rscript 4_misc.r
 \end{lstlisting} 
   \end{exampleblock}
 \end{frame}
+
+
+
+
+% \begin{frame}[fragile]
+%   \begin{exampleblock}{Example \countex:  GBD and DMAT}\pause
+% \begin{lstlisting}
+% library(pbdDEMO, quiet=TRUE)
+% init.grid()
+% 
+% comm.set.seed(diff = TRUE)
+% 
+% N.gbd <- 1 + comm.rank()
+% X.gbd <- matrix(rnorm(N.gbd * 3), ncol = 3)
+% 
+% # convert GBD to DMAT
+% X.dmat <- gbd2dmat(X.gbd)
+% 
+% # convert DMAT to GBD
+% new.X.gbd <- dmat2gbd(X.dmat)
+% 
+% # undistribute
+% X <- as.matrix(X.dmat)
+% 
+% finalize()
+% \end{lstlisting}
+% \begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+% mpirun -np 2 Rscript 4_convert.r
+% \end{lstlisting} 
+%   \end{exampleblock}
+% \end{frame}
 
 
 
