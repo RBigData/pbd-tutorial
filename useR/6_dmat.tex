@@ -1,4 +1,4 @@
-\section[pbdDMAT]{Introduction to pbdDMAT}
+\section[DMAT]{Introduction to pbdDMAT and the DMAT Structure}
 
 \hidenum
 \begin{frame}[noframenumbering]
@@ -11,11 +11,37 @@
 
 \begin{frame}
   \begin{block}{Distributed Matrices}\pause
-  Most problems in data science are matrix algebra problems
+  Most problems in data science are matrix algebra problems, so:
+  \begin{center}
+  $\text{Distributed matrices} \implies \text{Handle Bigger data}$
+  \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{block}{Distributed Matrices}\pause
+  High level OOP allows \emph{native} serial R syntax:
+  \begin{lstlisting}
+x <- x[-1, 2:5]
+x <- log(abs(x) + 1)
+xtx <- t(x) %*% x
+ans <- svd(solve(xtx))
+  \end{lstlisting}
+  \vspace{.4cm}
+  However\dots
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Distributed Matrices}\pause
+  DMAT:
     \begin{itemize}
-     \item Data structure:  block-cyclic matrix distributed across a 2-dimensional grid of processors.
+     \item \textbf{D}istributed \textbf{MAT}rix data structure.
      \item No single processor should hold all of the data.
-     \item Very robust, but very confusing data structure.
+     \item Block-cyclic matrix distributed across a 2-dimensional grid of processors.
+     \item Very robust, but confusing data structure.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -183,14 +209,16 @@ factor of $2\times 2$ on a $2\times 2$ processor grid:
       \end{center}
     {\small See \url{http://acts.nersc.gov/scalapack/hands-on/datadist.html}}
   \end{block}
+\end{frame}
 
-
+  
+  
+  
 
 \subsection{DMAT Distributions}
 
 
 
-\end{frame}
 
 \begin{frame}
 \begin{exampleblock}{Understanding Dmat: Global Matrix}
@@ -703,11 +731,17 @@ cov(x)
 
 \begin{frame}[fragile]
   \begin{block}{Comparing pbdMPI and pbdDMAT}\pause
-    \begin{itemize}
-     \item \pkg{pbdMPI} is MPI $+$ some sugar.
-     \item The \code{GBD} data structure is not the only thing \pkg{pbdMPI} can handle (just a useful convention).
-     \item \pkg{pbdDMAT} is more of a software package.
-     \item The block-cyclic \code{DMAT} structure \emph{must} be used for \pkg{pbdDMAT}.
+\pkg{pbdMPI}:
+  \begin{itemize}
+     \item MPI $+$ sugar.
+     \item \code{GBD} not the only structure \pkg{pbdMPI} can handle (just a useful convention).
+     \end{itemize}
+     
+     \pkg{pbdDMAT}:
+     \begin{itemize}
+     \item More of a software package.
+     \item \code{DMAT} structure \emph{must} be used for \pkg{pbdDMAT}.
+     \item If the data is not 2d block-cyclic compatible, DMAT will \emph{definitely} give the wrong answer.
     \end{itemize}
   \end{block}
 \end{frame}

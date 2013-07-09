@@ -16,30 +16,28 @@ for (i in 2:length(x)){
 z <- x/y
 z
 
-df <- data.frame(Cores=c(x,x), Scaling=c(x, z), group=c(rep("Theoretical", length(x)), rep("Application", length(x))))
+df <- data.frame(Cores=c(x,x), Speedup=c(x, z), group=c(rep("Optimal", length(x)), rep("Application", length(x))))
 
 
 
-g <- ggplot(df, aes(Cores, Scaling, group=group)) + 
+g <- ggplot(df, aes(Cores, Speedup, group=group)) + 
   geom_point() + 
-  geom_path(aes(colour=group)) +
-  opts(title=expression("Strong Scalability"))
+  geom_path(aes(colour=group))
 
 g
-ggsave(filename="scale_strong.pdf", plot=g)
+ggsave(filename="scale_good.pdf", plot=g)
 
 
 
 
-df <- data.frame(Cores=c(x,x), Scaling=c(x, log10(z)+1), group=c(rep("Theoretical", length(x)), rep("Application", length(x))))
+df <- data.frame(Cores=c(x,x), Speedup=c(x, log10(z)+1), group=c(rep("Optimal", length(x)), rep("Application", length(x))))
 
-h <- ggplot(df, aes(Cores, Scaling, group=group)) + 
+h <- ggplot(df, aes(Cores, Speedup, group=group)) + 
   geom_point() + 
-  geom_path(aes(colour=group)) +
-  opts(title=expression("Weak Scalability"))
+  geom_path(aes(colour=group))
 
 h
-ggsave(filename="scale_weak.pdf", plot=h)
+ggsave(filename="scale_bad.pdf", plot=h)
 
 
 
