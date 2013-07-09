@@ -2,4 +2,4 @@ Each pbdR script can be run via:
 mpirun -np 2 Rscript <script>
 
 For eaxmple:
-mpirun -np 2 Rscript pbdMPI/quick_1.r
+mpirun -np 2 Rscript pbdMPI/3_mpi_intro/1_rank.r
