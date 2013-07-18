@@ -1,0 +1,55 @@
+%%% Ignore images --- slightly faster compilation
+\documentclass[demo,handout,style=authortitle]{beamer}
+
+%%% Presentation slides
+% \documentclass[demo,handout,style=authortitle]{beamer}
+
+%%% Printable slides with side notes thing
+% \usepackage{handoutWithNotes}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{3 on 1 with notes big}[a4paper,border shrink=7mm]
+% \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+% \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+% \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+
+
+%%% Styles and settings
+\input{../common/zzz_settings}
+
+
+%%% Author and title, etc.
+\author[\color{white}{http://r-pbd.org} \hspace{2.4cm} pbdR Core Team]{%
+  Drew Schmidt and George Ostrouchov \\ 
+%       1. University of Tennessee, USA \\ 
+%       2. Oak Ridge National Laboratory, USA \\[.2cm]
+    \vspace{-.4cm}
+}
+
+
+\title[Introduction to pbdR]{Programming with Big Data in R}
+
+\date{July 8, 2013 \\[1.4cm] \centering\includegraphics[scale=.6]{../common/pics/logos}} 
+
+\logo{\begin{tabular}{r}\includegraphics[height=.34cm]{../common/pics/utk_logo.png} \\ \includegraphics[height=.34cm]{../common/pics/ornl.jpg}\end{tabular}}
+
+\newcommand{\mytitlea}{Introduction to pbdR \hspace{3cm} \insertframenumber\,/\,\inserttotalframenumber}
+\newcommand{\mytitleb}{Introduction to pbdR}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% \input{0_firstfew}
+\input{1_introduction}
+% \input{../common/2_pbdR}
+% \input{../common/3_mpi_intro}
+% \input{../common/4_mpi}
+% \input{intermission}
+% \input{../common/5_stats}
+% \input{../common/6_dmat}
+% \input{../common/7_dmatstats}
+% \input{../common/zzz_closing}
+
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

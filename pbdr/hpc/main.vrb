@@ -1,0 +1,18 @@
+\frametitle {DMAT Exercises}
+\begin{enumerate}
+ \item  Subsetting, selection, and filtering are basic matrix operations featured
+in R. The following may look silly, but it is useful for data
+processing.  Let \code{x.dmat <- ddmatrix(1:30, 10, 3)}.  Do the following:
+\begin{itemize}
+\item
+  \code{y.dmat <- x.dmat[c(1, 5, 4, 3), ]} \\
+  \code{y.dmat <- x.dmat[c(10:3, 5, 5), ]} \\
+  \code{y.dmat <- x.dmat[1:5, 3:1]}
+\\[.2cm]
+\item
+  \code{y.dmat <- x.dmat[x.dmat[, 2] > 13, ]} \\
+  \code{y.dmat <- x.dmat[x.dmat[, 2] > x.dmat[, 3], ]} \\
+  \code{y.dmat <- x.dmat[, x.dmat[2,] > x.dmat[3, ]]} \\
+  \code{y.dmat <- x.dmat[c(1, 3, 5), x.dmat[, 2] > x.dmat[, 3]]}
+\end{itemize}
+\end{enumerate}
