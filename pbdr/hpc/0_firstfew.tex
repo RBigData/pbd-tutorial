@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     Title and ToC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% titlepage
+\frame{
+  \maketitle
+}
+
+\begin{frame}[noframenumbering]
+\frametitle{Affiliations and Support}
+{\small
+The pbdR Core Team\\ \url{http://r-pbd.org}
+\\[.4cm]
+Wei-Chen Chen\footnote{\tiny{Computer Science and Mathematics Division, Oak Ridge National Laboratory, Oak Ridge, TN}}, 
+George Ostrouchov$^{1,2}$, 
+Pragneshkumar Patel\footnote{\tiny{Remote Data Analysis and Visualization Center, University of Tennessee, Knoxville, TN}}, 
+Drew Schmidt$^1$
+\\[.4cm]
+Ostrouchov, Patel, and Schmidt were supported in part by the project
+``NICS Remote Data Analysis and Visualization Center''
+funded by the Office of Cyberinfrastructure of the
+U.S. National Science Foundation
+under Award No. ARRA-NSF-OCI-0906324 for NICS-RDAV center.\\[.4cm]
+Chen and Ostrouchov were supported in part by the project
+``Visual Data Exploration and Analysis of Ultra-large Climate Data''
+funded by U.S. DOE Office of Science
+under Contract No. DE-AC05-00OR22725.\\
+}
+\end{frame}
+
+% \begin{frame}
+% \frametitle{About This Presentation}
+%  \begin{block}{Downloads}
+%   This presentation and supplemental materials are available at:
+%   \begin{center}
+%   \url{http://r-pbd.org/handouts}
+%   \end{center}
+%  \end{block}
+% \end{frame}
+
+
+\begin{frame}
+\frametitle{About This Presentation}
+ \begin{block}{\emph{Speaking Serial R with a Parallel Accent}}
+  The content of this presentation is based in part on the \pkg{pbdDEMO} 
+vignette \emph{Speaking Serial R with a Parallel Accent}\\[.4cm]
+  \url{https://github.com/wrathematics/pbdDEMO/blob/master/inst/doc/pbdDEMO-guide.pdf?raw=true}\\[.4cm]
+  It contains more examples, and sometimes added detail.
+ \end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{About This Presentation}
+ \begin{block}{Installation Instructions}
+  Installation instructions for setting up a pbdR environment are available:
+  \begin{center}
+  \url{http://r-pbd.org/install.html}
+  \end{center}
+  This includes instructions for installing R, MPI, and pbdR.
+ \end{block}
+\end{frame}
+
+
+
+% \begin{frame}%[allowframebreaks=0.8]
+% \frametitle{About This Presentation}
+%  \begin{block}{Conventions}
+%   \begin{itemize}
+%     \item We use ``{\Huge$ .$}'' as a decimal mark, not ``{\Huge$,$}''.  E.g., ``one thousand and one half'' is written ``$1,000.5$'', not ``$1.000,5$''.
+%     \item We will use special suffixes to denote distributed objects (ones not stored entirely on a single processor).\\
+%     \code{.spmd} denotes a distributed object, while\\
+%     \code{.dmat} denotes a distributed object which is of class \code{ddmatrix}\\
+%     No suffix means the object is global (common to all processors)\\[.2cm]
+%     Neither of these suffices carries semantic meaning.
+%     \end{itemize}
+%  \end{block}
+% \end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{About This Presentation}
+ \begin{block}{Conventions For Code Presentation}
+We will use two different forms of syntax highlighting.  One for displaying results from an interactive R session:
+\begin{lstlisting}[backgroundcolor=\color{white},basicstyle=\ttfamily\color{dkgray}\scriptsize,keywordstyle=\color{black}, 
+  commentstyle=\color{orange},stringstyle=\color{mauve}]
+R> "interactive"
+[1] "interactive"
+\end{lstlisting}
+and one for presenting R scripts
+\begin{lstlisting}
+"not interactive"
+\end{lstlisting}
+ \end{block}
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering,shrink]
+\frametitle{Contents}
+\small
+\tableofcontents[hideallsubsections]
+\end{frame}
+
+\setcounter{framenumber}{0}
