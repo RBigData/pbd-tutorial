@@ -1,5 +1,13 @@
-\begin{frame}[allowframebreaks=.9]
+\begin{frame}
 \frametitle{MPI Exercises}
+\begin{enumerate}
+  \item Experiment with Statistics Examples 1 through 3, running them on 2, 4, and 8 processors.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks=.8]
+\frametitle{Advanced MPI Exercises}
 \begin{enumerate}
   \item Write a script that will have each processor randomly take a sample of
         size 1 of \code{TRUE} and \code{FALSE}. Have each processor print its
@@ -12,8 +20,6 @@
   
   \item Generate $50,000,000$ (total) random normal values in parallel on 2, 4, and 8 processors.  Time each run.
   
-  \item 
-  
   %%% GBD
   
   \item Distribute the matrix \code{x <- matrix(1:24, nrow=12)} in GBD format across 4 processors and call it \code{x.spmd}.  
@@ -23,8 +29,5 @@
     \item Compute the column means of \code{x.spmd}.
   \end{enumerate}
   
-  \item 
-  
-  \item
 \end{enumerate}
 \end{frame}

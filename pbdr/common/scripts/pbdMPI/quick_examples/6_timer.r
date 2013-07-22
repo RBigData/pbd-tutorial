@@ -14,7 +14,8 @@ test <- function(timed)
   return(data.frame(min=mintime, mean=meantime, max=maxtime))
 }
 
-times <- test(rnorm(1e6)) # ~7.6MiB of data
+# generate 1,000,000 random normal values (total)
+times <- test(rnorm(1e6/comm.size())) # ~7.6MiB of data
 comm.print(times)
 
 finalize()

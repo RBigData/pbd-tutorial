@@ -2,6 +2,8 @@ library(pbdMPI, quiet = TRUE)
 init()
 
 comm.set.seed(diff=TRUE)
+
+# 10 rows and 3 columns of data per process
 X.spmd <- matrix(rnorm(10*3), ncol=3)
 y.spmd <- matrix(rnorm(10*1), ncol=1)
 
