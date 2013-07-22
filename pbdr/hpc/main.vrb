@@ -1,4 +1,4 @@
-\frametitle {DMAT Exercises}
+\frametitle {Advanced DMAT Exercises}
 \begin{enumerate}
   \item  Subsetting, selection, and filtering are basic matrix operations featured
   in R. The following may look silly, but it is useful for data
@@ -24,5 +24,4 @@
 
   \item The \code{prcomp()} method returns rotations for all components.  Computationally verify by example that these rotations are orthogonal, i.e., that their crossproduct is the identity matrix.
 
-  \item
 \end{enumerate}
