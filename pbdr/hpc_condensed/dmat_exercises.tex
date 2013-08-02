@@ -1,0 +1,38 @@
+\begin{frame}
+\frametitle{DMAT Exercises}
+\begin{enumerate}
+  \item Experiment with DMAT Examples 1 through 5, running them on 2 and 4 processors.
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}[fragile,allowframebreaks=.9]
+\frametitle{Advanced DMAT Exercises}
+\begin{enumerate}
+  \item  Subsetting, selection, and filtering are basic matrix operations featured
+  in R. The following may look silly, but it is useful for data
+  processing.  Let \code{x.dmat <- ddmatrix(1:30, 10, 3)}.  Do the following:
+  \begin{itemize}
+  \item
+    \code{y.dmat <- x.dmat[c(1, 5, 4, 3), ]} \\
+    \code{y.dmat <- x.dmat[c(10:3, 5, 5), ]} \\
+    \code{y.dmat <- x.dmat[1:5, 3:1]}
+  \\[.2cm]
+  \item
+    \code{y.dmat <- x.dmat[x.dmat[, 2] > 13, ]} \\
+    \code{y.dmat <- x.dmat[x.dmat[, 2] > x.dmat[, 3], ]} \\
+    \code{y.dmat <- x.dmat[, x.dmat[2,] > x.dmat[3, ]]} \\
+    \code{y.dmat <- x.dmat[c(1, 3, 5), x.dmat[, 2] > x.dmat[, 3]]}
+  \end{itemize}
+
+  \item The method \code{crossprod()} is an optimized form of the crossproduct computation \code{t(x.dmat) \%*\% x.dmat}.  For this exercise, let \code{x.dmat <- ddmatrix(1:30, nrow=10, ncol=3)}.
+  \begin{enumerate}
+    \item Verify that these computations really do produce the same results.
+    \item Time each operation.  Which is faster?
+  \end{enumerate}
+
+  \item The \code{prcomp()} method returns rotations for all components.  Computationally verify by example that these rotations are orthogonal, i.e., that their crossproduct is the identity matrix.
+
+\end{enumerate}
+\end{frame}

@@ -1,0 +1,33 @@
+\begin{frame}
+\frametitle{MPI Exercises}
+\begin{enumerate}
+  \item Experiment with Statistics Examples 1 through 3, running them on 2, 4, and 8 processors.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks=.8]
+\frametitle{Advanced MPI Exercises}
+\begin{enumerate}
+  \item Write a script that will have each processor randomly take a sample of
+        size 1 of \code{TRUE} and \code{FALSE}. Have each processor print its
+        result.\label{ex:mpi1}
+
+  \item Modify the script in Exercise~\ref{ex:mpi1} above to determine if any
+  processors sampled \code{TRUE}. Do the same to determine if all processors 
+  sampled \code{TRUE}. In each case, print the result. Compare to the functions 
+  \code{comm.all()} and \code{comm.any()}.
+  
+  \item Generate $50,000,000$ (total) random normal values in parallel on 2, 4, and 8 processors.  Time each run.
+  
+  %%% GBD
+  
+  \item Distribute the matrix \code{x <- matrix(1:24, nrow=12)} in GBD format across 4 processors and call it \code{x.spmd}.  
+  \begin{enumerate}
+    \item Add \code{x.spmd} to itself.
+    \item Compute the mean of \code{x.spmd}.
+    \item Compute the column means of \code{x.spmd}.
+  \end{enumerate}
+  
+\end{enumerate}
+\end{frame}
