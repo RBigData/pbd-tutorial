@@ -1,13 +1,13 @@
 \BOOKMARK [2][]{Outline0.1}{Introduction to R}{}% 1
 \BOOKMARK [3][]{Outline0.1.1.6}{What is R?}{Outline0.1}% 2
 \BOOKMARK [3][]{Outline0.1.2.10}{Syntax for Data Science}{Outline0.1}% 3
-\BOOKMARK [2][]{Outline0.2}{Parallel Hardware and R}{}% 4
-\BOOKMARK [3][]{Outline0.2.1.14}{Parallel Hardware}{Outline0.2}% 5
-\BOOKMARK [3][]{Outline0.2.2.20}{R Interfaces to Parallel Hardware}{Outline0.2}% 6
+\BOOKMARK [2][]{Outline0.2}{Basic R Syntax}{}% 4
+\BOOKMARK [3][]{Outline0.2.1.16}{Basic Numerical Operations in R}{Outline0.2}% 5
+\BOOKMARK [3][]{Outline0.2.2.23}{R Syntax for Data Science: Not A Matlab Clone!}{Outline0.2}% 6
 \BOOKMARK [2][]{Outline0.3}{pbdR}{}% 7
-\BOOKMARK [3][]{Outline0.3.1.26}{The pbdR Project}{Outline0.3}% 8
-\BOOKMARK [3][]{Outline0.3.2.30}{pbdR Paradigms}{Outline0.3}% 9
+\BOOKMARK [3][]{Outline0.3.1.30}{The pbdR Project}{Outline0.3}% 8
+\BOOKMARK [3][]{Outline0.3.2.34}{pbdR Paradigms}{Outline0.3}% 9
 \BOOKMARK [2][]{Outline0.4}{Benchmarks}{}% 10
-\BOOKMARK [3][]{Outline0.4.1.34}{Benchmarks}{Outline0.4}% 11
+\BOOKMARK [3][]{Outline0.4.1.38}{Benchmarks}{Outline0.4}% 11
 \BOOKMARK [2][]{Outline0.5}{Challenges}{}% 12
-\BOOKMARK [3][]{Outline0.5.1.43}{Challenges}{Outline0.5}% 13
+\BOOKMARK [3][]{Outline0.5.1.47}{Challenges}{Outline0.5}% 13

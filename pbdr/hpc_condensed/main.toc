@@ -1,21 +1,21 @@
 \beamer@endinputifotherversion {3.10pt}
-\beamer@sectionintoc {1}{Introduction to pbdMPI}{8}{0}{1}
-\beamer@subsectionintoc {1}{1}{Managing a Communicator}{9}{0}{1}
-\beamer@subsectionintoc {1}{2}{Reduce, Gather, Broadcast, and Barrier}{13}{0}{1}
-\beamer@subsectionintoc {1}{3}{Other pbdMPI Tools}{19}{0}{1}
-\beamer@sectionintoc {2}{The Generalized Block Distribution}{24}{0}{2}
-\beamer@subsectionintoc {2}{1}{The GBD Data Structure}{25}{0}{2}
-\beamer@subsectionintoc {2}{2}{GBD: Example 1}{29}{0}{2}
-\beamer@subsectionintoc {2}{3}{GBD: Example 2}{32}{0}{2}
-\beamer@sectionintoc {3}{Basic Statistics Examples}{35}{0}{3}
-\beamer@subsectionintoc {3}{1}{pbdMPI Example: Monte Carlo Simulation}{36}{0}{3}
-\beamer@subsectionintoc {3}{2}{pbdMPI Example: Sample Covariance}{40}{0}{3}
-\beamer@subsectionintoc {3}{3}{pbdMPI Example: Linear Regression}{43}{0}{3}
-\beamer@sectionintoc {4}{Introduction to pbdDMAT and the DMAT Structure}{49}{0}{4}
-\beamer@subsectionintoc {4}{1}{Introduction to Distributed Matrices}{50}{0}{4}
-\beamer@subsectionintoc {4}{2}{DMAT Distributions}{58}{0}{4}
-\beamer@subsectionintoc {4}{3}{pbdDMAT}{64}{0}{4}
-\beamer@sectionintoc {5}{Examples Using pbdDMAT}{72}{0}{5}
-\beamer@subsectionintoc {5}{1}{Statistics Examples with pbdDMAT}{73}{0}{5}
-\beamer@subsectionintoc {5}{2}{RandSVD}{77}{0}{5}
-\beamer@sectionintoc {6}{Wrapup}{83}{0}{6}
+\beamer@sectionintoc {1}{Introduction to pbdMPI}{7}{0}{1}
+\beamer@subsectionintoc {1}{1}{Managing a Communicator}{8}{0}{1}
+\beamer@subsectionintoc {1}{2}{Reduce, Gather, Broadcast, and Barrier}{12}{0}{1}
+\beamer@subsectionintoc {1}{3}{Other pbdMPI Tools}{18}{0}{1}
+\beamer@sectionintoc {2}{The Generalized Block Distribution}{23}{0}{2}
+\beamer@subsectionintoc {2}{1}{The GBD Data Structure}{24}{0}{2}
+\beamer@subsectionintoc {2}{2}{GBD: Example 1}{28}{0}{2}
+\beamer@subsectionintoc {2}{3}{GBD: Example 2}{31}{0}{2}
+\beamer@sectionintoc {3}{Basic Statistics Examples}{34}{0}{3}
+\beamer@subsectionintoc {3}{1}{pbdMPI Example: Monte Carlo Simulation}{35}{0}{3}
+\beamer@subsectionintoc {3}{2}{pbdMPI Example: Sample Covariance}{39}{0}{3}
+\beamer@subsectionintoc {3}{3}{pbdMPI Example: Linear Regression}{42}{0}{3}
+\beamer@sectionintoc {4}{Introduction to pbdDMAT and the DMAT Structure}{48}{0}{4}
+\beamer@subsectionintoc {4}{1}{Introduction to Distributed Matrices}{49}{0}{4}
+\beamer@subsectionintoc {4}{2}{DMAT Distributions}{57}{0}{4}
+\beamer@subsectionintoc {4}{3}{pbdDMAT}{63}{0}{4}
+\beamer@sectionintoc {5}{Examples Using pbdDMAT}{71}{0}{5}
+\beamer@subsectionintoc {5}{1}{Statistics Examples with pbdDMAT}{72}{0}{5}
+\beamer@subsectionintoc {5}{2}{RandSVD}{76}{0}{5}
+\beamer@sectionintoc {6}{Wrapup}{82}{0}{6}

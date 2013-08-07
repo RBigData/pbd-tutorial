@@ -2,13 +2,13 @@
 \beamer@sectionintoc {1}{Introduction to R}{5}{0}{1}
 \beamer@subsectionintoc {1}{1}{What is R?}{6}{0}{1}
 \beamer@subsectionintoc {1}{2}{Syntax for Data Science}{10}{0}{1}
-\beamer@sectionintoc {2}{Parallel Hardware and R}{13}{0}{2}
-\beamer@subsectionintoc {2}{1}{Parallel Hardware}{14}{0}{2}
-\beamer@subsectionintoc {2}{2}{R Interfaces to Parallel Hardware}{20}{0}{2}
-\beamer@sectionintoc {3}{pbdR}{25}{0}{3}
-\beamer@subsectionintoc {3}{1}{The pbdR Project}{26}{0}{3}
-\beamer@subsectionintoc {3}{2}{pbdR Paradigms}{30}{0}{3}
-\beamer@sectionintoc {4}{Benchmarks}{33}{0}{4}
-\beamer@subsectionintoc {4}{1}{Benchmarks}{34}{0}{4}
-\beamer@sectionintoc {5}{Challenges}{42}{0}{5}
-\beamer@subsectionintoc {5}{1}{Challenges}{43}{0}{5}
+\beamer@sectionintoc {2}{Basic R Syntax}{16}{0}{2}
+\beamer@subsectionintoc {2}{1}{Basic Numerical Operations in R}{16}{0}{2}
+\beamer@subsectionintoc {2}{2}{R Syntax for Data Science: Not A Matlab Clone!}{23}{0}{2}
+\beamer@sectionintoc {3}{pbdR}{29}{0}{3}
+\beamer@subsectionintoc {3}{1}{The pbdR Project}{30}{0}{3}
+\beamer@subsectionintoc {3}{2}{pbdR Paradigms}{34}{0}{3}
+\beamer@sectionintoc {4}{Benchmarks}{37}{0}{4}
+\beamer@subsectionintoc {4}{1}{Benchmarks}{38}{0}{4}
+\beamer@sectionintoc {5}{Challenges}{46}{0}{5}
+\beamer@subsectionintoc {5}{1}{Challenges}{47}{0}{5}
