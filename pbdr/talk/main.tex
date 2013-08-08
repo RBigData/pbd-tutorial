@@ -1,52 +1,38 @@
-%%% Ignore images --- slightly faster compilation
-% \documentclass[demo,handout,style=authortitle]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 
-%%% Presentation slides
-\documentclass[handout,style=authortitle]{beamer}
+\input{zzz_style}
 
-%%% Printable slides with side notes thing
-% \usepackage{handoutWithNotes}
-% \usepackage{pgfpages}
-% \pgfpagesuselayout{3 on 1 with notes big}[a4paper,border shrink=7mm]
-% \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
-% \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
-% \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
-
-
-%%% Styles and settings
-\input{../common/zzz_settings}
-
-
-%%% Author and title, etc.
-\author[\color{white}{http://r-pbd.org/tutorial} \hspace{2.4cm} pbdR Core 
-Team]{%
-  Drew Schmidt$^1$, George Ostrouchov$^2$, Wei-Chen Chen$^2$, Pragneshkumar 
-Patel$^1$\\[.2cm]
-      {\scriptsize 1. University of Tennessee, USA \\ 
-      2. Oak Ridge National Laboratory, USA \\[.2cm]}
-    \vspace{-.8cm}
+\title{From 1 core to Thousands: R to pbdR}
+\author[http://r-pbd.org \hspace{2cm}  pbdR Core Team]{%
+  George Ostrouchov$^{1,2}$ and Drew Schmidt$^2$
+%  and Wei-Chen Chen$^1$,
+%  and Pragneshkumar Patel$^2$
+\\[1em]
+{$^1$Oak Ridge National Laboratory, Oak Ridge, TN} \\
+{$^2$University of Tennessee, Knoxville, TN} \\[5em]
+OLCF Workshop \\ on  Processing and Analysis of Very Large Data Sets \\
+August 8, 2013}
+\date{}
+\logo{
+  \begin{tabular}{r}
+    \includegraphics[height=.34cm]{../common/pics/ornl.jpg} \\
+    \includegraphics[height=.34cm]{../common/pics/utk_logo.png}
+  \end{tabular}
 }
 
+\newcommand{\mytitlea}{From 1 core to Thousands: R to pbdR \hspace{1cm} \insertframenumber\,/\,\inserttotalframenumber}
+\newcommand{\mytitleb}{From 1 core to Thousands: R to pbdR}
 
-\title[Introduction to pbdR]{From 1 Core to Thousands:  R to pbdR}
-
-\date{August 8, 2013 \\[.6cm] 
-\centering\includegraphics[scale=.6]{../common/pics/logos}} 
-
-\logo{\begin{tabular}{r}\includegraphics[height=.34cm]{../common/pics/utk_logo.png} \\ \includegraphics[height=.34cm]{../common/pics/ornl.jpg}\end{tabular}}
-
-\newcommand{\mytitlea}{Introduction to pbdR \hspace{3cm} \insertframenumber\,/\,\inserttotalframenumber}
-\newcommand{\mytitleb}{Introduction to pbdR}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\input{0_firstfew}
-\input{1_introduction}
-\input{2_pbdR}
-\input{03_benchmarks}
-\input{04_challenges}
-
+\input{00_firstfew}
+\input{01_introduction}
+\input{02_pbdR}
+\input{04_benchmarks}
+\input{05_challenges}
 
 \end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
