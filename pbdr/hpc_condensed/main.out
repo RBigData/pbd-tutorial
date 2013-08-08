@@ -1,7 +1,20 @@
-\BOOKMARK [2][]{Outline0.1}{Introduction to pbdDMAT and the DMAT Structure}{}% 1
-\BOOKMARK [3][]{Outline0.1.1.7}{Introduction to Distributed Matrices}{Outline0.1}% 2
-\BOOKMARK [3][]{Outline0.1.2.15}{DMAT Distributions}{Outline0.1}% 3
-\BOOKMARK [3][]{Outline0.1.3.21}{pbdDMAT}{Outline0.1}% 4
-\BOOKMARK [2][]{Outline0.2}{Examples Using pbdDMAT}{}% 5
-\BOOKMARK [3][]{Outline0.2.1.30}{Statistics Examples with pbdDMAT}{Outline0.2}% 6
-\BOOKMARK [3][]{Outline0.2.2.34}{RandSVD}{Outline0.2}% 7
+\BOOKMARK [2][]{Outline0.1}{Introduction to pbdMPI}{}% 1
+\BOOKMARK [3][]{Outline0.1.1.7}{Managing a Communicator}{Outline0.1}% 2
+\BOOKMARK [3][]{Outline0.1.2.11}{Reduce, Gather, Broadcast, and Barrier}{Outline0.1}% 3
+\BOOKMARK [3][]{Outline0.1.3.17}{Other pbdMPI Tools}{Outline0.1}% 4
+\BOOKMARK [2][]{Outline0.2}{The Generalized Block Distribution}{}% 5
+\BOOKMARK [3][]{Outline0.2.1.23}{The GBD Data Structure}{Outline0.2}% 6
+\BOOKMARK [3][]{Outline0.2.2.27}{GBD: Example 1}{Outline0.2}% 7
+\BOOKMARK [3][]{Outline0.2.3.30}{GBD: Example 2}{Outline0.2}% 8
+\BOOKMARK [2][]{Outline0.3}{Basic Statistics Examples}{}% 9
+\BOOKMARK [3][]{Outline0.3.1.34}{pbdMPI Example: Monte Carlo Simulation}{Outline0.3}% 10
+\BOOKMARK [3][]{Outline0.3.2.38}{pbdMPI Example: Sample Covariance}{Outline0.3}% 11
+\BOOKMARK [3][]{Outline0.3.3.41}{pbdMPI Example: Linear Regression}{Outline0.3}% 12
+\BOOKMARK [2][]{Outline0.4}{Introduction to pbdDMAT and the DMAT Structure}{}% 13
+\BOOKMARK [3][]{Outline0.4.1.48}{Introduction to Distributed Matrices}{Outline0.4}% 14
+\BOOKMARK [3][]{Outline0.4.2.56}{DMAT Distributions}{Outline0.4}% 15
+\BOOKMARK [3][]{Outline0.4.3.62}{pbdDMAT}{Outline0.4}% 16
+\BOOKMARK [2][]{Outline0.5}{Examples Using pbdDMAT}{}% 17
+\BOOKMARK [3][]{Outline0.5.1.71}{Working with Distributed Matrices}{Outline0.5}% 18
+\BOOKMARK [3][]{Outline0.5.2.74}{Statistics Examples with pbdDMAT}{Outline0.5}% 19
+\BOOKMARK [2][]{Outline0.6}{Wrapup}{}% 20
