@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Interacting with the Supercomputer}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Logging In}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Interacting with the Shell}{1}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Directories}{1}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Files}{1}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Transferring Files}{1}{subsection.2.5}
+\contentsline {section}{\numberline {3}Additional Resources}{1}{section.3}
+\contentsline {subsection}{\numberline {3.1}Shell Tutorials}{1}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Text Editors}{2}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}VIM}{2}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Emacs}{2}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}pbdR Guides}{2}{subsection.3.3}

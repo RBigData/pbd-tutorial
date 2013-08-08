@@ -1,4 +1,3 @@
-\documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=0.75in]{geometry}
 \usepackage{hyperref}
@@ -27,25 +26,25 @@
 \ifpdf
 \lstdefinelanguage{rr}{language=R, 
                        basicstyle=\ttfamily\color{black}, 
-		       backgroundcolor=\color{grayish}, 
-		       frame=single, 
-		       breaklines=true, 
-		       tabsize=2,
+                       backgroundcolor=\color{grayish}, 
+                       frame=single, 
+                       breaklines=true, 
+                       tabsize=2,
                       keywordstyle=\color{blue},
-		      commentstyle=\color{dkgreen},
-		      stringstyle=\color{mauve}
+                      commentstyle=\color{dkgreen},
+                      stringstyle=\color{mauve}
 } 
 
 \else
 
 \lstdefinelanguage{rr}{basicstyle=\ttfamily\color{black}, 
-		       backgroundcolor=\color{grayish}, 
-		       frame=single, 
-		       breaklines=true, 
-		       tabsize=2
+                       backgroundcolor=\color{grayish}, 
+                       frame=single, 
+                       breaklines=true, 
+                       tabsize=2
 %                       keywordstyle=\color{blue},
-% 		      commentstyle=\color{dkgreen},
-% 		      stringstyle=\color{mauve}
+%                     commentstyle=\color{dkgreen},
+%                     stringstyle=\color{mauve}
 } 
 
 \fi
@@ -70,8 +69,7 @@
     urlcolor=blue           % color of external links
 }
 
-\title{A Beginner's Guide to HPC with R on Nautilus}
-\author{National Institute for Computational Sciences}
+
 
 % \setcounter{secnumdepth}{0}
 
@@ -80,52 +78,3 @@
 \newcommand{\lsc}[1]{ \ \\ \section{#1}}
 % \newcommand{\lsuc}[1]{ \ \\ \ \\ \begin{flushright}\hyperlink{thetop}{Return to top} \end{flushright} \subsection{#1}}
 \newcommand{\lsuc}[1]{\subsection{#1}}
-
-\begin{document}
-
-\ifpdf \else
-\Css{div.lstlisting{
-    font-family: monospace;
-    white-space: nowrap; margin-top:0.5em;
-    margin-bottom:0.5em;
-    color: black;
-    background-color: gray;
-  } 
-  div.verbatim{
-    font-family: monospace;
-    white-space: nowrap; margin-top:0.5em;
-    margin-bottom:0.5em;
-    color: white;
-    background-color: black;
-  }
-}
-
-
-\Preamble{xhtml}
-  \Configure{graphics*}  
-         {pdf}  
-         {\Needs{"convert \csname Gin@base\endcsname.pdf  
-                               \csname Gin@base\endcsname.png"}%  
-          \Picture[pict]{\csname Gin@base\endcsname.png}%  
-         }  
-\fi
-
-\maketitle
-\hypertarget{thetop}{\ }
-\tableofcontents
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\input{01_intro}
-\input{02_nautilus}
-\input{03_queues}
-\input{04_r}
-% \input{05{parallelr}
-% \input{06_examples}
-
-
-\end{document}
