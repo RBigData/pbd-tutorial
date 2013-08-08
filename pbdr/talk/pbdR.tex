@@ -1,0 +1,38 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+
+\input{zzz_style}
+
+\title{From 1 core to Thousands: R to pbdR}
+\author[http://r-pbd.org \hspace{2.5cm}  pbdR Core]{%
+  George Ostrouchov$^{1,2}$ and Drew Schmidt$^2$
+%  and Wei-Chen Chen$^1$,
+%  and Pragneshkumar Patel$^2$
+\\[1em]
+{$^1$Oak Ridge National Laboratory, Oak Ridge, TN} \\
+{$^2$University of Tennessee, Knoxville, TN} \\[5em]
+OLCF Workshop \\ on  Processing and Analysis of Very Large Data Sets \\
+August 8, 2013}
+\date{}
+\logo{
+  \begin{tabular}{r}
+    \includegraphics[height=.34cm]{../common/pics/ornl.jpg} \\
+    \includegraphics[height=.34cm]{../common/pics/utk_logo.png}
+  \end{tabular}
+}
+
+\newcommand{\mytitlea}{Programming with Big Data in R \hspace{5em} \insertframenumber\,/\,\inserttotalframenumber}
+\newcommand{\mytitleb}{Programming with Big Data in R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\input{00_firstfew}
+\input{01_introduction}
+\input{02_pbdR}
+\input{04_benchmarks}
+\input{05_challenges}
+
+\end{document}

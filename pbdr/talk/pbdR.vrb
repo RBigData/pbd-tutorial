@@ -1,0 +1,10 @@
+\begin {block}{Linear Model Code}
+\begin{lstlisting}
+x <- ddmatrix("rnorm", nrow=n, ncol=p, mean=mean, sd=sd)
+beta_true <- ddmatrix("runif", nrow=p, ncol=1)
+
+y <- x %*% beta_true
+
+beta_est <- lm.fit(x=x, y=y)$coefficients
+\end{lstlisting}
+  \end{block}

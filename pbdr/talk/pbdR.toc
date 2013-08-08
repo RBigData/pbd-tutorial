@@ -1,0 +1,15 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Introduction to R}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{What is R?}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Syntax for Data Science}{9}{0}{1}
+\beamer@sectionintoc {2}{Quick Overview of Parallel Hardware and R}{12}{0}{2}
+\beamer@subsectionintoc {2}{1}{Parallel Hardware}{13}{0}{2}
+\beamer@subsectionintoc {2}{2}{R Interfaces to Parallel Hardware}{19}{0}{2}
+\beamer@sectionintoc {3}{pbdR: programming with big data in R}{24}{0}{3}
+\beamer@subsectionintoc {3}{1}{pbdR}{25}{0}{3}
+\beamer@subsectionintoc {3}{2}{pbdR Paradigms}{29}{0}{3}
+\beamer@sectionintoc {4}{Benchmarks}{32}{0}{4}
+\beamer@subsectionintoc {4}{1}{Productivity Benchmark}{33}{0}{4}
+\beamer@subsectionintoc {4}{2}{Scalability Benchmarks}{36}{0}{4}
+\beamer@sectionintoc {5}{Challenges}{42}{0}{5}
+\beamer@subsectionintoc {5}{1}{Challenges}{43}{0}{5}
