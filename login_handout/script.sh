@@ -14,7 +14,7 @@ if [ $sc = "conseil" -o $sc = "nautilus" ]; then
   path="/path/to/scripts.tar.gz"
   tmpdir="/lustre/wherever"
 # Kraken
-elif [ `$sc | sed 's/.$//' = "krakenpf" ]; then
+elif [ `echo $sc | sed 's/.$//' = "krakenpf" ]; then
   path="/path/to/scripts.tar.gz"
   tmpdir="lustre/wherever"
 fi
