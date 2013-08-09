@@ -44,12 +44,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifthen}
 
 \newcounter{computer}
 
 % nautilus = 0
 % kraken = 1
 
+\input{sc_tokens}
+\input{sc_nautilus}
+\input{sc_kraken}
+
 \newcommand{\nautilus}{\setcounter{computer}{0}}
 \newcommand{\kraken}{\setcounter{computer}{1}}
 
+
+\newcommand{\whichcomp}{
+  \ifthenelse{\equal{\value{computer}}{0}}{\kern-1ex Nautilus}{}%
+  \ifthenelse{\equal{\value{computer}}{1}}{\kern-1ex Kraken}{}
+}
+
+
+\newcommand{\login}{
+  \ifthenelse{\equal{\value{computer}}{0}}{\nautiluslogin}{}%
+  \ifthenelse{\equal{\value{computer}}{1}}{\krakenlogin}{}
+}
+
+
+\newcommand{\pbd}{
+  \ifthenelse{\equal{\value{computer}}{0}}{\nautiluspbd}{}%
+  \ifthenelse{\equal{\value{computer}}{1}}{\krakenpbd}{}
+}
