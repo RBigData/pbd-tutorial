@@ -4,6 +4,11 @@
 \usepackage{amssymb}
 \usepackage{color}
 \usepackage{hyperref}
+
+
+\setlength{\parindent}{0pt}
+
+
 \definecolor{mygreen}{RGB}{0,150,0}
 
 
@@ -75,3 +80,9 @@
   \ifthenelse{\equal{\value{computer}}{0}}{\nautiluspbd}{}%
   \ifthenelse{\equal{\value{computer}}{1}}{\krakenpbd}{}
 }
+
+\newcommand{\settmp}{
+  \ifthenelse{\equal{\value{computer}}{0}}{\nautilussettmp}{}%
+  \ifthenelse{\equal{\value{computer}}{1}}{\krakensettmp}{}
+}
+
