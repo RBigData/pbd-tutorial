@@ -77,7 +77,6 @@
 % \end{frame}
 
 
-
 \begin{frame}[fragile]
   \begin{block}{Example Syntax}\pause
   \begin{lstlisting}
@@ -101,6 +100,42 @@ ans <- svd(solve(xtx))
   \end{center}
   \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+  \begin{block}{Profiling with \textbf{pbdPROF}}
+  \begin{minipage}[t]{.58\textwidth}
+  \vspace{0pt}
+  1. Rebuild \pbdR\ packages
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
+\end{lstlisting}
+2. Run code
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+mpirun -np 64 Rscript my_script.R
+\end{lstlisting}
+
+3. Analyze results
+\vspace{-.5cm}
+\begin{lstlisting}[title=\ ]
+library(pbdPROF)
+prof <- read.prof( "profiler_output.mpiP")
+plot(prof)
+\end{lstlisting}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.4\textwidth}
+  \vspace{0pt}
+    \centering
+    Publication-quality graphs\\
+    \includegraphics[scale=.25]{pics/mpip}
+    \\[.1cm]
+    \includegraphics[scale=0.3]{pics/gsoc}
+  \end{minipage}
+  \end{block}
+\end{frame}
+
 
 
 

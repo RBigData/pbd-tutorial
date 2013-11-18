@@ -43,12 +43,11 @@
   \begin{block}{pbdR Packages}
     \begin{center}
 %         \includegraphics[width=7cm, height=7cm]{pics/pbdpacks}
-      \begin{columns}
+      \begin{columns}\hspace{.2cm}
         \begin{column}{.52\textwidth}
-      \includegraphics[scale=.4]{../common/pics/pbdR}
+      \includegraphics[scale=.35]{../common/pics/pbdR}
         \end{column}
-        \hfill
-        \begin{column}{.4\textwidth}
+        \begin{column}{.43\textwidth}
       \includegraphics[scale=.45]{../common/pics/libs}
         \end{column}
       \end{columns}
@@ -59,19 +58,42 @@
 
 \begin{frame}
   \begin{block}{pbdR on HPC Resources}
-    pbdR is currently installed and maintained on:
+    \begin{minipage}[t]{.575\textwidth}
+    University of Tennessee
     \begin{itemize}
-      \item Nautilus, UTK
-      \item Kraken, UTK
-      \item Darter, UTK
-      \item Newton, UTK
-      \item Lens, ORNL
-      \item tara, UMBC
-
+      \item Kraken (XSEDE)
+      \item Nautilus
+      \item Darter
+      \item Newton
     \end{itemize}
-    If you are interested in maintaining pbdR, contact us at \url{RBigData@gmail.com}
+    \end{minipage}
+    \begin{minipage}[t]{.4\textwidth}
+    Oak Ridge National Lab
+    \begin{itemize}
+      \item Titan
+      \item Lens
+      \item Chester
+      \item Sith
+    \end{itemize}
+    \end{minipage}\\[.4cm]
+    \begin{center}
+    \hspace{1cm}
+    \begin{minipage}{.6\textwidth}
+    Other Resources
+    \begin{itemize}
+    \item Stampede, TACC (XSEDE)
+    \item tara, UMBC
+    \item Hopper, NERSC
+    \item Edison, NERSC
+    \end{itemize}
+    \end{minipage}
+    \end{center}
+    \vspace{.2cm}
+    If you are interested in installing pbdR:
+\url{RBigData@gmail.com}
   \end{block}
 \end{frame}
+
 
 
 
@@ -120,6 +142,43 @@ ans <- svd(solve(xtx))
   \begin{center}
   \includegraphics[height=.89\textheight]{../common/pics/lmfit2}
   \end{center}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \begin{block}{Profiling with \textbf{pbdPROF}}
+  \begin{minipage}[t]{.58\textwidth}
+  \vspace{0pt}
+  1. Rebuild \pbdR\ packages
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
+\end{lstlisting}
+2. Run code
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+mpirun -np 64 Rscript my_script.R
+\end{lstlisting}
+
+3. Analyze results
+\vspace{-.5cm}
+\begin{lstlisting}[title=\ ]
+library(pbdPROF)
+prof <- read.prof( "profiler_output.mpiP")
+plot(prof)
+\end{lstlisting}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.4\textwidth}
+  \vspace{0pt}
+    \centering
+    Publication-quality graphs\\
+    \includegraphics[scale=.25]{../common/pics/mpip}
+    \\[.1cm]
+    \includegraphics[scale=0.3]{../common/pics/gsoc}
+  \end{minipage}
   \end{block}
 \end{frame}
 

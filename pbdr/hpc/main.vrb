@@ -1,4 +1,4 @@
-\frametitle {Advanced DMAT Exercises}
+\frametitle{Advanced DMAT Exercises}
 \begin{enumerate}
   \item  Subsetting, selection, and filtering are basic matrix operations featured
   in R. The following may look silly, but it is useful for data
