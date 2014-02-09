@@ -212,40 +212,15 @@
 \newcommand\@myurl{}
 \makeatother
 
-% title
-\makeatletter
-\newcommand\myfulltitle[1]{\renewcommand\@myfulltitle{#1}}
-\newcommand\@myfulltitle{}
-\makeatother
-
-\makeatletter
-\newcommand\myabbrvtitle[1]{\renewcommand\@myabbrvtitle{#1}}
-\newcommand\@myabbrvtitle{}
-\makeatother
-
-% date
-\makeatletter
-\newcommand\mydate[1]{\renewcommand\@mydate{#1}}
-\newcommand\@mydate{}
-\makeatother
-
 
 % maketitle
-\makeatletter
-\title{\@myfulltitle}
-\makeatother
-
-\makeatletter
-\newcommand{\mytitlea}{\makebox[.45\paperwidth]{\@myabbrvtitle\hfill%
-	\insertframenumber/\inserttotalframenumber}}
-\newcommand{\mytitleb}{\@myabbrvtitle}
-\makeatother
-
-\makeatletter
-\date{\@mydate \\[1.4cm] \titlelogos}
-\makeatother
+\title{\myfulltitle}
+\newcommand{\mytitlea}{\makebox[.45\paperwidth]{\myabbrvtitle\hfill%
+       \insertframenumber/\inserttotalframenumber}}
+\newcommand{\mytitleb}{\myabbrvtitle}
+\date{\mydate \\[1.4cm] \titlelogos}
 
 \makeatletter
 \newcommand{\theauthorgoeshere}{\makebox[.45\paperwidth]{%
-	\@myurl \hfill \@myauthor}}
+  \@myurl \hfill \@myauthor}}
 \makeatother
