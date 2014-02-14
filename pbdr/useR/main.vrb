@@ -1,0 +1,63 @@
+\fontsize{8pt}{10}\selectfont
+\begin{block}{Randomized SVD}
+  \hfill
+  \begin{minipage}{0.430\textwidth}
+\begin{lstlisting}[title=Serial
+R,basicstyle=\tiny,backgroundcolor=\color{grayish}
+,numberstyle=\tiny\color{black},keywordstyle=\color{black},commentstyle=\color{
+dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
+randSVD <- function(A, k, q=3)
+  {
+    ## Stage A
+    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*)
+         (*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
+    Y <- A %*% Omega
+    Q <- qr.Q(qr(Y))
+    At <- t(A)
+    for(i in 1:q)
+      {
+        Y <- At %*% Q
+        Q <- qr.Q(qr(Y))
+        Y <- A %*% Q
+        Q <- qr.Q(qr(Y))
+      }
+
+    ## Stage B
+    B <- t(Q) %*% A
+    U <- La.svd(B)$u
+    U <- Q %*% U
+    U[, 1:k]
+  }
+\end{lstlisting} %balance$
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.430\textwidth}
+\begin{lstlisting}[title=Parallel pbdR,basicstyle=\tiny,backgroundcolor=\color{
+grayish}, numberstyle=\tiny\color{black},keywordstyle=\color{black},
+commentstyle=\color{dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
+randSVD <- function(A, k, q=3)
+  {
+    ## Stage A
+    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)
+         (*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
+    Y <- A %*% Omega
+    Q <- qr.Q(qr(Y))
+    At <- t(A)
+    for(i in 1:q)
+      {
+        Y <- At %*% Q
+        Q <- qr.Q(qr(Y))
+        Y <- A %*% Q
+        Q <- qr.Q(qr(Y))
+      }
+
+    ## Stage B
+    B <- t(Q) %*% A
+    U <- La.svd(B)$u
+    U <- Q %*% U
+    U[, 1:k]
+  }
+\end{lstlisting}  % balancing $
+  \end{minipage}
+\hfill
+\end{block}

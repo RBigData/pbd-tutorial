@@ -1,0 +1,101 @@
+
+\subsection{R and Parallelism}
+
+
+\begin{frame}
+%  \addtocounter{framenumber}{-1}
+  \begin{block}{R and Parallelism}\pause
+  What about R?
+  \end{block}
+\end{frame}
+
+\begin{frame}
+%  \addtocounter{framenumber}{-1}
+  \begin{block}{Problems with Serial R}\pause
+  \begin{enumerate}[<+-|alert@+>]
+    \item Slow.
+    \item If you don't know what you're doing, it's \emph{really} slow.
+    \item Performance improvements usually for small machines.
+    \item Very ram intensive.
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Why We Need Parallelism}\pause
+    \begin{enumerate}[<+-|alert@+>]
+      \item Saves compute time.
+      \item Data size is skyrocketing.
+      \item Necessary for many problems.
+      \item Its necessity is coming.
+      \item \emph{It's really cool.}
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Recall: Parallel R Packages}
+   \begin{center}
+    \begin{minipage}{.45\textwidth}
+    \begin{block}{Shared Memory}
+      \begin{enumerate}[<+-|alert@+>]
+        \item \pkg{foreach}
+        \item \pkg{parallel}
+        \item \pkg{snow}
+        \item \pkg{multicore}
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \hspace{.2cm}
+    \begin{minipage}{.45\textwidth}
+    \begin{block}{Distributed}
+      \begin{enumerate}[<+-|alert@+>]
+        \item \pkg{Rmpi}
+        \item R+Hadoop
+        \item \pkg{pbdR}
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    (and others\dots)
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}[shrink]
+  \begin{block}{R and Parallelism}
+    The solution to many of R's problems is parallelism.  However \dots\vspace{-.4cm}
+   \begin{center}
+    \begin{minipage}[t]{.95\textwidth}
+    \begin{block}{\centering What we have}
+      \begin{enumerate}[<+-|alert@+>]
+        \item Mostly serial.
+        \item Mostly not distributed
+        \item Data parallelism mostly explicit
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \\\pause
+    \begin{minipage}[t]{.95\textwidth}
+    \begin{block}{\centering What we want}
+      \begin{enumerate}[<+-|alert@+>]
+        \item Mostly parallel.
+        \item Mostly distributed.
+        \item Mostly implicit.
+      \end{enumerate}
+    \end{block}
+    \end{minipage}
+    \end{center}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}
+  \begin{block}{R and Parallelism}
+    Likewise, the HPC community is looking for high-level languages for data\dots
+    \end{block}
+\end{frame}
+
