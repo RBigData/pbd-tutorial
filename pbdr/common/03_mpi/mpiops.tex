@@ -1,0 +1,106 @@
+
+\begin{frame}[shrink]
+  \begin{block}{MPI Operations (2 of 2)}\pause
+    \begin{itemize}
+      \item \textbf{Reduction}:  each processor has a number \code{x}; add all of them up, find the 
+largest/smallest, \dots .\\
+      \code{reduce(x, op='sum')} --- reduce to one\\
+      \code{allreduce(x, op='sum')} --- reduce to all\\[.4cm]
+      %
+      \item \textbf{Gather}: each processor has a number; create a new object on some processor 
+containing all of those numbers.\\
+      \code{gather(x)} --- gather to one\\
+      \code{allgather(x)} --- gather to all\\[.4cm]
+      %
+      \item \textbf{Broadcast}: one processor has a number \code{x} that every other processor 
+should also have.\\
+      \code{bcast(x)}
+      \\[.4cm]
+      \item \textbf{Barrier}: ``computation wall''; no processor can proceed until \emph{all} 
+processors can proceed.\\
+\code{barrier()}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile,shrink]
+  \begin{exampleblock}{Quick Example 3}
+\begin{lstlisting}[title=Reduce and Gather: 3\_gt.r]
+library(pbdMPI, quietly=TRUE)
+init()
+
+comm.set.seed(diff=TRUE)
+
+n <- sample(1:10, size=1)
+
+gt <- gather(n)
+comm.print(unlist(gt))
+
+sm <- allreduce(n, op='sum')
+comm.print(sm, all.rank=T)
+
+finalize()
+\end{lstlisting}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+script via:]
+mpirun -np 2 Rscript 3_gt.r
+\end{lstlisting}    
+    \end{column}
+    \hfill
+    \begin{column}{0.4\textwidth}
+\begin{lstlisting}[title=Sample Output:]
+COMM.RANK = 0
+[1] 2 8
+COMM.RANK = 0
+[1] 10
+COMM.RANK = 1
+[1] 10
+\end{lstlisting}
+    \end{column}
+​  \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[fragile,shrink]
+  \begin{exampleblock}{Quick Example 4}
+\begin{lstlisting}[title=Broadcast: 4\_bcast.r]
+library(pbdMPI, quietly=T)
+init()
+
+if (comm.rank()==0){
+  x <- matrix(1:4, nrow=2)
+} else {
+  x <- NULL
+}
+
+y <- bcast(x, rank.source=0)
+
+comm.print(y, rank=1)
+
+finalize()
+\end{lstlisting}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.58\textwidth}
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+script via:]
+mpirun -np 2 Rscript 4_bcast.r
+\end{lstlisting}
+\end{column}
+    \hfill
+    \begin{column}{0.4\textwidth}
+\begin{lstlisting}[title=Sample Output:]
+COMM.RANK = 1
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+\end{lstlisting}
+    \end{column}
+​  \end{columns}
+  \end{exampleblock}
+\end{frame}

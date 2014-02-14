@@ -1,0 +1,51 @@
+\subsection{pbdMPI Example: Linear Regression}
+
+\begin{frame}
+  \begin{block}{Example \countex :  Linear Regression}\pause
+      Find $\bbeta$ such that
+      \begin{align*}
+      \by = \bX\bbeta + \bepsilon
+      \end{align*}
+
+      When $\bX$ is full rank,
+      \begin{align*}
+      \hat{\bbeta} = (\bX^T\bX)^{-1}\bX^T\by \label{math:ols}
+      \end{align*}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Example \showex :  Linear Regression GBD Algorithm}\pause
+    \begin{enumerate}
+     \item Locally, compute $tx = x^T$
+     \item Locally, compute $A = tx * x$. Query every other processor for this result and sum up 
+all 
+the results.
+     \item Locally, compute $B = tx * y$.  Query every other processor for this result and sum up 
+all the results.
+     \item Locally, compute $A^{-1} * B$
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile,shrink]
+  \begin{exampleblock}{Example \showex :  Linear Regression Code}\pause
+\begin{lstlisting}[title=Serial Code]
+tX <- t(X)
+A <- tX %*% X
+B <- tX %*% y
+
+ols <- solve(A) %*% B
+\end{lstlisting}
+  
+\begin{lstlisting}[title=Parallel Code]
+tX.gbd <- t(X.gbd)
+A <- allreduce(tX.gbd %*% X.gbd, op = "sum")
+B <- allreduce(tX.gbd %*% y.gbd, op = "sum")
+
+ols <- solve(A) %*% B
+\end{lstlisting}
+  \end{exampleblock}
+\end{frame}
