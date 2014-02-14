@@ -1,12 +1,3 @@
-\section[DMAT]{Introduction to pbdDMAT and the DMAT Structure}
-
-\hidenum
-\begin{frame}[noframenumbering]
-\frametitle{Contents}
- \tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide]
-\end{frame}
-\shownum
-
 \subsection{Introduction to Distributed Matrices}
 
 \begin{frame}
@@ -54,23 +45,24 @@ ans <- svd(solve(xtx))
         \centering
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
-                
-\includegraphics[height=5cm,width=\textwidth]{../common/pics/dmat/dmat_block}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_block}
                 \caption{Block}
         \end{subfigure}
         \hspace{.1cm}
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
                 
-\includegraphics[height=5cm,width=\textwidth]{../common/pics/dmat/dmat_cyclic}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_cyclic}
                 \caption{Cyclic}
         \end{subfigure}
         \hspace{.01cm}
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
                 
-\includegraphics[height=5cm,width=\textwidth]{
-../common/pics/dmat/dmat_blockcyclic}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_blockcyclic}
                 \caption{Block-Cyclic}
         \end{subfigure}
         \caption{Matrix Distribution Schemes}\label{fig:dmat1d}
@@ -87,22 +79,24 @@ ans <- svd(solve(xtx))
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
                 
-\includegraphics[height=5cm,width=\textwidth]{../common/pics/dmat/dmat_block2d}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_block2d}
                 \caption{2d Block}
         \end{subfigure}%
         \hspace{.1cm}
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
                 
-\includegraphics[height=5cm,width=\textwidth]{../common/pics/dmat/dmat_cyclic2d}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_cyclic2d}
                 \caption{2d Cyclic}
         \end{subfigure}
         \hspace{.01cm}
         \begin{subfigure}[b]{0.3\textwidth}
                 \centering
                 
-\includegraphics[height=5cm,width=\textwidth]{
-../common/pics/dmat/dmat_blockcyclic2d}
+\includegraphics[height=5cm,width=\textwidth]%
+{../common/pics/dmat/dmat_blockcyclic2d}
                 \caption{2d Block-Cyclic}
         \end{subfigure}
         \caption{Matrix Distribution Schemes Onto a 2-Dimensional 
@@ -478,15 +472,28 @@ x &= \left[
 \begin{align*}
 x &= \left[
       \begin{array}{ll|ll|ll|ll|l}
-      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g11}x_{15} & \color{g11}x_{16} & \color{g12}x_{17} & \color{g12}x_{18} & \color{g11}x_{19}\\
-      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g11}x_{25} & \color{g11}x_{26} & \color{g12}x_{27} & \color{g12}x_{28} & \color{g11}x_{29}\\\hline
-      \color{g13}x_{31} & \color{g13}x_{32} & \color{g21}x_{33} & \color{g21}x_{34} & \color{g13}x_{35} & \color{g13}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g13}x_{39}\\
-      \color{g13}x_{41} & \color{g13}x_{42} & \color{g21}x_{43} & \color{g21}x_{44} & \color{g13}x_{45} & \color{g13}x_{46} & \color{g21}x_{47} & \color{g21}x_{48} & \color{g13}x_{49}\\\hline
-      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & \color{g11}x_{55} & \color{g11}x_{56} & \color{g12}x_{57} & \color{g12}x_{58} & \color{g11}x_{59}\\
-      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & \color{g11}x_{65} & \color{g11}x_{66} & \color{g12}x_{67} & \color{g12}x_{68} & \color{g11}x_{69}\\\hline
-      \color{g13}x_{71} & \color{g13}x_{72} & \color{g21}x_{73} & \color{g21}x_{74} & \color{g13}x_{75} & \color{g13}x_{76} & \color{g21}x_{77} & \color{g21}x_{78} & \color{g13}x_{79}\\
-      \color{g13}x_{81} & \color{g13}x_{82} & \color{g21}x_{83} & \color{g21}x_{84} & \color{g13}x_{85} & \color{g13}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & \color{g13}x_{89}\\\hline
-      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g11}x_{95} & \color{g11}x_{96} & \color{g12}x_{97} & \color{g12}x_{98} & \color{g11}x_{99}\\
+      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & 
+\color{g11}x_{15} & \color{g11}x_{16} & \color{g12}x_{17} & \color{g12}x_{18} & \color{g11}x_{19}\\
+      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & 
+\color{g11}x_{25} & \color{g11}x_{26} & \color{g12}x_{27} & \color{g12}x_{28} & 
+\color{g11}x_{29}\\\hline
+      \color{g13}x_{31} & \color{g13}x_{32} & \color{g21}x_{33} & \color{g21}x_{34} & 
+\color{g13}x_{35} & \color{g13}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g13}x_{39}\\
+      \color{g13}x_{41} & \color{g13}x_{42} & \color{g21}x_{43} & \color{g21}x_{44} & 
+\color{g13}x_{45} & \color{g13}x_{46} & \color{g21}x_{47} & \color{g21}x_{48} & 
+\color{g13}x_{49}\\\hline
+      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & 
+\color{g11}x_{55} & \color{g11}x_{56} & \color{g12}x_{57} & \color{g12}x_{58} & \color{g11}x_{59}\\
+      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & 
+\color{g11}x_{65} & \color{g11}x_{66} & \color{g12}x_{67} & \color{g12}x_{68} & 
+\color{g11}x_{69}\\\hline
+      \color{g13}x_{71} & \color{g13}x_{72} & \color{g21}x_{73} & \color{g21}x_{74} & 
+\color{g13}x_{75} & \color{g13}x_{76} & \color{g21}x_{77} & \color{g21}x_{78} & \color{g13}x_{79}\\
+      \color{g13}x_{81} & \color{g13}x_{82} & \color{g21}x_{83} & \color{g21}x_{84} & 
+\color{g13}x_{85} & \color{g13}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & 
+\color{g13}x_{89}\\\hline
+      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & 
+\color{g11}x_{95} & \color{g11}x_{96} & \color{g12}x_{97} & \color{g12}x_{98} & \color{g11}x_{99}\\
       \end{array}
 \right]_{9\times 9}
 \end{align*}
@@ -528,15 +535,28 @@ x &= \left[
 \begin{align*}
 x &= \left[
       \begin{array}{ll|ll|ll|ll|l}
-      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} & \color{g13}x_{16} & \color{g11}x_{17} & \color{g11}x_{18} & \color{g12}x_{19}\\
-      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} & \color{g13}x_{26} & \color{g11}x_{27} & \color{g11}x_{28} & \color{g12}x_{29}\\\hline
-      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} & \color{g23}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g22}x_{39}\\
-      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & \color{g23}x_{45} & \color{g23}x_{46} & \color{g21}x_{47} & \color{g21}x_{48} & \color{g22}x_{49}\\\hline
-      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & \color{g13}x_{55} & \color{g13}x_{56} & \color{g11}x_{57} & \color{g11}x_{58} & \color{g12}x_{59}\\
-      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & \color{g13}x_{65} & \color{g13}x_{66} & \color{g11}x_{67} & \color{g11}x_{68} & \color{g12}x_{69}\\\hline
-      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & \color{g23}x_{75} & \color{g23}x_{76} & \color{g21}x_{77} & \color{g21}x_{78} & \color{g22}x_{79}\\
-      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} & \color{g23}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & \color{g22}x_{89}\\\hline
-      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} & \color{g13}x_{96} & \color{g11}x_{97} & \color{g11}x_{98} & \color{g12}x_{99}\\
+      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & 
+\color{g13}x_{15} & \color{g13}x_{16} & \color{g11}x_{17} & \color{g11}x_{18} & \color{g12}x_{19}\\
+      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & 
+\color{g13}x_{25} & \color{g13}x_{26} & \color{g11}x_{27} & \color{g11}x_{28} & 
+\color{g12}x_{29}\\\hline
+      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & 
+\color{g23}x_{35} & \color{g23}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g22}x_{39}\\
+      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & 
+\color{g23}x_{45} & \color{g23}x_{46} & \color{g21}x_{47} & \color{g21}x_{48} & 
+\color{g22}x_{49}\\\hline
+      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & 
+\color{g13}x_{55} & \color{g13}x_{56} & \color{g11}x_{57} & \color{g11}x_{58} & \color{g12}x_{59}\\
+      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & 
+\color{g13}x_{65} & \color{g13}x_{66} & \color{g11}x_{67} & \color{g11}x_{68} & 
+\color{g12}x_{69}\\\hline
+      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & 
+\color{g23}x_{75} & \color{g23}x_{76} & \color{g21}x_{77} & \color{g21}x_{78} & \color{g22}x_{79}\\
+      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & 
+\color{g23}x_{85} & \color{g23}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & 
+\color{g22}x_{89}\\\hline
+      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & 
+\color{g13}x_{95} & \color{g13}x_{96} & \color{g11}x_{97} & \color{g11}x_{98} & \color{g12}x_{99}\\
       \end{array}
 \right]_{9\times 9}
 \end{align*}
@@ -640,8 +660,10 @@ x &= \left[
     \begin{column}{0.59\textwidth}
       \begin{enumerate}
         \item \code{DMAT} is \emph{distributed}.  No one processor owns all of the matrix.
-        \item \code{DMAT} is \emph{non-overlapping}. Any piece owned by one processor is owned by no other processors.\\\hrule
-        \item \code{DMAT} can be row-contiguous or not, depending on the processor grid and blocking factor used.
+        \item \code{DMAT} is \emph{non-overlapping}. Any piece owned by one processor is owned by no 
+other processors.\\\hrule
+        \item \code{DMAT} can be row-contiguous or not, depending on the processor grid and blocking 
+factor used.
         \item \code{DMAT} is locally column-major and globally, it depends\dots
       \end{enumerate}
     \end{column}
@@ -649,15 +671,24 @@ x &= \left[
       \begin{align*}
 \left[
       \begin{array}{ll|ll|l}
-      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} \\
-      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} \\\hline
-      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} \\
-      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & \color{g23}x_{45} \\\hline
-      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & \color{g13}x_{55} \\
-      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & \color{g13}x_{65} \\\hline
-      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & \color{g23}x_{75} \\
-      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} \\\hline
-      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} \\
+      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & 
+\color{g13}x_{15} \\
+      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & 
+\color{g13}x_{25} \\\hline
+      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & 
+\color{g23}x_{35} \\
+      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & 
+\color{g23}x_{45} \\\hline
+      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & 
+\color{g13}x_{55} \\
+      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & 
+\color{g13}x_{65} \\\hline
+      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & 
+\color{g23}x_{75} \\
+      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & 
+\color{g23}x_{85} \\\hline
+      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & 
+\color{g13}x_{95} \\
       \end{array}
       \right]
       \end{align*}
@@ -665,7 +696,8 @@ x &= \left[
   \end{columns}
   \begin{enumerate}
     \setcounter{enumi}{5}
-        \item \code{GBD} is a generalization of the one-dimensional block \code{DMAT} distribution.  Otherwise there is no relation.
+        \item \code{GBD} is a generalization of the one-dimensional block \code{DMAT} distribution.  
+Otherwise there is no relation.
         \item \code{DMAT} is confusing, but very robust.
     \end{enumerate}
   \end{block}
@@ -743,7 +775,8 @@ cov(x)
      \begin{itemize}
      \item More of a software package.
      \item \code{DMAT} structure \emph{must} be used for \pkg{pbdDMAT}.
-     \item If the data is not 2d block-cyclic compatible, DMAT will \emph{definitely} give the wrong answer.
+     \item If the data is not 2d block-cyclic compatible, DMAT will \emph{definitely} give the wrong 
+answer.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -765,8 +798,8 @@ init.grid()
 
 finalize()
 \end{lstlisting}
-      \item   Distributed \code{DMAT} objects will be given the suffix \code{.dmat} to visually help distinguish them from global objects.  This suffix carries no semantic meaning.
+      \item   Distributed \code{DMAT} objects will be given the suffix \code{.dmat} to visually help 
+distinguish them from global objects.  This suffix carries no semantic meaning.
     \end{enumerate}
   \end{block}
 \end{frame}
-

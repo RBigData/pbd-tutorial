@@ -1,25 +1,11 @@
-
-
-
-
-
-\section[Stats eg's]{Basic Statistics Examples}
-
-\hidenum
-\begin{frame}[noframenumbering]
-\frametitle{Contents}
- \tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide]
-\end{frame}
-\shownum
-
-
 \subsection{pbdMPI Example: Monte Carlo Simulation}
 
 \begin{frame}[shrink]
   \begin{block}{Example \countex :  Monte Carlo Simulation}\pause
   Sample $N$ uniform observations $(x_i, y_i)$ in the unit square $[0, 1]\times [0,1]$.  Then
 \begin{equation*}
-\pi \approx 4\left(\frac{\#\ Inside\ Circle}{\#\ Total}\right) = 4\left(\frac{\text{\color{blue}{\# Blue}}}{\text{\color{blue}{\# Blue}}+\text{\color{red}{\# Red}}}\right)
+\pi \approx 4\left(\frac{\#\ Inside\ Circle}{\#\ Total}\right) = 4\left(\frac{\text{\color{blue}{\# 
+Blue}}}{\text{\color{blue}{\# Blue}}+\text{\color{red}{\# Red}}}\right)
 \label{eqn:pi}
 \end{equation*}
   \begin{center}
@@ -160,8 +146,10 @@ comm.print(Cov.X)
   \begin{block}{Example \showex :  Linear Regression GBD Algorithm}\pause
     \begin{enumerate}
      \item Locally, compute $tx = x^T$
-     \item Locally, compute $A = tx * x$. Query every other processor for this result and sum up all the results.
-     \item Locally, compute $B = tx * y$.  Query every other processor for this result and sum up all the results.
+     \item Locally, compute $A = tx * x$. Query every other processor for this result and sum up all 
+the results.
+     \item Locally, compute $B = tx * y$.  Query every other processor for this result and sum up 
+all the results.
      \item Locally, compute $A^{-1} * B$
     \end{enumerate}
   \end{block}

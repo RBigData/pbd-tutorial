@@ -1,15 +1,3 @@
-\section[pbdDMAT eg's]{Examples Using pbdDMAT}
-\setcounter{excount}{0}
-
-
-\hidenum
-\begin{frame}[noframenumbering]
-\frametitle{Contents}
- \tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide]
-\end{frame}
-\shownum
-
-
 
 \subsection{Manipulating DMAT Objects}
 
@@ -37,7 +25,8 @@ y.dmat
 
 finalize()
 \end{lstlisting}
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 mpirun -np 2 Rscript 1_gen.r
 \end{lstlisting} 
   \end{exampleblock}
@@ -63,7 +52,8 @@ rand.dmat
 
 finalize()
 \end{lstlisting}
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 mpirun -np 2 Rscript 2_gen.r
 \end{lstlisting} 
   \end{exampleblock}
@@ -85,7 +75,8 @@ comm.print(y)
 
 finalize()
 \end{lstlisting}
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 mpirun -np 2 Rscript 3_extract.r
 \end{lstlisting} 
   \end{exampleblock}
@@ -113,7 +104,8 @@ comm.print(z)
 
 finalize()
 \end{lstlisting}
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 mpirun -np 2 Rscript 4_misc.r
 \end{lstlisting} 
   \end{exampleblock}
@@ -144,7 +136,9 @@ mpirun -np 2 Rscript 4_misc.r
 % 
 % finalize()
 % \end{lstlisting}
-% \begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+% 
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 % mpirun -np 2 Rscript 4_convert.r
 % \end{lstlisting} 
 %   \end{exampleblock}
@@ -223,7 +217,8 @@ finalize()
 \vspace{-.4cm}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 mpirun -np 2 Rscript 5_pca.r
 \end{lstlisting}    
     \end{column}
@@ -249,6 +244,3 @@ Cols:  221
 \end{frame}
 
 
-
-%%% RandSVD
-\input{dmat/dmat_randsvd}
