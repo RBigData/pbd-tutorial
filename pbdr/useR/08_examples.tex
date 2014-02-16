@@ -66,13 +66,11 @@ Z <- redistribute(Z, bldim=c(8,8), ICTXT=0)
 E <- sqrt(X^2 + Y^2 + Z^2) # energy from velocity
 E.pca <- prcomp(x=E, retx=TRUE, scale=FALSE) 
 
-# gather using all processes
-variance <- as.vector(E.pca)$sdev^2
-
 # plot using one process
 if(comm.rank() == 0)
   {
     ## scree plot for first 50 components
+    variance <- E.pca$sdev^2  # note: all own sdev
     proportion <- variance[1:50]/sum(variance)
     cumulative <- cumsum(proportion)
     component <- 1:length(proportion)
