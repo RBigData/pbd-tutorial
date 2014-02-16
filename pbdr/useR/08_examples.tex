@@ -62,7 +62,7 @@ Z <- redistribute(Z, bldim=c(8,8), ICTXT=0)
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Coherent Modes in Turbulent Flow}\pause
-\begin{lstlisting}[title=Compute PCA and do Scree Plot (e0\_pca.r)]
+\begin{lstlisting}[title=Compute PCA and do Scree Plot (0\_pca.r)]
 E <- sqrt(X^2 + Y^2 + Z^2) # energy from velocity
 E.pca <- prcomp(x=E, retx=TRUE, scale=FALSE) 
 
@@ -87,12 +87,6 @@ finalize()
 \end{lstlisting} %$
   \end{exampleblock}
 \end{frame}
-
-
-
-%%% I really don't think you want to do this...
-% \setcounter{framenumber}{0}
-
 
 
 \subsection{Parallel Plot Ensembles}
@@ -142,7 +136,7 @@ png.slice <- function(x, g.dim, lab="slice", title=lab, work.dir="", zero.center
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Plots in parallel}\pause
-\begin{lstlisting}[title=Getting the Data]
+\begin{lstlisting}[title=Get and Redistribute the Data]
 library(pbdDMAT, quiet = TRUE)
 init.grid()
 
@@ -204,7 +198,7 @@ for(i in 1:max.plots)
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Plots in parallel}\pause
-\begin{lstlisting}[title=gather.col First Attempt (p0\_plot.r)]
+\begin{lstlisting}[title=gather.col First Attempt (1\_plot.r)]
 gather.col <- function(x, num=min(ncol(x), comm.size()))
 {
     ## gather complete columns of a global array to different ranks
@@ -217,7 +211,7 @@ gather.col <- function(x, num=min(ncol(x), comm.size()))
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Plots in parallel}\pause
-\begin{lstlisting}[title=gather.col Second Attempt (p1\_plot.r)]
+\begin{lstlisting}[title=gather.col Second Attempt (2\_plot.r)]
 gather.col <- function(x, num=min(ncol(x), comm.size()))
 {
   ## gather complete columns of a global array to different ranks
@@ -236,7 +230,7 @@ gather.col <- function(x, num=min(ncol(x), comm.size()))
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Plots in parallel}\pause
-\begin{lstlisting}[title=gather.col The Right Way (p2\_plot.r)]
+\begin{lstlisting}[title=gather.col The Right Way (3\_plot.r)]
 gather.col <- function(x, num=min(ncol(x), comm.size()))
 {
   ## gather complete columns of a global array to different ranks
@@ -254,6 +248,27 @@ gather.col <- function(x, num=min(ncol(x), comm.size()))
   \end{exampleblock}
 \end{frame}
 
+\begin{frame}[fragile,scale,shrink]
+  \begin{exampleblock}{Plots in parallel}\pause
+\begin{lstlisting}[title=Now Plot the PCA Components (4\_plot.r)]
+E <- sqrt(X^2 + Y^2 + Z^2)
+
+E.pca <- prcomp(x=E, retx=TRUE, scale=FALSE)
+
+## Use ranks 1 to n.pca to plot individual components in parallel
+n.pca <- min(comm.size(), g.nrow)
+my.col <- gather.col(E.pca$x, num=n.pca)
+
+if(!is.null(my.col))
+  {
+    ## component plots on rank 1 to n.pca
+    lab <- paste("pc", comm.rank(), sep="")
+    title <- paste(lab, "sigma^2 =", variance[comm.rank() + 1])
+    png.slice(my.col, g.dim[1:2], lab, title=title, work.dir=work.dir)
+  }
+\end{lstlisting} %$end
+  \end{exampleblock}
+\end{frame}
 
 \begin{frame}
   \begin{block}{SimpleRedistributions}\pause
@@ -277,9 +292,10 @@ gather.col <- function(x, num=min(ncol(x), comm.size()))
 \end{frame}
 
 \begin{frame}
-  \begin{block}{Exercise}\pause
+  \begin{block}{Exercise: scripts/pbdDMAT/dmat\_app}\pause
   \begin{itemize}
-  \item Experiment with scripts x0\-ictxt.r, x1\_ictxt.r, and x2\_ictxt.r
+  \item Experiment with scripts 0\_pca.r, 1\_plot.r, 2\_plot.r,
+    3\_plot.r, 4\_plot.r, 5\-ictxt.r, 6\_ictxt.r, and 7\_ictxt.r
   \item Experiment with other redistributions
   \end{itemize}
   \end{block}

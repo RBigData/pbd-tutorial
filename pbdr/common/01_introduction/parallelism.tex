@@ -1,14 +1,14 @@
 \subsection{A Concise Introduction to Parallelism}
 
-\begin{frame}
-  \begin{block}{What is Parallelism?}\pause
-  \begin{itemize}
-    \item Doing more than one thing at a time.
-    \item The simultaneous use of multiple compute resources to solve a 
-computational problem.
-  \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \begin{block}{What is Parallelism?}\pause
+%   \begin{itemize}
+%     \item Doing more than one thing at a time.
+%     \item The simultaneous use of multiple compute resources to solve a 
+% computational problem.
+%   \end{itemize}
+%   \end{block}
+% \end{frame}
 
 \begin{frame}
   \begin{block}{Parallelism}\pause
@@ -56,54 +56,54 @@ computational problem.
 \end{frame}
 
 
-\begin{frame}
-  \begin{block}{Kinds of Parallelism}\pause
-    \begin{itemize}[<+-|alert@+>]
-      \item \emph{Data Parallelism}:  Data is distributed
-      \item \emph{Task Parallelism}:  Tasks are distributed
-  \end{itemize}
-  (This is a gross oversimplification)
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \begin{block}{Kinds of Parallelism}\pause
+%     \begin{itemize}[<+-|alert@+>]
+%       \item \emph{Data Parallelism}:  Data is distributed
+%       \item \emph{Task Parallelism}:  Tasks are distributed
+%   \end{itemize}
+%   (This is a gross oversimplification)
+%   \end{block}
+% \end{frame}
 
 
-\begin{frame}
-  \begin{block}{pbdR Paradigms:  Data Parallelism}
-  Data parallelism:
-  \begin{itemize}[<+-|alert@+>]
-   \item No one processor/node owns all the data.
-   \item Processors own local pieces of a (conceptually) larger, global object
-  \end{itemize}
+% \begin{frame}
+%   \begin{block}{pbdR Paradigms:  Data Parallelism}
+%   Data parallelism:
+%   \begin{itemize}[<+-|alert@+>]
+%    \item No one processor/node owns all the data.
+%    \item Processors own local pieces of a (conceptually) larger, global object
+%   \end{itemize}
   
-  Task parallelism:
-  \begin{itemize}
-    \item (Usually) Applying different tasks to the same data.
-  \end{itemize}
-  \end{block}
-\end{frame}
+%   Task parallelism:
+%   \begin{itemize}
+%     \item (Usually) Applying different tasks to the same data.
+%   \end{itemize}
+%   \end{block}
+% \end{frame}
 
 
-\begin{frame}
-  \begin{block}{Data vs Task Parallelism}\pause
-    \begin{center}
-    \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Data Parallelism}
-      \begin{center}
-      \includegraphics[width=.975\textwidth]{../common/pics/parallelism_data}
-      \end{center}
-      \end{block}
-    \end{minipage}
-    \hspace{.15cm}
-    \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Task Parallelism}
-      \begin{center}
-      \includegraphics[width=.975\textwidth]{../common/pics/parallelism_task}
-      \end{center}
-      \end{block}
-    \end{minipage}
-    \end{center}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \begin{block}{Data vs Task Parallelism}\pause
+%     \begin{center}
+%     \begin{minipage}{.46\textwidth}
+%     \begin{block}{\centering Data Parallelism}
+%       \begin{center}
+%       \includegraphics[width=.975\textwidth]{../common/pics/parallelism_data}
+%       \end{center}
+%       \end{block}
+%     \end{minipage}
+%     \hspace{.15cm}
+%     \begin{minipage}{.46\textwidth}
+%     \begin{block}{\centering Task Parallelism}
+%       \begin{center}
+%       \includegraphics[width=.975\textwidth]{../common/pics/parallelism_task}
+%       \end{center}
+%       \end{block}
+%     \end{minipage}
+%     \end{center}
+%   \end{block}
+% \end{frame}
 
 
 
