@@ -1,8 +1,8 @@
 
-\subsection{Manipulating DMAT Objects}
+\subsection{Manipulating \code{ddmatrix} Objects}
 
 \begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Example \countex:  DMAT Construction}\pause
+  \begin{exampleblock}{Example \countex:  \code{ddmatrix} Construction}\pause
 \begin{lstlisting}[title=Generate a global matrix and distribute it]
 library(pbdDMAT, quiet=TRUE)
 init.grid()
@@ -35,7 +35,7 @@ mpirun -np 2 Rscript 1_gen.r
 
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Example \countex:  DMAT Construction}\pause
+  \begin{exampleblock}{Example \countex:  \code{ddmatrix} Construction}\pause
 \begin{lstlisting}[title=Generate locally only what is needed]
 library(pbdDMAT, quiet=TRUE)
 init.grid()
@@ -61,7 +61,7 @@ mpirun -np 2 Rscript 2_gen.r
 
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Example \countex:  DMAT Operations}\pause
+  \begin{exampleblock}{Example \countex:  \code{ddmatrix} Operations}\pause
 \begin{lstlisting}[title=Generate locally only what is needed]
 library(pbdDMAT, quiet=TRUE)
 init.grid()
@@ -85,15 +85,13 @@ mpirun -np 2 Rscript 3_extract.r
 
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Example \countex:  More DMAT Operations}\pause
+  \begin{exampleblock}{Example \countex:  More \code{ddmatrix} Operations}\pause
 \begin{lstlisting}
 library(pbdDMAT, quiet=TRUE)
 init.grid()
 
 x.dmat <- ddmatrix(1:30, nrow=10)
-
 y.dmat <- x.dmat + 1:7
-
 z.dmat <- scale(x.dmat, center=TRUE, scale=TRUE)
 
 y <- as.matrix(y.dmat)
@@ -111,11 +109,8 @@ mpirun -np 2 Rscript 4_misc.r
   \end{exampleblock}
 \end{frame}
 
-
-
-
 % \begin{frame}[fragile]
-%   \begin{exampleblock}{Example \countex:  GBD and DMAT}\pause
+%   \begin{exampleblock}{Example \countex:  GBD and \code{ddmatrix}}\pause
 % \begin{lstlisting}
 % library(pbdDEMO, quiet=TRUE)
 % init.grid()
@@ -125,10 +120,10 @@ mpirun -np 2 Rscript 4_misc.r
 % N.gbd <- 1 + comm.rank()
 % X.gbd <- matrix(rnorm(N.gbd * 3), ncol = 3)
 % 
-% # convert GBD to DMAT
+% # convert GBD to \code{ddmatrix}
 % X.dmat <- gbd2dmat(X.gbd)
 % 
-% # convert DMAT to GBD
+% # convert \code{ddmatrix} to GBD
 % new.X.gbd <- dmat2gbd(X.dmat)
 % 
 % # undistribute
@@ -137,8 +132,8 @@ mpirun -np 2 Rscript 4_misc.r
 % finalize()
 % \end{lstlisting}
 % 
-\begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
-title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
+% \begin{lstlisting}[basicstyle=\tiny,backgroundcolor=\color{white},keywordstyle=\color{black},
+% title=\fontsize{6pt}{7.2}\selectfont Execute this script via:]
 % mpirun -np 2 Rscript 4_convert.r
 % \end{lstlisting} 
 %   \end{exampleblock}
@@ -213,7 +208,7 @@ comm.cat("\nCols: ", i, "\n", quiet=T)
 comm.cat("%Cols:", i/dim(x.dmat)[2], "\n\n", quiet=T)
 
 finalize()
-\end{lstlisting}
+\end{lstlisting} %$end
 \vspace{-.4cm}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
@@ -238,7 +233,7 @@ Cols:  221
 \begin{frame}
   \begin{block}{Distributed Matrices}\pause
   \begin{center}
-    \pkg{pbdDEMO} contains many other examples of reading and managing GBD and DMAT data
+    \pkg{pbdDEMO} contains many other examples of reading and managing GBD and \code{ddmatrix} data
   \end{center}
   \end{block}
 \end{frame}
