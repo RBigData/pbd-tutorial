@@ -10,5 +10,7 @@ if (comm.rank()==0){
 y <- bcast(x, rank.source=0)
 
 comm.print(y, rank=1)
+comm.print(x, rank=1)
+comm.print(x)
 
 finalize()

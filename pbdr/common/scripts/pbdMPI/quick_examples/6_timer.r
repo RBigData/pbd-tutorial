@@ -1,7 +1,7 @@
 library(pbdMPI, quiet=TRUE)
 init()
 
-comm.set.seed(diff=T)
+comm.set.seed(seed=1234567,diff=T)
 
 test <- function(timed)
 {
