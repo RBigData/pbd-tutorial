@@ -4,7 +4,7 @@ init.grid()
 n <- 1e4
 p <- 250
 
-comm.set.seed(diff=T)
+comm.set.seed(seed=1234567, diff=TRUE)
 x.dmat <- ddmatrix("rnorm", nrow=n, ncol=p, mean=100, sd=25)
 
 pca <- prcomp(x=x.dmat, retx=TRUE, scale=TRUE)
