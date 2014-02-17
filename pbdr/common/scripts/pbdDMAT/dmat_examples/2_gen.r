@@ -9,7 +9,7 @@ id.dmat
 
 comm.print(submatrix(id.dmat), all.rank=T)
 
-comm.set.seed(diff=T)
+comm.set.seed(seed=1234567, diff=T)
 rand.dmat <- ddmatrix("rnorm", nrow=100, ncol=100, mean=10, sd=100)
 rand.dmat
 
