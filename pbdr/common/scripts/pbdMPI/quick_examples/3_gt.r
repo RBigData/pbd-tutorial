@@ -1,7 +1,7 @@
 library(pbdMPI, quiet = TRUE)
 init()
 
-comm.set.seed(diff=TRUE)
+comm.set.seed(seed=1234567, diff=TRUE)
 
 n <- sample(1:10, size=1)
 
