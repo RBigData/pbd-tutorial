@@ -2,14 +2,14 @@
 \subsection{pbdDMAT}
 
 \begin{frame}[fragile]
-  \begin{block}{The \code{DMAT} Data Structure}\pause
+  \begin{block}{The \code{ddmatrix} Data Structure}\pause
     The more complicated the processor grid, the more complicated the distribution.
   \end{block}
 \end{frame}
 
 
 \begin{frame}[shrink]
-\begin{exampleblock}{DMAT: 2-dimensional Block-Cyclic with 6 Processors}
+\begin{exampleblock}{\code{ddmatrix}: 2-dimensional Block-Cyclic with 6 Processors}
 \begin{align*}
 x &= \left[
       \begin{array}{ll|ll|ll|ll|l}
@@ -57,7 +57,7 @@ x &= \left[
 
 
 \begin{frame}[shrink]
-\begin{exampleblock}{Understanding DMAT: Local View}
+\begin{exampleblock}{Understanding \code{ddmatrix}: Local View}
 \begin{align*}
 \left[
       \begin{array}{ll|ll}
@@ -133,18 +133,18 @@ x &= \left[
 
 \begin{frame}[fragile]
   \fontsize{8pt}{10}\selectfont
-  \begin{block}{The \code{DMAT} Data Structure}\pause
+  \begin{block}{The \code{ddmatrix} Data Structure}\pause
   \begin{columns}[c,onlytextwidth]
     \begin{column}{0.59\textwidth}
       \begin{enumerate}
-        \item \code{DMAT} is \emph{distributed}.  No one processor owns all of the matrix.
-        \item \code{DMAT} is \emph{non-overlapping}. Any piece owned by one processor is owned by 
+        \item \code{ddmatrix} is \emph{distributed}.  No one processor owns all of the matrix.
+        \item \code{ddmatrix} is \emph{non-overlapping}. Any piece owned by one processor is owned by 
 no 
 other processors.\\\hrule
-        \item \code{DMAT} can be row-contiguous or not, depending on the processor grid and 
+        \item \code{ddmatrix} can be row-contiguous or not, depending on the processor grid and 
 blocking 
 factor used.
-        \item \code{DMAT} is locally column-major and globally, it depends\dots
+        \item \code{ddmatrix} is locally column-major and globally, it depends\dots
       \end{enumerate}
     \end{column}
     \begin{column}{0.4\textwidth}
@@ -176,10 +176,10 @@ factor used.
   \end{columns}
   \begin{enumerate}
     \setcounter{enumi}{5}
-        \item \code{GBD} is a generalization of the one-dimensional block \code{DMAT} distribution. 
+        \item \code{GBD} is a generalization of the one-dimensional block \code{ddmatrix} distribution. 
  
 Otherwise there is no relation.
-        \item \code{DMAT} is confusing, but very robust.
+        \item \code{ddmatrix} is confusing, but very robust.
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -226,7 +226,7 @@ Otherwise there is no relation.
 
 
 \begin{frame}[fragile]
-  \begin{block}{Distributed Matrix Methods}\pause
+  \begin{block}{Methods for class \code{ddmatrix}}\pause
     \pkg{pbdDMAT} has over 100 methods with \emph{identical} syntax to R:
     \begin{itemize}
      \item \code{\`{}[\`{}}, \code{rbind()}, \code{cbind()}, \dots
@@ -255,8 +255,8 @@ cov(x)
      \pkg{pbdDMAT}:
      \begin{itemize}
      \item More of a software package.
-     \item \code{DMAT} structure \emph{must} be used for \pkg{pbdDMAT}.
-     \item If the data is not 2d block-cyclic compatible, DMAT will \emph{definitely} give the 
+     \item The \code{ddmatrix} structure \emph{must} be used for \pkg{pbdDMAT}.
+     \item If the data is not 2d block-cyclic compatible, \code{ddmatrix} will \emph{definitely} give the 
 wrong 
 answer.
     \end{itemize}
@@ -280,7 +280,7 @@ init.grid()
 
 finalize()
 \end{lstlisting}
-      \item   Distributed \code{DMAT} objects will be given the suffix \code{.dmat} to visually 
+      \item   Distributed \code{ddmatrix} objects will be given the suffix \code{.dmat} to visually 
 help 
 distinguish them from global objects.  This suffix carries no semantic meaning.
     \end{enumerate}
