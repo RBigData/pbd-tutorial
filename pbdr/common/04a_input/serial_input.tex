@@ -1,0 +1,32 @@
+\subsection{Serial Data Input}
+
+\begin{frame}
+\begin{block}{Separate manual: http://r-project.org/}
+\begin{itemize}
+\item scan()
+\item read.table()
+\item read.csv()
+\item $\cdots$
+\item readBin()
+\item ncvar\_get()
+\item readSocket()
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,scale,shrink]
+  \begin{exampleblock}{CSV Data: Read Serial then Distribute}\pause
+\begin{lstlisting}[title=]
+library(pbdDMAT)
+if(comm.rank() == 0) { # only read on process 0
+  x <- read.csv("myfile.csv")
+} else {
+  x <- NULL
+}
+
+dx <- as.ddmatrix(x)
+\end{lstlisting}
+  \end{exampleblock}
+\end{frame}
+
+
