@@ -15,8 +15,8 @@
 \end{frame}
 
 \begin{frame}[fragile,scale,shrink]
-  \begin{exampleblock}{CSV Data: Read Serial then Distribute}\pause
-\begin{lstlisting}[title=]
+  \begin{exampleblock}{No parallel file system: Read Serial then Distribute}\pause
+\begin{lstlisting}[title=read.csv()]
 library(pbdDMAT)
 if(comm.rank() == 0) { # only read on process 0
   x <- read.csv("myfile.csv")
