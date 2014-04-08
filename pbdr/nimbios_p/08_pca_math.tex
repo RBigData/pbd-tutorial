@@ -1,15 +1,16 @@
-\subsection{Principal Components Analysis for Spatio-Temporal Data}
+\subsection{Empirical Orthogonal Functions}
 
 \begin{frame}
-  \begin{block}{Example \countex :  Empirical Orthogonal Functions}\pause
-  \begin{itemize}
-  \item $m\times n$ matrix $X$ at $n$ spatial locations and $m$ times
-  \item $X_c$ is the column centered $X$
-  \item $X_c = VDU^T$
-  \item $VD = X_cU$ columns are $n$ time series
-  \item $UD = X_c^TV$ columns are $m$ images
-  \item $VD$ and $UD$ have same units as $X$
-  \end{itemize}
+  \begin{block}{The Math}\pause
+  \begin{description}
+    \item[$m\times n$ matrix $X$:] Measurements on $n$ spatial locations at
+    $m$ times
+    \item[Center the matrix:] $X_c$ is the column centered $X$ \\
+    \item[Singular value decomposition:] $X_c = VDU^T$ \\
+    \item[$n$ time series:] columns of $VD = X_cU$ \\
+    \item[$m$ images:] columns of $UD = X_c^TV$ \\
+    Note that $VD$ and $UD$ have same units as $X$
+  \end{description}
   \end{block}
 \end{frame}
 
