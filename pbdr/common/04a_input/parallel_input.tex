@@ -51,33 +51,21 @@ finalize()
 
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Binary Data}\pause
-    \begin{lstlisting}[title=3d Block Binary Reader]
+    \begin{lstlisting}[title=Read subcube, reshape to ddmatrix, make
+      block cyclic]
 library(pbdDMAT, quiet = TRUE)
 init.grid()
 
-## Raw data dimensions in file
-data.dim <- c(2048, 2048, 2048)
+data.dim <- c(2048, 2048, 2048) # full data dimension
+g.start <- c(1, 1, 513)         # global subcube corner
+g.dim <- c(64, 64, 1024)        # global subcube extent
 
-## global subcube definition
-g.start <- c(1, 1, 513)
-g.dim <- c(64, 64, 1024)
-
-## local dimension and start
-my.dim <- g.dim / c(1, 1, comm.size())
 my.start <- g.start + c(0, 0, comm.rank()*my.dim[3])
+my.dim <- g.dim / c(1, 1, comm.size())
 
 size <- 4 # file is single precision floats
-project <- "/lustre/atlas/proj-shared/stf006/d7r/inv_cascade"
-filex <- paste(project, "rot_abc_2048_kf50/outs/vx.061.out", sep="/")
 
-vx <- block3d.read(filex, data.dim, my.start, my.dim, size)
-
-save.file <- paste("xyz.RData", comm.rank(), sep="")
-save(vx, file=save.file)
-
-## make a ddmatrix from local data
-## reshape 3d array into a matrix for PCA (EOF) computation
-## first two dimensions become rows and third becomes columns
+vx <- block3d.read(``filename'', data.dim, my.start, my.dim, size)
 
 ## local reshape dimensions
 my.nrow <- prod(my.dim[1:2])
@@ -89,7 +77,7 @@ g.nrow <- prod(g.dim[1:2])
 g.ncol <- g.dim[3]
 gdim <- c(g.nrow, g.ncol)
 
-## now reshape local
+## reshape local
 X <- matrix(vx, nrow=my.nrow, ncol=my.ncol, byrow=FALSE)
 
 ## glue local pieces into a ddmatrix
@@ -102,38 +90,32 @@ X <- redistribute(X, bldim=c(8,8), ICTXT=0)
 \end{frame}
 
 \begin{frame}[fragile,scale,shrink]
-  \begin{exampleblock}{CSV Data}\pause
+  \begin{exampleblock}{Binary Data}\pause
     \begin{lstlisting}[title=3d Block Binary Reader]
 block3d.read <- function(file, data.dim, my.start, my.dim, size=4) {
-    con.x <- file(file, "rb", blocking=TRUE)
-    if(isSeekable(con.x)) {
+  con.x <- file(file, "rb", blocking=TRUE)
 
-        start <- sum((my.start - 1) * c(1, cumprod(data.dim)[-length(data.dim)]))
+  start <- sum((my.start - 1) * c(1, cumprod(data.dim)[-length(data.dim)]))
 
-        x <- rep(NA, prod(my.dim))
+  x <- rep(NA, prod(my.dim))
         
-        block <- 1:my.dim[1]
+  block <- 1:my.dim[1]
         
-        for(j in 1:my.dim[3]) {
-            sofar <- 0
-            for(i in 1:my.dim[2]) {
-                seek(con.x, where=start, rw="read", origin="start")
-                x[block] <- readBin(con=con.x, what="numeric",
-                                    n=my.dim[1], size=size)
-                block <- block + my.dim[1]
+  for(j in 1:my.dim[3]) {
+    sofar <- 0
+    for(i in 1:my.dim[2]) {
+      seek(con.x, where=start, rw="read", origin="start")
+      x[block] <- readBin(con=con.x, what="numeric", n=my.dim[1], size=size)
+      block <- block + my.dim[1]
 
-                start <- start + data.dim[1]*size
-                sofar <- sofar + data.dim[1]*size
-            }
-            start <- start - sofar + data.dim[1]*data.dim[2]*size
-        }
+      start <- start + data.dim[1]*size
+      sofar <- sofar + data.dim[1]*size
     }
-  else {
-      x <- NULL
-      comm.print(paste("Sorry ...", file, "not seakable!"))
+    start <- start - sofar + data.dim[1]*data.dim[2]*size
   }
-    close(con.x)
-    x
+
+  close(con.x)
+  x
 }
     \end{lstlisting}
   \end{exampleblock}
