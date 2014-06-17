@@ -1,8 +1,15 @@
+\input{preamble/titlepage}
+\input{preamble/pbdR}
+
+\usepackage{tikz} 
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+
 \usepackage{amsmath}
 \usepackage{beamerthemesplit}
 \usepackage{fancybox}
 \usepackage{hyperref}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{listings}
 
 
@@ -62,6 +69,17 @@
   belowskip=.2cm
   %   escapeinside={\%*}{*)},    
 %   morekeywords={*,...}    
+}
+
+
+\lstdefinelanguage{shl}{
+  language=sh,
+  backgroundcolor=\color{black},
+  basicstyle=\scriptsize\ttfamily\color{white},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  numbers=none
 }
 
 \setbeamertemplate{navigation symbols}{} 
