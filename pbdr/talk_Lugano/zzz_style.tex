@@ -1,0 +1,108 @@
+\usepackage{amsmath}
+\usepackage{beamerthemesplit}
+\usepackage{fancybox}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+
+
+\makeatletter
+\newcommand\code{\bgroup\@makeother\_\@makeother\~\@makeother\$\@codex}
+\def\@codex#1{{\normalfont\ttfamily\hyphenchar\font=-1 #1}\egroup}
+\makeatother
+
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+
+\definecolor{gray}{rgb}{.6,.6,.6}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{grayish}{rgb}{.775, .775, .775}
+\definecolor{dkgray}{rgb}{.375, .375, .375}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkblue}{rgb}{0, 0, .5}
+
+\definecolor{g11}{rgb}{0, 0, 1}
+\definecolor{g12}{rgb}{0, .4, 1}
+\definecolor{g13}{rgb}{0, .8, 1}
+
+\definecolor{g21}{rgb}{0, .5, .3}
+\definecolor{g22}{rgb}{.4, .5, .3}
+\definecolor{g23}{rgb}{.8, .5, .3}
+
+\lstset{ %
+  language=R,     
+  numbers=left,
+  stepnumber=1,       
+  numbersep=6pt,      
+  showspaces=false,      
+  showstringspaces=false,  
+  showtabs=false,    
+  frame=single,      
+  rulecolor=\color{black},   
+  tabsize=4,     
+  captionpos=t,     
+  breaklines=true,     
+  breakatwhitespace=true,   
+  title=\lstname,              
+  basicstyle=\ttfamily\color{black}\scriptsize, 
+  backgroundcolor=\color{grayish},  
+  numberstyle=\tiny\color{black},  
+  keywordstyle=\color{blue}, 
+  commentstyle=\color{dkgreen}, 
+  stringstyle=\color{mauve}, 
+  xleftmargin=.1in,
+  xrightmargin=.1in,
+  aboveskip=0cm,
+  belowskip=.2cm
+  %   escapeinside={\%*}{*)},    
+%   morekeywords={*,...}    
+}
+
+\setbeamertemplate{navigation symbols}{} 
+
+\hypersetup{
+    linkcolor=,
+    colorlinks=true,
+    urlcolor=blue
+}
+
+\usetheme{Frankfurt}
+% \usecolortheme{whale}
+% \usetheme{Antibes}
+% \setbeamertemplate{mini frames}{}
+
+
+\newcommand{\fctn}[1]{\textcolor{green!50!blue}{#1}}
+\newcommand{\rfor}[1]{\textcolor{yellow!50!red}{#1}}
+\newcommand{\rcom}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\pkg}[1]{\textbf{#1}}
+
+\newcommand{\startr}{\begin{minipage}{.04\textwidth}\ \ \end{minipage} \begin{minipage}{.91\textwidth}}
+
+%
+\newcommand{\shownum}{\title[\mytitlea]}{}
+\newcommand{\hidenum}{\title[\mytitleb]{}}
+% \expandafter\def\expandafter\insertshorttitle\expandafter{\insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}
+ 
+
+\newcounter{excount}
+\setcounter{excount}{0}
+\newcommand{\countex}{\addtocounter{excount}{1}\arabic{excount}}
+\newcommand{\showex}{\arabic{excount}}
+
+
+
+
+
+
+\useoutertheme{miniframes}
+\makeatletter
+  \beamer@compressfalse
+\makeatother
