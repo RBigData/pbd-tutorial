@@ -6,3 +6,9 @@
 *.snm
 *.toc
 *.vrb
+*.bbl
+*.blg
+*.tex.backup
+pbdr/talk_Lugano/pbdr.pdf
+
+

@@ -1,47 +1,23 @@
 \documentclass[handout]{beamer}
+\input{preamble/settings}
 
-\input{zzz_style}
-\usepackage{tikz} 
-\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
 
-\newcommand{\pbdR}{%
-\textbf{%
-\color{pbdgrn}{p}\color{pbdrd}{b}\color{pbdylw}{d}\color{pbdblu}{R}%
-}%
-}
-
-\title{\pbdR: Bringing R Analytics to Large Distributed Architectures}
-\author[\pbdR\ Core Team]{George Ostrouchov \\
+\myfulltitle{\pbdR: Bringing R Analytics to Large Distributed Architectures}
+\myabbrvtitle{\pbdR Analytics}
+\myauthor{George Ostrouchov\\
   {\small Oak Ridge National Laboratory, Oak Ridge, TN} \\
   \small and \\
   {University of Tennessee, Knoxville, TN} \\[3em]
   {\scriptsize \textcolor{dkblue}{Swiss Supercomputing Center \\ Lugano,
       June 20, 2014}}}
+\myshortauthor{\pbdR Core Team}
 \date{} 
+\myurl{http://r-pbd.org/}
 \logo{
   \begin{tabular}{r}
     \includegraphics[height=.34cm]{../common/pics/ornl.jpg} \\
     \includegraphics[height=.34cm]{../common/pics/logos/utk.png}
   \end{tabular}
-}
-
-\newcommand{\mytitlea}{\protect\pbdR\ Analytics}
-\newcommand{\mytitleb}{\protect\pbdR\ Analytics}
-
-\definecolor{pbdgrn}{HTML}{005700}
-\definecolor{pbdrd}{HTML}{ab0000}
-\definecolor{pbdylw}{HTML}{ab7e00}
-\definecolor{pbdblu}{HTML}{2b74ec}
-
-
-\lstdefinelanguage{shl}{
-  language=sh,
-  backgroundcolor=\color{black},
-  basicstyle=\scriptsize\ttfamily\color{white},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  numbers=none
 }
 
 
