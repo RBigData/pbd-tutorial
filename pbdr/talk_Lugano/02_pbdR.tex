@@ -47,42 +47,42 @@
   \end{block}
 \end{frame}
 
+
 \begin{frame}[fragile]
-  \begin{block}{pbdMPI vs Rmpi:  API}
-    \pause
-    \begin{center}
-      \begin{minipage}{.45\textwidth}
-        \begin{block}{Reduction Operations}
-          \begin{lstlisting}[title=Rmpi]
+  \begin{block}{Simple Interface for MPI Operations with \textbf{pbdMPI}}\pause
+\begin{minipage}[t]{.475\textwidth}
+\begin{lstlisting}[title=Rmpi]
 # int
 mpi.allreduce(x, type=1)
 # double
 mpi.allreduce(x, type=2)
-          \end{lstlisting}
-
-          \begin{lstlisting}[title=pbdMPI]
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.475\textwidth}
+\begin{lstlisting}[title=pbdMPI]
 allreduce(x)
-          \end{lstlisting}
-        \end{block}
-      \end{minipage}
-      \hspace{.3cm}
-      \pause
-      \begin{minipage}{.45\textwidth}
-        \begin{block}{Types in R}
-          \begin{lstlisting}
+\end{lstlisting}
+\end{minipage}
+\end{block}
+%
+\begin{block}{Types in R}
+\vspace{-.2cm}
+\begin{lstlisting}
 > is.integer(1)
 [1] FALSE
 > is.integer(2)
 [1] FALSE
 > is.integer(1:2)
 [1] TRUE
-         \end{lstlisting}
-       \end{block}
-     \end{minipage}
-   \end{center}
-
- \end{block}
+\end{lstlisting}
+\end{block}
 \end{frame}
+
+
+
+
+
 
 \begin{frame}
   \begin{block}{MPI Operations: The Gang's All Here}\pause
@@ -315,12 +315,43 @@ plot(prof)
     \\[.1cm]
     \includegraphics[scale=0.3]{../common/pics/gsoc}
   \end{minipage}
+  \centering
+  Supports fpmpi and mpiP.  Expanding this fall in GSoC 2014 to include support 
+for TAU!
   \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+\small
   \begin{block}{pbdPAPI}
-  Example
+  \begin{minipage}[t]{.78\textwidth}
+  \vspace{0pt}
+  \begin{itemize}
+    \item Performance Application Programming Interface
+    \item Cache miss/hit/read/write, flops, instructions executed, \dots
+    \item pbdPAPI: Deeply profile \emph{any} R code.
+    \item Expected CRAN release: $\approx$ June 30
+  \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.2\textwidth}
+  \vspace{0pt}
+  \hspace*{-.7cm}
+  \includegraphics[width=1.2\textwidth]{../common/pics/gsoc_2014}
+  \end{minipage}
+\begin{lstlisting}
+> library(pbdPAPI)
+> system.cache(x <- rnorm(1e5), type="miss", events="l2.ratio")
+L2 cache miss ratio 
+          0.1080902 
+
+> system.flops(x/100)[3:4]
+$flpops
+[1] 100237
+
+$mflops
+[1] 107.0419
+\end{lstlisting}
   \end{block}
 \end{frame}
 
