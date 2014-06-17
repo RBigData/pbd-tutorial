@@ -1,0 +1,361 @@
+\section{pbdR}
+
+\hidenum
+\begin{frame}[noframenumbering]
+\frametitle{Contents}
+ \tableofcontents[currentsection,hideallsubsections]
+\end{frame}
+\shownum
+
+
+\subsection{The pbdR Project}
+
+
+\begin{frame}
+  \begin{block}{Programming with Big Data in R (\pbdR)}
+    \centering \emph{Productivity, Portability, Performance}\\[.4cm]
+    \begin{columns}[onlytextwidth]
+      \begin{column}{0.30\textwidth}
+        \centering
+        \includegraphics[width=3.4cm]{../common/pics/logos/newpbdr}\\[.2cm]
+      \end{column}
+      \begin{column}{0.65\textwidth}
+        \begin{itemize}
+        \item \emph{Free}\footnote{MPL, BSD, and GPL licensed} R packages.
+        \item Bridging high-performance C with high-productivity of R
+        \item Distributed data details implicitly managed.
+        \item Methods have syntax \emph{identical} to R.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{\pbdR\ Packages}
+    \begin{center}
+      \begin{columns}\hspace{.2cm}
+        \begin{column}{.52\textwidth}
+          \includegraphics[scale=.4]{../common/pics/pbdR}
+        \end{column}
+        \hspace{.05cm}
+        \begin{column}{.4\textwidth}
+          \includegraphics[scale=.45]{../common/pics/libs}
+        \end{column}
+      \end{columns}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{block}{pbdMPI vs Rmpi:  API}
+    \pause
+    \begin{center}
+      \begin{minipage}{.45\textwidth}
+        \begin{block}{Reduction Operations}
+          \begin{lstlisting}[title=Rmpi]
+# int
+mpi.allreduce(x, type=1)
+# double
+mpi.allreduce(x, type=2)
+          \end{lstlisting}
+
+          \begin{lstlisting}[title=pbdMPI]
+allreduce(x)
+          \end{lstlisting}
+        \end{block}
+      \end{minipage}
+      \hspace{.3cm}
+      \pause
+      \begin{minipage}{.45\textwidth}
+        \begin{block}{Types in R}
+          \begin{lstlisting}
+> is.integer(1)
+[1] FALSE
+> is.integer(2)
+[1] FALSE
+> is.integer(1:2)
+[1] TRUE
+         \end{lstlisting}
+       \end{block}
+     \end{minipage}
+   \end{center}
+
+ \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{MPI Operations: The Gang's All Here}\pause
+    \begin{itemize}
+      \item \textbf{Communicator wrangling}: {\color{blue}\code{init()},   
+\code{finalize()}}\\[.4cm]
+      %
+      \item \textbf{Rank query}: {\color{blue}\code{comm.rank()}, \code{comm.size()}}\\[.4cm]
+      %
+      \item \textbf{Reduction}: \code{reduce(x, op='sum')},     
+{\color{blue}\code{allreduce(x)}}\\[.4cm]
+      %
+      \item \textbf{Gather}: \code{gather(x)}, {\color{blue}\code{allgather(x)}}\\[.4cm]
+      %
+      \item \textbf{Broadcast}: \code{bcast(x)}\\[.4cm]
+      %
+      \item \textbf{Barrier}: \code{barrier()}\\[.4cm]
+      %
+      \item \textbf{Send/Receive}: \code{send(x)}, \code{recv()}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{MPI Operations for R Users}\pause
+    \begin{itemize}
+      \item \textbf{Printing}:  \code{comm.print(x)}, \code{comm.cat(x)}\\[.4cm]
+      %
+      \item \textbf{RNG Seeds}: \code{comm.set.seed(diff=T)}\\[.4cm]
+      %
+      \item \textbf{Task Subsetting}: \code{get.jid(n)}\\[.4cm]
+      %
+      \item \textbf{*ply}: \\
+      \code{pbdApply(X, MARGIN, FUN, \dots)}\\
+      \code{pbdLapply(X, FUN, \dots)}\\
+      \code{pbdSapply(X, FUN, \dots)}\\
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{exampleblock}{Rank Query Example}
+  \centering
+\begin{lstlisting}
+library(pbdMPI, quiet = TRUE)
+init()
+
+my.rank <- comm.rank()
+comm.print(my.rank, all.rank=TRUE)
+
+finalize()
+\end{lstlisting}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.62\textwidth}
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
+title=Execute this script via:]
+mpirun -np 2 Rscript 1_rank.r
+\end{lstlisting}    
+    \end{column}
+    \hfill
+    \begin{column}{0.35\textwidth}
+\begin{lstlisting}[title=Sample Output:]
+COMM.RANK = 0
+[1] 0
+COMM.RANK = 1
+[1] 1
+\end{lstlisting}
+    \end{column}
+​  \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+\subsection{pbdDMAT}
+
+\begin{frame}[shrink]
+\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors:
+    Global view}
+\begin{align*}
+x &= \left[
+      \begin{array}{ll|ll|ll|ll|l}
+      \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} & \color{g13}x_{16} & \color{g11}x_{17} & \color{g11}x_{18} & \color{g12}x_{19}\\
+      \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} & \color{g13}x_{26} & \color{g11}x_{27} & \color{g11}x_{28} & \color{g12}x_{29}\\\hline
+      \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} & \color{g23}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g22}x_{39}\\
+      \color{g21}x_{41} & \color{g21}x_{42} & \color{g22}x_{43} & \color{g22}x_{44} & \color{g23}x_{45} & \color{g23}x_{46} & \color{g21}x_{47} & \color{g21}x_{48} & \color{g22}x_{49}\\\hline
+      \color{g11}x_{51} & \color{g11}x_{52} & \color{g12}x_{53} & \color{g12}x_{54} & \color{g13}x_{55} & \color{g13}x_{56} & \color{g11}x_{57} & \color{g11}x_{58} & \color{g12}x_{59}\\
+      \color{g11}x_{61} & \color{g11}x_{62} & \color{g12}x_{63} & \color{g12}x_{64} & \color{g13}x_{65} & \color{g13}x_{66} & \color{g11}x_{67} & \color{g11}x_{68} & \color{g12}x_{69}\\\hline
+      \color{g21}x_{71} & \color{g21}x_{72} & \color{g22}x_{73} & \color{g22}x_{74} & \color{g23}x_{75} & \color{g23}x_{76} & \color{g21}x_{77} & \color{g21}x_{78} & \color{g22}x_{79}\\
+      \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} & \color{g23}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & \color{g22}x_{89}\\\hline
+      \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} & \color{g13}x_{96} & \color{g11}x_{97} & \color{g11}x_{98} & \color{g12}x_{99}\\
+      \end{array}
+\right]_{9\times 9}
+\end{align*}
+\begin{align*}
+\text{Processor grid = }\left|
+      \begin{array}{lll}
+      \color{g11}0 & \color{g12}1 & \color{g13}2\\
+      \color{g21}3 & \color{g22}4 & \color{g23}5
+      \end{array}
+\right| &= 
+\left|
+      \begin{tabular}{lll}
+      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
+      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
+      \end{tabular}
+\right|
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[shrink]
+\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors: Local view}
+\begin{align*}
+\left[
+      \begin{array}{ll|ll}
+      \color{g11}x_{11} & \color{g11}x_{12} & \color{g11}x_{17} & \color{g11}x_{18}\\
+      \color{g11}x_{21} & \color{g11}x_{22} & \color{g11}x_{27} & \color{g11}x_{28}\\\hline
+      \color{g11}x_{51} & \color{g11}x_{52} & \color{g11}x_{57} & \color{g11}x_{58}\\
+      \color{g11}x_{61} & \color{g11}x_{62} & \color{g11}x_{67} & \color{g11}x_{68}\\\hline
+      \color{g11}x_{91} & \color{g11}x_{92} & \color{g11}x_{97} & \color{g11}x_{98}\\
+      \end{array}
+\right]_{5\times 4}
+\left[
+      \begin{array}{ll|l}
+      \color{g12}x_{13} & \color{g12}x_{14} & \color{g12}x_{19}\\
+      \color{g12}x_{23} & \color{g12}x_{24} & \color{g12}x_{29}\\\hline
+      \color{g12}x_{53} & \color{g12}x_{54} & \color{g12}x_{59}\\
+      \color{g12}x_{63} & \color{g12}x_{64} & \color{g12}x_{69}\\\hline
+      \color{g12}x_{93} & \color{g12}x_{94} & \color{g12}x_{99}\\
+      \end{array}
+\right]_{5\times 3}
+\left[
+      \begin{array}{ll}
+      \color{g13}x_{15} & \color{g13}x_{16}\\
+      \color{g13}x_{25} & \color{g13}x_{26}\\\hline
+      \color{g13}x_{55} & \color{g13}x_{56}\\
+      \color{g13}x_{65} & \color{g13}x_{66}\\\hline
+      \color{g13}x_{95} & \color{g13}x_{96}\\
+      \end{array}
+\right]_{5\times 2}
+\\
+\left[
+      \begin{array}{ll|ll}
+      \color{g21}x_{31} & \color{g21}x_{32} & \color{g21}x_{37} & \color{g21}x_{38}\\
+      \color{g21}x_{41} & \color{g21}x_{42} & \color{g21}x_{47} & \color{g21}x_{48}\\\hline
+      \color{g21}x_{71} & \color{g21}x_{72} & \color{g21}x_{77} & \color{g21}x_{78}\\
+      \color{g21}x_{81} & \color{g21}x_{82} & \color{g21}x_{87} & \color{g21}x_{88}\\
+      \end{array}
+\right]_{4\times 4}
+\left[
+      \begin{array}{ll|l}
+      \color{g22}x_{33} & \color{g22}x_{34} & \color{g22}x_{39}\\
+      \color{g22}x_{43} & \color{g22}x_{44} & \color{g22}x_{49}\\\hline
+      \color{g22}x_{73} & \color{g22}x_{74} & \color{g22}x_{79}\\
+      \color{g22}x_{83} & \color{g22}x_{84} & \color{g22}x_{89}\\
+      \end{array}
+\right]_{4\times 3}
+\left[
+      \begin{array}{ll}
+      \color{g23}x_{35} & \color{g23}x_{36} \\
+      \color{g23}x_{45} & \color{g23}x_{46} \\\hline
+      \color{g23}x_{75} & \color{g23}x_{76} \\
+      \color{g23}x_{85} & \color{g23}x_{86} \\
+      \end{array}
+\right]_{4\times 2}
+\end{align*}
+\begin{align*}
+\text{Processor grid = }\left|
+      \begin{array}{lll}
+      \color{g11}0 & \color{g12}1 & \color{g13}2\\
+      \color{g21}3 & \color{g22}4 & \color{g23}5
+      \end{array}
+\right| &= 
+\left|
+      \begin{tabular}{lll}
+      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
+      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
+      \end{tabular}
+\right|
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{block}{\pbdR\ Example Syntax}
+  \begin{lstlisting}
+x <- x[-1, 2:5]
+x <- log(abs(x) + 1)
+xtx <- t(x) %*% x
+ans <- svd(solve(xtx))
+  \end{lstlisting}
+  \begin{center}
+  \emph{The above runs on 1 core with R or 10,000 cores with \pbdR}
+  \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{block}{Profiling with \textbf{pbdPROF}}
+  \begin{minipage}[t]{.58\textwidth}
+  \vspace{0pt}
+  1. Rebuild \pbdR\ packages
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
+\end{lstlisting}
+2. Run code
+\vspace*{-.5cm}
+\begin{lstlisting}[language=shl,title=\ ]
+mpirun -np 64 Rscript my_script.R
+\end{lstlisting}
+
+3. Analyze results
+\vspace{-.5cm}
+\begin{lstlisting}[title=\ ]
+library(pbdPROF)
+prof <- read.prof( "profiler_output.mpiP")
+plot(prof)
+\end{lstlisting}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.4\textwidth}
+  \vspace{0pt}
+    \centering
+    Publication-quality graphs\\
+    \includegraphics[scale=.25]{../common/pics/mpip}
+    \\[.1cm]
+    \includegraphics[scale=0.3]{../common/pics/gsoc}
+  \end{minipage}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{pbdPAPI}
+  Example
+  \end{block}
+\end{frame}
+
+% \begin{frame}
+%   \begin{block}{pbdR on HPC Resources}
+%     \begin{minipage}[t]{.575\textwidth}
+%     University of Tennessee
+%     \begin{itemize}
+%       \item Kraken (XSEDE), Nautilus, Darter, Newton
+%     \end{itemize}
+%     \end{minipage}
+%     \begin{minipage}[t]{.4\textwidth}
+%     Oak Ridge National Lab
+%     \begin{itemize}
+%       \item Titan, Rhea, Lens, Chester, Sith
+%     \end{itemize}
+%     \end{minipage}\\[.4cm]
+%     \begin{center}
+%     \hspace{1cm}
+%     \begin{minipage}{.6\textwidth}
+%     Other Resources
+%     \begin{itemize}
+%     \item Stampede, TACC (XSEDE)
+%     \item tara, UMBC
+%     \item Hopper, NERSC
+%     \item Edison, NERSC
+%     \end{itemize}
+%     \end{minipage}
+%     \end{center}
+%     \vspace{.2cm}
+%     If you are interested in installing pbdR:
+% \url{RBigData@gmail.com}
+%   \end{block}
+% \end{frame}
+
+
+
+
