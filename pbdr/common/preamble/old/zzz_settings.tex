@@ -1,0 +1,261 @@
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{beamerthemesplit}
+\usepackage{fancybox}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\makeatletter
+\newcommand\code{\bgroup\@makeother\_\@makeother\~\@makeother\$\@codex}
+\def\@codex#1{{\normalfont\ttfamily\hyphenchar\font=-1 #1}\egroup}
+\makeatother
+
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+
+
+\definecolor{gray}{rgb}{.6,.6,.6}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{grayish}{rgb}{.775, .775, .775}
+\definecolor{dkgray}{rgb}{.375, .375, .375}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkblue}{rgb}{0, 0, .5}
+
+
+\setbeamercolor{alerted text}{fg=blue}
+
+
+\definecolor{g11}{rgb}{0, 0, 1}
+\definecolor{g12}{rgb}{0, .4, 1}
+\definecolor{g13}{rgb}{0, .8, 1}
+
+\definecolor{g21}{rgb}{0, .5, .3}
+\definecolor{g22}{rgb}{.4, .5, .3}
+\definecolor{g23}{rgb}{.8, .5, .3}
+
+\lstset{ %
+  language=[95]Fortran,    
+  numbers=left,
+  stepnumber=1,       
+  numbersep=6pt,      
+  showspaces=false,      
+  showstringspaces=false,  
+  showtabs=false,    
+  frame=single,      
+  rulecolor=\color{black},   
+  tabsize=4,     
+  captionpos=t,     
+  breaklines=true,     
+  breakatwhitespace=true,   
+  title=\lstname,              
+  basicstyle=\ttfamily\color{black}\scriptsize, 
+  backgroundcolor=\color{grayish},  
+  numberstyle=\tiny\color{black},  
+  keywordstyle=\color{blue}, 
+  commentstyle=\color{dkgreen}, 
+  stringstyle=\color{mauve}, 
+  xleftmargin=.1in,
+  xrightmargin=.1in,
+  aboveskip=0cm,
+  belowskip=.2cm
+}
+
+% \lstdefinelanguage{shl}{
+%   language=sh,
+%   backgroundcolor=\color{black},
+%   basicstyle=\scriptsize\ttfamily\color{white},
+%   keywordstyle=\color{blue},
+%   commentstyle=\color{dkgreen},
+%   stringstyle=\color{mauve},
+%   numbers=none
+% }
+\lstdefinelanguage{shl}{
+  language=sh,
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily\color{black},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  numbers=none
+}
+
+
+\definecolor{pbdgrn}{HTML}{005700}
+\definecolor{pbdrd}{HTML}{ab0000}
+\definecolor{pbdylw}{HTML}{ab7e00}
+\definecolor{pbdblu}{HTML}{2b74ec}
+\newcommand{\pbdR}{\textbf{\color{pbdgrn}{p}\color{pbdrd}{b}\color{pbdylw}{d}\color{pbdblu}{R}}}
+
+\setbeamertemplate{navigation symbols}{} 
+
+\hypersetup{
+    linkcolor=,
+    colorlinks=true,
+    urlcolor=blue
+}
+
+\usetheme{Frankfurt}
+% \usecolortheme{whale}
+% \usetheme{Antibes}
+% \setbeamertemplate{mini frames}{}
+
+
+\newcommand{\fctn}[1]{\textcolor{green!50!blue}{#1}}
+\newcommand{\rfor}[1]{\textcolor{yellow!50!red}{#1}}
+\newcommand{\rcom}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\pkg}[1]{\textbf{#1}}
+
+\newcommand{\startr}{\begin{minipage}{.04\textwidth}\ \ \end{minipage} \begin{minipage}{.91\textwidth}}
+
+%
+\newcommand{\shownum}{\title[\mytitlea]}{}
+\newcommand{\hidenum}{\title[\mytitleb]{}}
+% \expandafter\def\expandafter\insertshorttitle\expandafter{\insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}
+ 
+
+\newcounter{excount}
+\setcounter{excount}{0}
+\newcommand{\countex}{\addtocounter{excount}{1}\arabic{excount}}
+\newcommand{\showex}{\arabic{excount}}
+
+
+
+
+
+\useoutertheme{miniframes}
+\makeatletter
+  \beamer@compressfalse
+\makeatother
+
+
+% -------------------------------------------------------------------------
+% Logos
+% -------------------------------------------------------------------------
+
+\definecolor{ORNL}{HTML}{008752}
+\definecolor{UT}{HTML}{F77F00}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+
+
+\newcommand{\titlelogos}{}
+
+\newcommand{\utpres}{
+  
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_ut}}
+  \logo{\includegraphics[height=.34cm]{../common/pics/logos/utk.png}}
+  \setbeamercolor{structure}{fg=UT}
+}
+
+\newcommand{\ornlpres}{
+  
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_ornl}}
+  \logo{\includegraphics[height=.34cm]{../common/pics/logos/ornl.jpg}}
+  \setbeamercolor{structure}{fg=ORNL}
+}
+
+\newcommand{\allpres}{
+  
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_all}}
+  \logo{\begin{tabular}{r}\includegraphics[height=.34cm]{%
+	  ../common/pics/logos/utk.png} \\ 
+\includegraphics[height=.34cm]{../common/pics/logos/ornl.jpg}\end{tabular}}
+  \setbeamercolor{structure}{fg=UT}
+}
+
+\newcommand{\allpresou}{
+ 
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_all}}
+  \logo{\begin{tabular}{r}\includegraphics[height=.34cm]{%
+	  ../common/pics/logos/ornl.jpg} \\ 
+\includegraphics[height=.34cm]{../common/pics/logos/utk.png}\end{tabular}}
+  \setbeamercolor{structure}{fg=ORNL}
+}
+
+
+
+% -------------------------------------------------------------------------
+% Subsection contents slides
+% -------------------------------------------------------------------------
+
+\newcommand{\makesubcontentsslides}{
+  \hidenum
+\begin{frame}[noframenumbering]
+\frametitle{Contents}
+ \tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide]
+\end{frame}
+\shownum
+}
+
+
+% -------------------------------------------------------------------------
+% Author, title, etc.
+% -------------------------------------------------------------------------
+
+% author
+\makeatletter
+\newcommand\myauthor[1]{\renewcommand\@myauthor{#1}}
+\newcommand\@myauthor{}
+\makeatother
+
+\makeatletter
+\author[\theauthorgoeshere]{\@myauthor}
+\makeatother
+
+% url
+\makeatletter
+\newcommand\myurl[1]{\renewcommand\@myurl{#1}}
+\newcommand\@myurl{}
+\makeatother
+
+% title
+\makeatletter
+\newcommand\myfulltitle[1]{\renewcommand\@myfulltitle{#1}}
+\newcommand\@myfulltitle{}
+\makeatother
+
+\makeatletter
+\newcommand\myabbrvtitle[1]{\renewcommand\@myabbrvtitle{#1}}
+\newcommand\@myabbrvtitle{}
+\makeatother
+
+% date
+\makeatletter
+\newcommand\mydate[1]{\renewcommand\@mydate{#1}}
+\newcommand\@mydate{}
+\makeatother
+
+
+% maketitle
+\makeatletter
+\title{\@myfulltitle}
+\makeatother
+
+\makeatletter
+\newcommand{\mytitlea}{\makebox[.45\paperwidth]{\@myabbrvtitle\hfill%
+	\insertframenumber/\inserttotalframenumber}}
+\newcommand{\mytitleb}{\@myabbrvtitle}
+\makeatother
+
+\makeatletter
+\date{\@mydate \\[1.4cm] \titlelogos}
+\makeatother
+
+\makeatletter
+\newcommand{\theauthorgoeshere}{\makebox[.45\paperwidth]{%
+	\@myurl \hfill \@myauthor}}
+\makeatother

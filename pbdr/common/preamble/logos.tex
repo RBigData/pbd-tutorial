@@ -1,0 +1,61 @@
+% -------------------------------------------------------------------------
+% Logos
+% -------------------------------------------------------------------------
+
+\definecolor{ORNL}{HTML}{008752}
+\definecolor{UT}{HTML}{F77F00}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white}
+
+
+\newcommand{\titlelogos}{}
+
+\newcommand{\utpres}{
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_ut}}
+  \logo{\includegraphics[height=.34cm]{../common/pics/logos/utk.png}}
+  \setbeamercolor{structure}{fg=UT}
+}
+
+\newcommand{\ornlpres}{
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_ornl}}
+  \logo{\includegraphics[height=.34cm]{../common/pics/logos/ornl.jpg}}
+  \setbeamercolor{structure}{fg=ORNL}
+}
+
+\newcommand{\allpres}{
+  \renewcommand*\titlelogos{\centering%
+  \includegraphics[scale=.6]{../common/pics/logos/logos_all}}
+
+  \logo{\begin{tabular}{r}\includegraphics[height=.34cm]%
+  {../common/pics/logos/utk.png} \\ 
+  \includegraphics[height=.34cm]%
+  {../common/pics/logos/ornl.jpg}\end{tabular}}
+  \setbeamercolor{structure}{fg=UT}
+}
+
+\newcommand{\allpresou}{
+\renewcommand*\titlelogos{\centering\includegraphics[scale=.6]{%
+../common/pics/logos/logos_all}}
+  \logo{\begin{tabular}{r}\includegraphics[height=.34cm]{%
+          ../common/pics/logos/ornl.jpg} \\ 
+\includegraphics[height=.34cm]{../common/pics/logos/utk.png}\end{tabular}}
+  \setbeamercolor{structure}{fg=ORNL}
+}
+
+
+
+% -------------------------------------------------------------------------
+% Subsection contents slides
+% -------------------------------------------------------------------------
+
+\newcommand{\makesubcontentsslides}{
+  \hidenum
+\begin{frame}[noframenumbering]
+\frametitle{Contents}
+ \tableofcontents[currentsection,hideothersubsections,sectionstyle=show/hide]
+\end{frame}
+\shownum
+}
+

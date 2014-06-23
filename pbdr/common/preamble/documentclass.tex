@@ -1,0 +1,19 @@
+%%% Presentation slides
+\newcommand{\slidesfinal}{
+  \documentclass[handout,style=authortitle]{beamer}
+}
+
+%%% Ignore images --- slightly faster compilation
+\newcommand{\slidestest}{
+  \documentclass[demo,handout,style=authortitle]{beamer}
+}
+
+%%% Printable slides with side notes thing
+\newcommand{\makehandouts}{
+  \usepackage{handoutWithNotes}
+  \usepackage{pgfpages}
+  \pgfpagesuselayout{3 on 1 with notes big}[a4paper,border shrink=7mm]
+  \pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+  \pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+  \pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+}

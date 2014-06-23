@@ -1,0 +1,23 @@
+\definecolor{neutralbg}{HTML}{409FED}
+\newcommand{\neutralbg}{\setbeamercolor{structure}{fg=neutralbg}}
+
+
+\definecolor{pbdgrn}{HTML}{005700}
+\definecolor{pbdrd}{HTML}{ab0000}
+\definecolor{pbdylw}{HTML}{ab7e00}
+\definecolor{pbdblu}{HTML}{2b74ec}
+
+
+\usepackage{xspace}
+\usepackage{contour}
+\contourlength{0.5pt} %how thick each copy is
+\contournumber{5}  %number of copies
+\newcommand{\pbdR}{%
+%   \textbf{
+%     \color{pbdgrn}p\color{pbdrd}b\color{pbdylw}d\color{pbdblu}R}
+%   }
+\contour{black}{\protect\textcolor{pbdgrn}{p}}%
+\contour{black}{\protect\textcolor{pbdrd}{b}}%
+\contour{black}{\protect\textcolor{pbdylw}{d}}% 
+\contour{black}{\protect\textcolor{pbdblu}{R}}\xspace
+}
