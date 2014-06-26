@@ -1,44 +1,6 @@
-
-% \begin{frame}
-%  \fontsize{8pt}{10}\selectfont
-%   \begin{block}{Randomized SVD Algorithm\footnotemark}\pause
-% Given an $m\times n$ matrix $\bs{A}$, a target number $k$ of singular 
-% vectors, and an exponent $q$ (say, $q=1$ or $q=2$), this procedure computes an 
-% approximate rank-$2k$ factorization $\bs{U}\bs{\Sigma}\bs{V}^*$, where $\bs{U}$ 
-% and $\bs{V}$ are 
-% orthonormal, and $\bs{\Sigma}$ is nonnegative and diagonal.\\[.2cm]
-% \textbf{Stage A:}
-% \begin{enumerate}
-%   \item Generate an $n\times 2k$ Gaussian test matrix $\bs{\Omega}$.
-%   \item Form $\bs{Y}_0 = \bs{A}\bs{\Omega}$ and compute its QR factorization 
-% $\bs{Y}_0 = \bs{Q}_0\bs{R}_0$
-%   \item \textbf{for} $j = 1, 2, \dots, q$\\
-%   \hspace{.4cm} Form $\bs{\widetilde{Y}}_j = \bs{A}^*\bs{Q}_{j-1}$ and compute 
-% its QR factorization $\bs{\widetilde{Y}}_j = \bs{\widetilde{Q}}_j 
-% \bs{\widetilde{R}}_j$\\
-%   \hspace{.4cm} Form $\bs{Y}_j = \bs{A}\bs{\widetilde{Q}}_j$ and compute its QR 
-% factorization $\bs{Y}_j = \bs{Q}_j \bs{R}_j$.\\
-%   \textbf{end}
-%   \item Let $\bs{Q} = \bs{Q}_q$, so that the columns of $\bs{Q}$ form an 
-% orthonormal basis for the range of $\bs{Y}$.
-% \end{enumerate}
-% \textbf{Stage B:}
-% \begin{enumerate}
-%   \setcounter{enumi}{4}
-%   \item Form $\bs{B} = \bs{Q}^* \bs{A}$
-%   \item Compute an SVD of the small matrix: 
-%   $\bs{B} = \bs{\widetilde{U}} \bs{\Sigma} \bs{V}^*$
-%   \item Set $\bs{U} = \bs{Q}\bs{\widetilde{U}}$.
-% \end{enumerate}
-%   \footnotetext{ \fontsize{6pt}{10}\selectfont $^1$Halko N, Martinsson P-G 
-% and Tropp J A 2011 Finding structure with randomness: probabilistic algorithms 
-% for constructing approximate matrix decompositions \emph{SIAM} Rev. \textbf{53} 
-% 217--88}
-%   \end{block}
-% \end{frame}
-
-
 \subsection{RandSVD}
+\makesubcontentsslidessec
+
 
 \begin{frame}[fragile]
 \fontsize{8pt}{10}\selectfont
