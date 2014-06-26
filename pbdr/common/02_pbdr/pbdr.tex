@@ -1,4 +1,5 @@
 \subsection{The pbdR Project}
+\makesubcontentsslidessec
 
 
 \begin{frame}
@@ -24,7 +25,6 @@
 
 
 
-
 \begin{frame}
   \begin{block}{pbdR Packages}
     \begin{center}
@@ -43,14 +43,72 @@
 \end{frame}
 
 
+\begin{frame}
+  \begin{block}{pbdR Motivation}
+  Why HPC libraries (MPI, ScaLAPACK, PETSc, \dots)?
+  \begin{itemize}[<+-|alert@+>]
+    \item The HPC community has been at this for decades.
+    \item \emph{They're tested.} \emph{They work.}  \emph{They're fast.}
+    \item You're not going to beat Jack Dongarra at dense 
+linear algebra.
+  \end{itemize}
+\end{block}
+\end{frame}
+
+
+
 %%% MPI
 \begin{frame}[fragile]
-  \begin{block}{Simple, Intuitive MPI Operations with \textbf{pbdMPI}}\pause
+  \begin{block}{Simple Interface for MPI Operations with \textbf{pbdMPI}}\pause
+\begin{minipage}[t]{.475\textwidth}
+\begin{lstlisting}[title=Rmpi]
+# int
+mpi.allreduce(x, type=1)
+# double
+mpi.allreduce(x, type=2)
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.475\textwidth}
+\begin{lstlisting}[title=pbdMPI]
+allreduce(x)
+\end{lstlisting}
+\end{minipage}
+\end{block}
+%
+\begin{block}{Types in R}
+\vspace{-.2cm}
+\begin{lstlisting}
+> is.integer(1)
+[1] FALSE
+> is.integer(2)
+[1] FALSE
+> is.integer(1:2)
+[1] TRUE
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+
+
+%%% DMAT/BASE/SLAP
+\begin{frame}[fragile]
+  \begin{block}{Distributed Matrices and Statistics with \textbf{pbdDMAT}}\pause
   \begin{center}
+  \begin{minipage}{.9\textwidth}
+  \centering\vspace{-.1cm}
+    Matrix Exponentiation\\
+\includegraphics[width=7cm,height=5.75cm]%
+{../common/pics/benchmarks/expm_speedup}
+  \end{minipage}
  \begin{minipage}{.9\textwidth}
- \centering\vspace{-.55cm}
-\begin{lstlisting}[title=\ ,basicstyle=\scriptsize,numbers=none]
-Placeholder
+ \centering
+\begin{lstlisting}
+library(pbdDMAT)
+
+dx <- ddmatrix("rnorm", 5000, 5000)
+expm(dx)
 \end{lstlisting}
  \end{minipage}
  \end{center}
@@ -58,7 +116,6 @@ Placeholder
 \end{frame}
 
 
-%%% DMAT/BASE/SLAP
 \begin{frame}[fragile]
   \begin{block}{Distributed Matrices and Statistics with \textbf{pbdDMAT}}\pause
   \begin{center}
@@ -68,10 +125,9 @@ Placeholder
 		\includegraphics[width=7cm,height=5.75cm]{../common/pics/benchmarks/lmfit2}
   \end{minipage}
  \begin{minipage}{.9\textwidth}
- \centering\vspace{-.55cm}
 \begin{lstlisting}[title=\ ,basicstyle=\scriptsize,numbers=none]
 x <- ddmatrix("rnorm", nrow=m, ncol=n)
-y <- ddmatrix( "rnorm", nrow=m, ncol=1)
+y <- ddmatrix("rnorm", nrow=m, ncol=1)
 mdl <- lm.fit(x=x, y=y)
 \end{lstlisting}
  \end{minipage}
@@ -80,41 +136,29 @@ mdl <- lm.fit(x=x, y=y)
 \end{frame}
 
 
-
-%%% PROF
+%%% DEMO
 \begin{frame}[fragile]
-  \begin{block}{Profiling with \textbf{pbdPROF}}
-  \begin{minipage}[t]{.58\textwidth}
-  \vspace{0pt}
-  1. Rebuild \pbdR\ packages
-\vspace*{-.5cm}
-\begin{lstlisting}[language=shl,title=\ ]
-R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
-\end{lstlisting}
-\vspace{.15cm}
-2. Run code
-\vspace*{-.5cm}
-\begin{lstlisting}[language=shl,title=\ ]
-mpirun -np 64 Rscript my_script.R
-\end{lstlisting}
-\vspace{.15cm}
-3. Analyze results
-\vspace{-.5cm}
-\begin{lstlisting}[title=\ ]
-library(pbdPROF)
-prof <- read.prof( "profiler_output.mpiP")
-plot(prof)
-\end{lstlisting}
+  \begin{block}{Getting Started with HPC for R Users: \textbf{pbdDEMO}}\pause
+  \begin{center}
+  \begin{minipage}{.4\textwidth}
+\includegraphics[width=.95\textwidth]%
+{../common/pics/demo_cover.png}
   \end{minipage}
-  \hfill
-  \begin{minipage}[t]{.4\textwidth}
-  \vspace{0pt}
-    \centering
-    Publication-quality graphs\\
-    \includegraphics[scale=.25]{../common/pics/mpip}
-    \\[.1cm]
-    \includegraphics[scale=0.4]{../common/pics/gsoc}
-  \end{minipage}
+ \begin{minipage}{.58\textwidth}
+    \begin{itemize}
+      \item 140 page, textbook-style vignette.
+      \item Over 30 demos, utilizing all$^*$ packages.
+      \item Demos include:
+      \begin{itemize}
+        \item PCA
+        \item Regression
+        \item Parallel data input
+        \item Model-based clustering
+        \item Simple Monte Carlo simulation
+        \item Bayesian MCMC
+      \end{itemize}
+    \end{itemize}
+ \end{minipage}
+ \end{center}
   \end{block}
 \end{frame}
-

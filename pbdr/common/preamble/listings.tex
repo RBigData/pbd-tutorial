@@ -1,0 +1,82 @@
+\usepackage{listings}
+
+\lstset{ %
+  language=R,     
+  numbers=left,
+  stepnumber=1,       
+  numbersep=6pt,      
+  showspaces=false,      
+  showstringspaces=false,  
+  showtabs=false,    
+  frame=single,      
+  rulecolor=\color{black},   
+  tabsize=4,     
+  captionpos=t,     
+  breaklines=true,     
+  breakatwhitespace=true,   
+  title=\lstname,              
+  basicstyle=\ttfamily\color{black}\scriptsize, 
+  backgroundcolor=\color{grayish},  
+  numberstyle=\tiny\color{black},  
+  keywordstyle=\color{blue}, 
+  commentstyle=\color{dkgreen}, 
+  stringstyle=\color{mauve}, 
+  xleftmargin=.1in,
+  xrightmargin=.1in,
+  aboveskip=0cm,
+  belowskip=.2cm
+  %   escapeinside={\%*}{*)},    
+%   morekeywords={*,...}    
+}
+
+
+\lstdefinelanguage{shl}{
+  language=sh,
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily\color{black},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  numbers=none
+}
+
+
+\lstdefinelanguage{Rinteractive}{
+  language=Sh,
+  backgroundcolor=\color{white},
+  basicstyle=\scriptsize\ttfamily\color{black},
+  keywordstyle=\color{black},
+  commentstyle=\color{black},
+  stringstyle=\color{black},
+  numbers=none
+}
+
+
+\lstdefinelanguage{Rcpp}{
+        language=C++,
+        basicstyle=\ttfamily\color{black}\scriptsize,
+        backgroundcolor=\color{white},
+        frame=single,
+        breaklines=true,
+        keywordstyle=\color{blue},
+        commentstyle=\color{dkgreen}\itshape,
+        stringstyle=\color{mauve},
+        numbers=none,
+        showspaces=false,
+        showstringspaces=false,
+        showtabs=false,
+        rulecolor=\color{gray},
+        tabsize=4,
+        captionpos=t,
+        morecomment=[l]{//},
+        morekeywords={%
+    % Rcpp
+    Wrap, RcppExport, NumericVector, NumericMatrix, IntegerVector, 
+IntegerMatrix, 
+    Rcout, Rcpp, std, endl,
+    % Native
+    PROTECT, allocVector, allocMatrix, VECSXP, R_NilValue, SEXP,
+    INTEGER, REAL
+  }
+}
+
