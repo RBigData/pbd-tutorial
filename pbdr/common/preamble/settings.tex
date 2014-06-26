@@ -5,6 +5,7 @@
 \input{../common/preamble/listings}
 
 
+
 \usepackage{tikz} 
 \def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
 
@@ -96,3 +97,12 @@
 \makeatletter
   \beamer@compressfalse
 \makeatother
+
+
+
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\addtobeamertemplate{block begin}{\pgfsetfillopacity{0.9}}{\pgfsetfillopacity{1}}
+\setbeamercolor*{block title example}{fg=black,bg=blue!20}
+\setbeamercolor*{block body example}{fg=black,bg=blue!5}
+
