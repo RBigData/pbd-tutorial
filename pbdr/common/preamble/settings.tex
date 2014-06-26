@@ -1,6 +1,9 @@
 \input{../common/preamble/titlepage}
 \input{../common/preamble/pbdR}
 \input{../common/preamble/logos}
+\input{../common/preamble/colors}
+\input{../common/preamble/listings}
+
 
 \usepackage{tikz} 
 \def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
@@ -10,8 +13,6 @@
 \usepackage{beamerthemesplit}
 \usepackage{fancybox}
 \usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{listings}
 
 
 \makeatletter
@@ -27,61 +28,6 @@
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 
 
-\definecolor{gray}{rgb}{.6,.6,.6}
-\definecolor{orange}{rgb}{1,0.5,0}
-\definecolor{grayish}{rgb}{.775, .775, .775}
-\definecolor{dkgray}{rgb}{.375, .375, .375}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{dkblue}{rgb}{0, 0, .5}
-
-\definecolor{g11}{rgb}{0, 0, 1}
-\definecolor{g12}{rgb}{0, .4, 1}
-\definecolor{g13}{rgb}{0, .8, 1}
-
-\definecolor{g21}{rgb}{0, .5, .3}
-\definecolor{g22}{rgb}{.4, .5, .3}
-\definecolor{g23}{rgb}{.8, .5, .3}
-
-\lstset{ %
-  language=R,     
-  numbers=left,
-  stepnumber=1,       
-  numbersep=6pt,      
-  showspaces=false,      
-  showstringspaces=false,  
-  showtabs=false,    
-  frame=single,      
-  rulecolor=\color{black},   
-  tabsize=4,     
-  captionpos=t,     
-  breaklines=true,     
-  breakatwhitespace=true,   
-  title=\lstname,              
-  basicstyle=\ttfamily\color{black}\scriptsize, 
-  backgroundcolor=\color{grayish},  
-  numberstyle=\tiny\color{black},  
-  keywordstyle=\color{blue}, 
-  commentstyle=\color{dkgreen}, 
-  stringstyle=\color{mauve}, 
-  xleftmargin=.1in,
-  xrightmargin=.1in,
-  aboveskip=0cm,
-  belowskip=.2cm
-  %   escapeinside={\%*}{*)},    
-%   morekeywords={*,...}    
-}
-
-
-\lstdefinelanguage{shl}{
-  language=sh,
-  backgroundcolor=\color{black},
-  basicstyle=\scriptsize\ttfamily\color{white},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  numbers=none
-}
 
 \setbeamertemplate{navigation symbols}{} 
 
