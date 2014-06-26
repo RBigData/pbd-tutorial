@@ -1,22 +1,21 @@
 \subsection{Serial Data Input}
+\makesubcontentsslidessec
+
 
 \begin{frame}
-\begin{block}{I/O has a separate manual: http://r-project.org/}
+\begin{block}{Separate manual: http://r-project.org/}
 \begin{itemize}
 \item scan()
 \item read.table()
 \item read.csv()
-\item $\cdots$
-\item readBin()
-\item ncvar\_get()
-\item readSocket()
+\item socket
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile,scale,shrink]
-  \begin{exampleblock}{No parallel file system: Read Serial then Distribute}\pause
-\begin{lstlisting}[title=read.csv()]
+\begin{frame}[fragile]
+  \begin{exampleblock}{CSV Data: Read Serial then Distribute}\pause
+\begin{lstlisting}[title=]
 library(pbdDMAT)
 if(comm.rank() == 0) { # only read on process 0
   x <- read.csv("myfile.csv")
@@ -28,5 +27,3 @@ dx <- as.ddmatrix(x)
 \end{lstlisting}
   \end{exampleblock}
 \end{frame}
-
-
