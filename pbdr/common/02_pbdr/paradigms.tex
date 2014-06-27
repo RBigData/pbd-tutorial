@@ -42,31 +42,33 @@ mpirun -np 2 Rscript my_par_script.r
       \item SPMD is a programming \emph{paradigm}.
       \item Not to be confused with SIMD.
 	\end{itemize}\centering
-	\begin{minipage}{.45\textwidth}
+	\begin{minipage}[t]{.45\textwidth}
+	\vspace{0pt}
 	\begin{block}{Paradigms}
 	  \textbf{Programming models}\\
-	  e.g. Procedural, OOP, Functional, SPMD, \dots
+	  OOP, Functional, SPMD, \dots
 	\end{block}
 	\end{minipage}
 	\hspace{.2cm}
-	\begin{minipage}{.45\textwidth}
+	\begin{minipage}[t]{.45\textwidth}
+	\vspace{0pt}
 	\begin{block}{SIMD}
 	  \textbf{Hardware instructions}\\
-	  e.g. MMX, SSE, \dots
+	  MMX, SSE, \dots
 	\end{block}
 	\end{minipage}
      \\[.4cm]
-     SPMD is arguably the simplest extension of serial programming.
   \end{block}
 \end{frame}
 
 
 \begin{frame}
   \begin{block}{Single Program/Multiple Data (SPMD)}\pause
+   SPMD is arguably the simplest extension of serial programming.
     \begin{itemize}
       \item Only one program is written, executed in batch on all processors.
       \item Different processors are autonomous; there is no manager.
-      \item The dominant programming model for large machines.
+      \item Dominant programming model for large machines for 30 years.
     \end{itemize}
   \end{block}
 \end{frame}
