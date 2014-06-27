@@ -10,6 +10,5 @@
 *.blg
 *.tex.backup
 *.pdf
-pbdr/talk_Lugano/pbdr.pdf
-pbdr/useR/pbdr.pdf
 
+*~
