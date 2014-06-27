@@ -134,8 +134,10 @@ for } n_2 \text{ cores}}
 \begin{frame}
   \begin{block}{Scalability and Benchmarking}
   \begin{enumerate}[<+-|alert@+>]
-    \item \emph{Strong}:  Fixed \textbf{total} problem size.
-    \item \emph{Weak}:  Fixed \textbf{local} (per processor) problem size.
+    \item \emph{Strong}:  Fixed \textbf{total} problem size.\\
+    Less work per core as more cores are added.\\[.4cm]
+    \item \emph{Weak}:  Fixed \textbf{local} (per core) problem size.\\
+    Same work per core as more cores are added.
   \end{enumerate}  
   \end{block}
 \end{frame}
@@ -161,8 +163,7 @@ for } n_2 \text{ cores}}
 
 
 
-\begin{frame}
-  \begin{block}{Shared and Distributed Memory Machines}
+\begin{frame}{Shared and Distributed Memory Machines}
    \begin{center}
     \begin{minipage}{.475\textwidth}
     \begin{block}{Shared Memory}
@@ -183,12 +184,10 @@ for } n_2 \text{ cores}}
     \end{block}
     \end{minipage}
     \end{center}
-    \end{block}
 \end{frame}
 
 
-\begin{frame}
-  \begin{block}{Shared and Distributed Memory Machines}
+\begin{frame}{Shared and Distributed Memory Machines}
    \begin{center}
     \begin{minipage}[t]{.47\textwidth}
     \begin{block}{Shared Memory Machines}
@@ -211,5 +210,4 @@ RAM\\}
     \end{block}
     \end{minipage}
     \end{center}
-    \end{block}
 \end{frame}

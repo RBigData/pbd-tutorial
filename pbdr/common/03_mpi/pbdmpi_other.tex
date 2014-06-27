@@ -15,45 +15,45 @@ object:
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Quick Example 5}
-\begin{lstlisting}[title=Barrier: 5\_barrier.r]
-library(pbdMPI, quiet = TRUE)
-init()
-
-.SPMD.CT$msg.barrier <- TRUE
-.SPMD.CT$print.quiet <- TRUE
-
-for (rank in 1:comm.size()-1){
-  if (comm.rank() == rank){
-    cat(paste("Hello", rank+1, "of", comm.size(), "\n"))
-  }
-  barrier()
-}
-
-comm.cat("\n")
-
-comm.cat(paste("Hello", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
-
-finalize()
-\end{lstlisting}
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
-script via:]
-mpirun -np 2 Rscript 5_barrier.r
-\end{lstlisting}
-    \end{column}
-    \hfill
-    \begin{column}{0.4\textwidth}
-\begin{lstlisting}[title=Sample Output:]
-Hello 1 of 2 
-Hello 2 of 2 
-\end{lstlisting}
-    \end{column}
-​  \end{columns}
-  \end{exampleblock}
-\end{frame}
+% \begin{frame}[fragile,shrink]
+%   \begin{exampleblock}{Quick Example 5}
+% \begin{lstlisting}[title=Barrier: 5\_barrier.r]
+% library(pbdMPI, quiet = TRUE)
+% init()
+% 
+% .SPMD.CT$msg.barrier <- TRUE
+% .SPMD.CT$print.quiet <- TRUE
+% 
+% for (rank in 1:comm.size()-1){
+%   if (comm.rank() == rank){
+%     cat(paste("Hello", rank+1, "of", comm.size(), "\n"))
+%   }
+%   barrier()
+% }
+% 
+% comm.cat("\n")
+% 
+% comm.cat(paste("Hello", comm.rank()+1, "of", comm.size(), "\n"), all.rank=TRUE)
+% 
+% finalize()
+% \end{lstlisting}
+%   \begin{columns}[t,onlytextwidth]
+%     \begin{column}{0.58\textwidth}
+% \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+% script via:]
+% mpirun -np 2 Rscript 5_barrier.r
+% \end{lstlisting}
+%     \end{column}
+%     \hfill
+%     \begin{column}{0.4\textwidth}
+% \begin{lstlisting}[title=Sample Output:]
+% Hello 1 of 2 
+% Hello 2 of 2 
+% \end{lstlisting}
+%     \end{column}
+% ​  \end{columns}
+%   \end{exampleblock}
+% \end{frame}
 
 
 \begin{frame}
