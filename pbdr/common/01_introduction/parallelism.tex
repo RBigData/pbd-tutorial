@@ -2,16 +2,6 @@
 \makesubcontentsslidessec
 
 
-% \begin{frame}
-%   \begin{block}{What is Parallelism?}\pause
-%   \begin{itemize}
-%     \item Doing more than one thing at a time.
-%     \item The simultaneous use of multiple compute resources to solve a 
-% computational problem.
-%   \end{itemize}
-%   \end{block}
-% \end{frame}
-
 \begin{frame}
   \begin{block}{Parallelism}\pause
     \begin{center}
@@ -37,7 +27,8 @@
 \begin{frame}
   \begin{block}{Parallelism}\pause
     \begin{center}
-    \begin{minipage}{.46\textwidth}
+    \begin{minipage}[t]{.46\textwidth}
+    \vspace{0pt}
     \begin{block}{Serial Programming}
       \begin{center}
       \includegraphics[width=.975\textwidth]{../common/pics/analogy_serial}
@@ -45,11 +36,12 @@
       \end{block}
     \end{minipage}
     \hspace{.15cm}
-    \begin{minipage}{.46\textwidth}
+    \begin{minipage}[t]{.46\textwidth}
+    \vspace{0pt}
     \begin{block}{Parallel Programming}
       \begin{center}
-      
-\includegraphics[height=5.45cm,width=.975\textwidth]{../common/pics/analogy_parallel}
+    \includegraphics[height=5.45cm,width=.975\textwidth]%
+    {../common/pics/analogy_parallel}
       \end{center}
       \end{block}
     \end{minipage}
@@ -57,32 +49,6 @@
   \end{block}
 \end{frame}
 
-
-% \begin{frame}
-%   \begin{block}{Kinds of Parallelism}\pause
-%     \begin{itemize}[<+-|alert@+>]
-%       \item \emph{Data Parallelism}:  Data is distributed
-%       \item \emph{Task Parallelism}:  Tasks are distributed
-%   \end{itemize}
-%   (This is a gross oversimplification)
-%   \end{block}
-% \end{frame}
-
-
-% \begin{frame}
-%   \begin{block}{pbdR Paradigms:  Data Parallelism}
-%   Data parallelism:
-%   \begin{itemize}[<+-|alert@+>]
-%    \item No one processor/node owns all the data.
-%    \item Processors own local pieces of a (conceptually) larger, global object
-%   \end{itemize}
-  
-%   Task parallelism:
-%   \begin{itemize}
-%     \item (Usually) Applying different tasks to the same data.
-%   \end{itemize}
-%   \end{block}
-% \end{frame}
 
 
 % \begin{frame}
@@ -114,7 +80,7 @@
 
 
 \begin{frame}
-  \begin{block}{Parallel Programming Vocabulary:  Difficulty in Parallelism}
+  \begin{block}{Difficulty in Parallelism}
   \begin{enumerate}[<+-|alert@+>]
     \item \emph{Implicit parallelism}:  Parallel details hidden from user
     \item \emph{Explicit parallelism}:  Some assembly required\dots
@@ -147,7 +113,6 @@ for } n_2 \text{ cores}}
 
 
 \begin{frame}
-  \begin{block}{Speedup}
    \begin{center}
     \begin{minipage}{.475\textwidth}
     \begin{block}{Good Speedup}
@@ -163,8 +128,37 @@ for } n_2 \text{ cores}}
     \end{block}
     \end{minipage}
     \end{center}
-    \end{block}
 \end{frame}
+
+
+\begin{frame}
+  \begin{block}{Scalability and Benchmarking}
+  \begin{enumerate}[<+-|alert@+>]
+    \item \emph{Strong}:  Fixed \textbf{total} problem size.
+    \item \emph{Weak}:  Fixed \textbf{local} (per processor) problem size.
+  \end{enumerate}  
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+   \begin{center}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Good Strong Scaling}
+      \centering
+      \includegraphics[width=.95\textwidth]{../common/pics/scaling_strong}
+    \end{block}
+    \end{minipage}
+    \hspace{.1cm}
+    \begin{minipage}{.475\textwidth}
+    \begin{block}{Good Weak Scaling}
+      \centering
+      \includegraphics[width=.95\textwidth]{../common/pics/scaling_weak}
+    \end{block}
+    \end{minipage}
+    \end{center}
+\end{frame}
+
 
 
 \begin{frame}

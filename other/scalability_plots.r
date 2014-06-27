@@ -1,4 +1,4 @@
-setwd("~/dev/dmatrix/fixing/tutorial/useR/pics/")
+setwd("../pbdr/common/pics/")
 
 
 library(ggplot2)
