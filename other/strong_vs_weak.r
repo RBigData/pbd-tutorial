@@ -1,4 +1,4 @@
-#setwd("../pbdr/common/pics/")
+setwd("../pbdr/common/pics/")
 
 
 library(ggplot2)
