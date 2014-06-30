@@ -1,9 +1,28 @@
 \subsection{Summary}
+\makesubcontentsslidessec
 
-\begin{frame}
-  \begin{block}{Summary}
-    \begin{itemize}
-      \item .
-    \end{itemize}
+
+\begin{frame}[fragile]
+  \begin{block}{Summary}\pause
+    \begin{enumerate}
+      \item Start by loading the package:
+\vspace{-.4cm}
+\begin{lstlisting}
+library(pbdDMAT, quiet = TRUE)
+\end{lstlisting}
+      \item Always initialize before starting and finalize when finished:
+\vspace{-.4cm}
+\begin{lstlisting}
+init.grid()
+
+# ...
+
+finalize()
+\end{lstlisting}
+%       \item   Distributed \code{ddmatrix} objects will be given the suffix 
+% \code{.dmat} to visually help 
+% distinguish them from global objects.  This suffix carries no semantic 
+% meaning.
+    \end{enumerate}
   \end{block}
 \end{frame}
