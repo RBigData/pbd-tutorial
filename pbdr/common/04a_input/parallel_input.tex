@@ -60,19 +60,20 @@ x <- readBin(con, what="double", n=my_length, size=size)
 
 \begin{frame}[fragile]
   \begin{exampleblock}{Binary Data: Matrix}\pause
-    \begin{lstlisting}
+    \begin{lstlisting}[escapeinside={(*@}{@*)}]
 ## read an nrow by ncol matrix of doubles split by columns
 size <- 8 # bytes
 
 my_ids <- get.jid(ncol, method="block")
 my_ncol <- length(my_ids)
-my_start <- (my_ids[1] - 1)*nrow*size
-my_length <- my_ncol*nrow
+my_start <- (my_ids[1] - 1)*(*@\textcolor{red}{nrow}@*)*size
+my_length <- my_ncol*(*@\textcolor{red}{nrow}@*)
 
 con <- file("binary.matrix.file", "rb")
 seekval <- seek(con, where=my_start, rw="read")
 x <- readBin(con, what="double", n=my_length, size=size)
 
+## glue together as a column-block ddmatrix
 gdim <- c(nrow, ncol)
 ldim <- c(nrow, my_ncol)
 bldim <- c(nrow, allreduce(my_ncol, op="max"))
