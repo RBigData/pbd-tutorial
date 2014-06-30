@@ -3,7 +3,7 @@
 
 \begin{frame}
   \begin{block}{pbdR Paradigms}
-  \pbdR\ programs are R programs!\\[.4cm]
+  \pbdR\ programs are \R programs!\\[.4cm]
   Differences:
   \begin{itemize}[<+-|alert@+>]
    \item Batch execution (non-interactive).
@@ -17,7 +17,7 @@
 \begin{frame}[fragile]
   \begin{block}{Batch Execution}\pause
     \begin{itemize}
-      \item Running a serial R program in batch:
+      \item Running a serial \R program in batch:
 \vspace{-.4cm}
 \begin{lstlisting}[language=sh]
 Rscript my_script.r
@@ -26,7 +26,7 @@ or\vspace{-.4cm}
 \begin{lstlisting}[language=sh]
 R CMD BATCH my_script.r
 \end{lstlisting}
-      \item Running a parallel (with MPI) R program in batch:
+      \item Running a parallel (with MPI) \R program in batch:
 \vspace{-.4cm}
 \begin{lstlisting}[language=sh]
 mpirun -np 2 Rscript my_par_script.r

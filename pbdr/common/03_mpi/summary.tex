@@ -1,9 +1,24 @@
 \subsection{Summary}
+\makesubcontentsslidessec
 
-\begin{frame}
-  \begin{block}{Summary}
+
+\begin{frame}[fragile]
+  \begin{block}{Summary}\pause
     \begin{itemize}
-      \item .
-    \end{itemize}
-  \end{block}
+      \item Start by loading the package:
+\vspace{-.4cm}
+\begin{lstlisting}
+library(pbdMPI, quiet = TRUE)
+\end{lstlisting}
+      \item Always initialize before starting and finalize when finished:
+\vspace{-.4cm}
+\begin{lstlisting}
+init()
+
+# ...
+
+finalize()
+\end{lstlisting}
+\end{itemize}
+\end{block}
 \end{frame}

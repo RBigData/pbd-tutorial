@@ -1,5 +1,4 @@
 library(pbdDEMO, quiet = TRUE)
-source("typo.r")
 init.grid()
 dx <- read.csv.ddmatrix("x.csv", header=TRUE,
           sep=",", nrows=10, ncols=10,
