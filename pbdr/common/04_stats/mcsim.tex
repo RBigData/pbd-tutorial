@@ -44,7 +44,7 @@ print(PI)
 \begin{lstlisting}[title=Parallel Code]
 library(pbdMPI, quiet = TRUE)
 init()
-comm.set.seed(diff=TRUE)
+comm.set.seed(seed=1234567, diff=TRUE)
 
 N.gbd <- 50000 / comm.size()
 X.gbd <- matrix(runif(N.gbd * 2), ncol = 2)

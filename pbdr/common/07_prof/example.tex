@@ -1,18 +1,27 @@
 \subsection{Example}
 \makesubcontentsslidessec
 
+\begin{frame}
+  \begin{block}{An Example from \pkg{pbdDMAT}}
+    \begin{itemize}
+      \item Compute SVD in \pkg{pbdDMAT} package.
+      \item Profile MPI calls with \pkg{mpiP}.
+    \end{itemize}
+   \end{block}
+\end{frame}
 
 \begin{frame}[fragile]
   \begin{block}{Example Script}
 \begin{lstlisting}[title=my\_svd.r]
-library(pbdMPI, lib.loc="~/R/prof", quietly=TRUE)
-library(pbdDMAT, quietly=T)
+library(pbdMPI, quietly=TRUE)
+library(pbdDMAT, quietly=TRUE)
 init.grid()
+
 
 n <- 1000
 x <- ddmatrix("rnorm", n, n)
 
-asdf <- La.svd(x)
+my.svd <- La.svd(x)
 
 
 finalize()

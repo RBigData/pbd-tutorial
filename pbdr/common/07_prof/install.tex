@@ -1,0 +1,34 @@
+\subsection{Installing pbdPROF}
+\makesubcontentsslidessec
+
+
+\begin{frame}
+  \begin{block}{Installing \textbf{pbdPROF}}
+    \begin{enumerate}
+      \item Build \textbf{pbdPROF}.
+      \item Rebuild \textbf{pbdMPI} (linking with \textbf{pbdPROF}).
+      \item Run your analysis as usual.
+      \item Interactively analyze profiler outputs with \textbf{pbdPROF}.
+    \end{enumerate}
+    This is explained at length in the \pkg{pbdPROF} vignette.
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \begin{block}{Rebuild \textbf{pbdMPI}}
+\begin{lstlisting}[language=shl]
+R CMD INSTALL pbdMPI_0.2-2.tar.gz --configure-args="--enable-pbdPROF"
+\end{lstlisting}
+    \begin{itemize}
+      \item Any package which explicitly links with an MPI library must be 
+rebuilt in this way 
+(\textbf{pbdMPI}, \textbf{Rmpi}, \dots).
+          \item Other \pbdR\ packages link with \textbf{pbdMPI}, and so do not 
+need to be rebuilt.
+      \item See \textbf{pbdPROF} vignette if something goes wrong.
+    \end{itemize}
+  \end{block}
+\end{frame}
+

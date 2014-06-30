@@ -2,18 +2,18 @@
 \makesubcontentsslidessec
 
 
-\begin{frame}
-  \begin{block}{MPI Package Controls}
-The \code{.SPMD.CT} object allows for setting different package options with \pkg{pbdMPI}.  See the 
-entry \emph{SPMD Control} of the \pkg{pbdMPI} manual for information about the \code{.SPMD.CT} 
-object:
-\begin{center}
-{ \small
-\url{http://cran.r-project.org/web/packages/pbdMPI/pbdMPI.pdf}
-}
-\end{center}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \begin{block}{MPI Package Controls}
+% The \code{.SPMD.CT} object allows for setting different package options with \pkg{pbdMPI}.  See the 
+% entry \emph{SPMD Control} of the \pkg{pbdMPI} manual for information about the \code{.SPMD.CT} 
+% object:
+% \begin{center}
+% { \small
+% \url{http://cran.r-project.org/web/packages/pbdMPI/pbdMPI.pdf}
+% }
+% \end{center}
+%   \end{block}
+% \end{frame}
 
 % \begin{frame}[fragile,shrink]
 %   \begin{exampleblock}{Quick Example 5}
@@ -60,58 +60,57 @@ object:
   \begin{block}{Random Seeds}\pause
   \pkg{pbdMPI} offers a simple interface for managing random seeds:
     \begin{itemize}
-      \item \code{comm.set.seed(diff=TRUE)} --- Independent streams via the \pkg{rlecuyer} package.
-      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use the same seed 
-\code{seed=1234}
-      \item \code{comm.set.seed(diff=FALSE)} --- All processors use the same seed, determined by 
-processor 0 (using the system clock and PID of processor 0).
+      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use 
+the same seed \code{seed=1234}
+      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use 
+the same seed.
     \end{itemize}
   \end{block}
 \end{frame}
 
 
 
-\begin{frame}[fragile,shrink]
-  \begin{exampleblock}{Quick Example 6}
-\begin{lstlisting}[title=Timing: 6\_timer.r]
-library(pbdMPI, quiet=TRUE)
-init()
-
-comm.set.seed(diff=T)
-
-test <- function(timed)
-{
-  ltime <- system.time(timed)[3]
-  
-  mintime <- allreduce(ltime, op='min')
-  maxtime <- allreduce(ltime, op='max')
-  meantime <- allreduce(ltime, op='sum')/comm.size()
-
-  return(data.frame(min=mintime, mean=meantime, max=maxtime))
-}
-
-times <- test(rnorm(1e6)) # ~7.6MiB of data
-comm.print(times)
-
-finalize()
-\end{lstlisting}
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
-script via:]
-mpirun -np 2 Rscript 6_timer.r
-\end{lstlisting}
-\end{column}
-    \hfill
-    \begin{column}{0.35\textwidth}
-\begin{lstlisting}[title=Sample Output:]
-   min  mean   max
-1 0.17 0.173 0.176
-\end{lstlisting}
-\end{column}
-\end{columns}
-  \end{exampleblock}
-\end{frame}
+% \begin{frame}[fragile,shrink]
+%   \begin{exampleblock}{Quick Example 6}
+% \begin{lstlisting}[title=Timing: 6\_timer.r]
+% library(pbdMPI, quiet=TRUE)
+% init()
+% 
+% comm.set.seed(diff=T)
+% 
+% test <- function(timed)
+% {
+%   ltime <- system.time(timed)[3]
+%   
+%   mintime <- allreduce(ltime, op='min')
+%   maxtime <- allreduce(ltime, op='max')
+%   meantime <- allreduce(ltime, op='sum')/comm.size()
+% 
+%   return(data.frame(min=mintime, mean=meantime, max=maxtime))
+% }
+% 
+% times <- test(rnorm(1e6)) # ~7.6MiB of data
+% comm.print(times)
+% 
+% finalize()
+% \end{lstlisting}
+%   \begin{columns}[t,onlytextwidth]
+%     \begin{column}{0.58\textwidth}
+% \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+% script via:]
+% mpirun -np 2 Rscript 6_timer.r
+% \end{lstlisting}
+% \end{column}
+%     \hfill
+%     \begin{column}{0.35\textwidth}
+% \begin{lstlisting}[title=Sample Output:]
+%    min  mean   max
+% 1 0.17 0.173 0.176
+% \end{lstlisting}
+% \end{column}
+% \end{columns}
+%   \end{exampleblock}
+% \end{frame}
 
 
 
