@@ -60,10 +60,10 @@
   \begin{block}{Random Seeds}\pause
   \pkg{pbdMPI} offers a simple interface for managing random seeds:
     \begin{itemize}
-      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use 
-the same seed.
-      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All processors use 
-the same seed.
+      \item \code{comm.set.seed(seed=1234, diff=TRUE)} --- All
+        processors generate different streams.
+      \item \code{comm.set.seed(seed=1234, diff=FALSE)} --- All
+        processors generate same streams.
     \end{itemize}
   \end{block}
 \end{frame}
