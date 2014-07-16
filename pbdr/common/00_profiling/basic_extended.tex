@@ -1,0 +1,123 @@
+\begin{frame}[fragile]
+  \begin{block}{Performance Profiling Tools: \code{system.time()}}
+  \code{system.time()} is a basic R utility for timing expressions
+\begin{lstlisting}[language=R]
+x <- matrix(rnorm(20000*750), nrow=20000, ncol=750)
+
+system.time(t(x) %*% x)
+#    user  system elapsed 
+#   2.187   0.032   2.324
+
+system.time(crossprod(x))
+#    user  system elapsed 
+#   1.009   0.003   1.019 
+
+system.time(cov(x))
+#    user  system elapsed 
+#   6.264   0.026   6.338 
+\end{lstlisting}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\begin{block}{Performance Profiling Tools: \code{Rprof()}}
+\code{Rprof()} times the execution of all \R functions:
+  \vspace{-.4cm}
+\begin{lstlisting}[language=Rinteractive]
+Rprof(filename="Rprof.out", append=FALSE, interval=0.02,
+  memory.profiling=FALSE, gc.profiling=FALSE, 
+  line.profiling=FALSE, numfiles=100L, bufsize=10000L)
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+x <- matrix(rnorm(10000*250), nrow=10000, ncol=250)
+
+Rprof(interval=.99)
+invisible(prcomp(x))
+Rprof(NULL)
+
+summaryRprof()
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \begin{block}{Performance Profiling Tools: \code{Rprof()}}
+  \vspace{-.5cm}
+\begin{lstlisting}[language=R]
+$by.self
+                self.time self.pct total.time total.pct
+"La.svd"             0.68    69.39       0.72     73.47
+"%*%"                0.12    12.24       0.12     12.24
+"aperm.default"      0.04     4.08       0.04      4.08
+"array"              0.04     4.08       0.04      4.08
+"matrix"             0.04     4.08       0.04      4.08
+"sweep"              0.02     2.04       0.10     10.20
+### output truncated by presenter
+
+$by.total
+                 total.time total.pct self.time self.pct
+"prcomp"               0.98    100.00      0.00     0.00
+"prcomp.default"       0.98    100.00      0.00     0.00
+"svd"                  0.76     77.55      0.00     0.00
+"La.svd"               0.72     73.47      0.68    69.39
+### output truncated by presenter
+
+$sample.interval
+[1] 0.02
+
+$sampling.time
+[1] 0.98
+\end{lstlisting}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \begin{block}{Performance Profiling Tools: \code{Rprof()}}
+  \vspace{-.5cm}
+\begin{lstlisting}[language=R]
+$by.self
+[1] self.time  self.pct   total.time total.pct 
+<0 rows> (or 0-length row.names)
+
+$by.total
+[1] total.time total.pct  self.time  self.pct  
+<0 rows> (or 0-length row.names)
+
+$sample.interval
+[1] 0.99
+
+$sampling.time
+[1] 0
+\end{lstlisting}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \begin{block}{Performance Profiling Tools: rbenchmark}
+  \pkg{rbenchmark} is a simple package that easily benchmarks different 
+functions:
+\begin{lstlisting}[language=R]
+x <- matrix(rnorm(10000*500), nrow=10000, ncol=500)
+
+f <- function(x) t(x) %*% x
+g <- function(x) crossprod(x)
+
+library(rbenchmark)
+benchmark(f(x), g(x))
+
+#   test replications elapsed relative
+# 1 f(x)          100  64.153    2.063
+# 2 g(x)          100  31.098    1.000
+\end{lstlisting}
+  \end{block}
+\end{frame}
+
