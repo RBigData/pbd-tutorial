@@ -1,36 +1,38 @@
-\input{../common/zzz_document_class}
+\input{../common/preamble/documentclass}
 \slidesfinal
 % \slidestest
 % \makehandouts
 
 %%% Styles and settings
-\input{../common/zzz_settings}
+\input{../common/preamble/settings}
 
-\allpresou
+\allpres
+\neutralbg
 
 
-\myauthor{Drew Schmidt and George Ostrouchov}
+\myauthor{George Ostrouchov and Drew Schmidt}
+\myshortauthor{\pbdR Core Team}
 \myurl{http://r-pbd.org/tutorial}
-\myfulltitle{Introducing R:\\ From Your Laptop to HPC and Big Data}
-\myabbrvtitle{pbdR}
-\mydate{SC Tutorial, New Orleans, November 16-17, 2014}
+\myfulltitle{Introducing R:\\From Your Laptop to HPC and Big Data}
+\myabbrvtitle{Introducing R}
+\mydate{SC14}
 
+% \setbeamertemplate{mini frames}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+\input{../common/00_firstfew}
 
-\input{0_firstfew}
-\input{01_introduction}
-\input{02_pbdR}
-\input{03_mpi}
-\input{mpi_exercises1}
-\input{04_stats}
-\input{mpi_exercises2}
-\input{04a_input}
-\input{05_dmat}
-\input{06_dmatstats}
-\input{dmat_exercises}
-\input{08_examples}
+% \input{01_introduction}
+\input{02_1_profiling}
+% \input{02_pbdR}
+% \input{03_mpi}
+% \input{04_stats}
+% \input{04a_input}
+% \input{05_dmat}
+% \input{06_dmatstats}
+% \input{07_prof}
+
 \input{../common/zzz_closing}
 
 
