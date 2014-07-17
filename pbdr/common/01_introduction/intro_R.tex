@@ -4,20 +4,21 @@
 
 \begin{frame}
   \begin{block}{What is R?}\pause
-  \begin{minipage}{.75\textwidth}
+  \begin{minipage}{.675\textwidth}
   \begin{itemize}[<+-|alert@+>]
     \item \emph{lingua franca} for data analytics and statistical computing.
     \item Part programming language, part data analysis package.
   \end{itemize}
   \end{minipage}
   \hfill
-  \begin{minipage}{.2\textwidth}
-    \centering\includegraphics[scale=2]{../common/pics/Rlogo}
+  \begin{minipage}{.3\textwidth}
+    \centering\includegraphics[scale=.85]{../common/pics/Rlogo}
   \end{minipage}
   \begin{itemize}
-    \item Dialect of S (Bell Labs).
-    \item Started May 5, 1976.
-    \item Syntax designed for data.
+    \item Dialect of S (May 5, 1976, Bell Labs).
+    \item Free (GPL $\geq 2$)
+    \item A C program (mostly): 52\% C, 26\% Fortran, 22\% R
+    \item Highly extensible; has over 5000 user-contributed packages.
   \end{itemize}
 \end{block}
 \end{frame}
@@ -60,8 +61,8 @@
 \Put(-50,90){\includegraphics[scale=.12]{../common/pics/R_using_logos/google}}
 \Put(50,130){\includegraphics[scale=.12]{../common/pics/R_using_logos/bing}}
 \Put(50,70){\includegraphics[scale=.29]{../common/pics/R_using_logos/ford}}
-\Put(140,80){\includegraphics[scale=.25]{../common/pics/R_using_logos/zillow}}
-\Put(215,80){\includegraphics[scale=.15]{../common/pics/R_using_logos/okcupid}}
+\Put(135,80){\includegraphics[scale=.25]{../common/pics/R_using_logos/zillow}}
+\Put(205,80){\includegraphics[scale=.15]{../common/pics/R_using_logos/okcupid}}
 \end{frame}
 
 
@@ -75,10 +76,91 @@
 % \end{frame}
 
 
+
 \begin{frame}
-  \begin{block}{Resources to Learn R}\pause
+\begin{block}{The R Language}\pause
+\begin{itemize}
+  \item R is slow; if you don't know what you're doing, it's \emph{really} slow.
+  \item High-level language.
+  \item Syntax designed for data: models are first-class constructs, 
+missingness is built into the core of the language, \dots
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{The R Language}\pause
+  If you come from CS, you may find \R a bit strange:
+  \begin{itemize}
+    \item Storage: logical, int, double, double complex, character (strings)
+    \item Structures: vector, matrix, array, list, dataframe
+    \item Caveats: (Logical) \code{TRUE}, \code{FALSE}, \code{NA}
+    \item In fact, there's an \code{NA} for each type:
+    \begin{itemize}
+      \item Integer: $-\left(2^{-31}-1\right)$
+      \item Double: value at address \code{0x7FF00000000007A2LL}
+    \end{itemize}
+    \item 3 official OOP systems (none of them work like anything you're used 
+to), several unofficial ones.
+    \item No official support for C++; several unofficial packages supporting 
+C++.
+  \end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{But you can't deny its popularity!}
+  \begin{center}
+    IEEE Spectrum's 2014 Ranking of Programming Languages\\
+    \includegraphics[scale=.6]{../common/pics/ieee_spectrum}
+  \end{center}
+ {\scriptsize See: 
+\url{%
+http://spectrum.ieee.org/static/interactive-the-top-programming-languages\#index
+}}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \begin{block}{Resources for Learning R}\pause
   \begin{itemize}[<+-|alert@+>]
     \item \emph{Advanced R} by Hadley Wickham: \url{http://adv-r.had.co.nz/}
+    \item \emph{The Art of R Programming} by Norm Matloff:  
+\url{http://nostarch.com/artofr.htm}\\[.2cm]
+
+    \item \emph{An Introduction to R} by Venables, Smith, and the R Core Team:
+\url{http://cran.r-project.org/doc/manuals/R-intro.pdf}\\[.2cm]
+
+    \item \emph{The R Inferno} by Patrick Burns:
+\url{http://www.burns-stat.com/pages/Tutor/R_inferno.pdf}\\[.2cm]
+
+    \item Mathesaurus:  \url{http://mathesaurus.sourceforge.net/}\\[.2cm]
+
+    \item R programming for those coming from other languages:  
+\url{http://www.johndcook.com/R_language_for_programmers.html}\\[.2cm]
+
+    \item \emph{aRrgh: a newcomer's (angry) guide to R}, by Tim Smith and Kevin 
+Ushey: 
+    \url{http://tim-smith.us/arrgh/}
+  \end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Other Invaluable Resources}\pause
+  \begin{itemize}[<+-|alert@+>]
+    \item \emph{R Installation and Administration}: 
+\url{http://cran.r-project.org/doc/manuals/R-admin.html}
+    \item \emph{Writing R Extensions}: 
+\url{http://cran.r-project.org/doc/manuals/R-exts.html}
+     \item Mailing list archives: \url{http://tolstoy.newcastle.edu.au/R/}
+     \item The \code{[R]} stackoverflow tag.
   \end{itemize}
 \end{block}
 \end{frame}
