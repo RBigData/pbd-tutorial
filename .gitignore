@@ -10,5 +10,6 @@
 *.blg
 *.tex.backup
 *.pdf
+*.orig
 
 *~
