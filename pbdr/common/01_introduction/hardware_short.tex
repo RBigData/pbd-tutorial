@@ -7,31 +7,49 @@
 \end{frame}
 
 \begin{frame}{Big Data and Little Data}
-\begin{minipage}{11cm}
-  \includegraphics[width=1.25\textheight]
+\begin{minipage}{10cm}
+  \includegraphics[width=1.2\textheight]
   {../common/pics/hardware/ParallelHardware22.pdf}\hfill
 \end{minipage}
-\begin{minipage}{4cm}
+\begin{minipage}{5cm}\small
   \begin{block}{Analysis Workflow}\pause
     \begin{itemize}[<+-|alert@+>]
-    \item Bring-in or generate data
+    \item Get Big Data
       \begin{itemize}
-      \item Write parallel data reader or data generator
+      \item Parallel data reader
+      \item Parallel data generator
       \end{itemize}
-    \item Run analysis
-    \item Generate graphics to display results
+    \item Write analysis script
+    \item Graphics to display results
     \item Profile and optimize code
     \end{itemize}
   \end{block}
 \end{minipage}
 \end{frame}
 
-\begin{frame}{We can work with Hadoop's HDFS $\ldots$ soon}
-  \includegraphics[width=1.25\textheight]
-  {../common/pics/hardware/ParallelHardware23.pdf}
+\begin{frame}{R and \pbdR Interfaces to Libraries: Harness 30+ Years of
+    HPC Research}
+\includegraphics[width=1.35\textheight]
+{../common/pics/hardware/ParallelHardware14.pdf}
 \end{frame}
 
-\begin{frame}{R and \pbdR Interfaces to Libraries ``Standing on the Shoulders of
+\begin{frame}{Hadoop: Can use HDFS but replace rest with HPC libraries}
+\begin{minipage}{10cm}
+  \includegraphics[width=1.25\textheight]
+  {../common/pics/hardware/ParallelHardware23.pdf}
+\end{minipage}
+\begin{minipage}{5cm}\small
+  \begin{block}{Three Hadoop components}\pause
+    \begin{itemize}[<+-|alert@+>]
+    \item File system: HDFS
+    \item Resource manager: Yarn
+    \item Algorithm limitation: Map Reduce, Manager+Workers
+    \end{itemize}
+  \end{block}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{R and \pbdR Interfaces to Libraries: ``Standing on the Shoulders of
   Giants''}
 \includegraphics[width=1.35\textheight]
 {../common/pics/hardware/ParallelHardware14.pdf}
