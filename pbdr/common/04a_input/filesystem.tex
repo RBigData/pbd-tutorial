@@ -1,28 +1,32 @@
-\subsection{Cluster Computer and File System}
+\subsection{Considering I/O Configurations}
 \makesubcontentsslidessec
 
-\begin{frame}{One Node to One Storage Server}
-    \centering
-    \includegraphics[width=0.95\textwidth]{../common/pics/hardware/ParallelHardware15.pdf}
+\begin{frame}{I/O Configurations}
+  \begin{minipage}{0.32\textwidth}
+    \begin{block}{Best!}
+      \includegraphics[trim=0 140 30 40,clip,width=1\textwidth]{../common/pics/hardware/ParallelHardware20.pdf}
+    \end{block}
+  \end{minipage}\hspace{1ex}
+  \begin{minipage}{0.32\textwidth}
+    \begin{block}{Good.}
+      \includegraphics[trim=0 140 30 40,clip,width=1\textwidth]{../common/pics/hardware/ParallelHardware19.pdf}
+    \end{block}
+  \end{minipage}\hspace{1ex}
+  \begin{minipage}{0.32\textwidth}
+    \begin{block}{If you have to $\ldots$}
+      \includegraphics[trim=0 140 30 40,clip,width=1\textwidth]{../common/pics/hardware/ParallelHardware15.pdf}
+    \end{block}
+  \end{minipage}
+  \begin{minipage}{0.32\textwidth}
+    \begin{block}{Can work.}
+      \includegraphics[trim=0 140 30 40,clip,width=1\textwidth]{../common/pics/hardware/ParallelHardware18.pdf}
+    \end{block}
+  \end{minipage}\hspace{1ex}
+  \begin{minipage}{0.32\textwidth}
+    \begin{block}{Don't do this!}
+      \includegraphics[trim=0 140 30 40,clip,width=1\textwidth]{../common/pics/hardware/ParallelHardware16.pdf}
+    \end{block}
+  \end{minipage}
 \end{frame}
 
-\begin{frame}{Many Nodes to One Storage Server}
-    \centering
-    \includegraphics[width=0.95\textwidth]{../common/pics/hardware/ParallelHardware16.pdf}
-\end{frame}
-
-\begin{frame}{Many Nodes to Few Storage Servers}
-    \centering
-    \includegraphics[width=0.95\textwidth]{../common/pics/hardware/ParallelHardware18.pdf}
-\end{frame}
-
-\begin{frame}{Few Nodes to Few Storage Servers - Default}
-    \centering
-    \includegraphics[width=0.95\textwidth]{../common/pics/hardware/ParallelHardware19.pdf}
-\end{frame}
-
-\begin{frame}{Few Nodes to Few Storage Servers - Coordinated}
-    \centering
-    \includegraphics[width=0.95\textwidth]{../common/pics/hardware/ParallelHardware20.pdf}
-\end{frame}
 
