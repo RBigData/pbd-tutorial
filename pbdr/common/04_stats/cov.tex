@@ -12,7 +12,7 @@
 
 
 \begin{frame}
-  \begin{block}{Example \showex :  Sample Covariance GBD Algorithm}\pause
+  \begin{block}{Example \showex :  Sample Covariance Algorithm}\pause
     \begin{enumerate}
      \item Determine the total number of rows $N$.
      \item Compute the vector of column means of the full matrix.
@@ -37,11 +37,11 @@ print(Cov.X)
 \end{lstlisting}
   
 \begin{lstlisting}[title=Parallel Code]
-N <- allreduce(nrow(X.gbd), op="sum")
-mu <- allreduce(colSums(X.gbd) / N, op="sum")
+N <- allreduce(nrow(X.loc), op="sum")
+mu <- allreduce(colSums(X.loc) / N, op="sum")
 
-X.gbd <- sweep(X.gbd, STATS=mu, MARGIN=2)
-Cov.X <- allreduce(crossprod(X.gbd), op="sum") / (N-1)
+X.loc <- sweep(X.loc, STATS=mu, MARGIN=2)
+Cov.X <- allreduce(crossprod(X.loc), op="sum") / (N-1)
 
 comm.print(Cov.X)
 \end{lstlisting}

@@ -18,7 +18,7 @@ Blue}}}{\text{\color{blue}{\# Blue}}+\text{\color{red}{\# Red}}}\right)
 
 
 \begin{frame}[fragile]
-  \begin{block}{Example \showex :  Monte Carlo Simulation GBD Algorithm}\pause
+  \begin{block}{Example \showex :  Monte Carlo Simulation Algorithm}\pause
     \begin{enumerate}
      \item Let $n$ be big-ish; we'll take $n=50,000$.
      \item Generate an $n\times 2$ matrix $x$ of standard uniform observations.
@@ -46,11 +46,11 @@ library(pbdMPI, quiet = TRUE)
 init()
 comm.set.seed(seed=1234567, diff=TRUE)
 
-N.gbd <- 50000 / comm.size()
-X.gbd <- matrix(runif(N.gbd * 2), ncol = 2)
-r.gbd <- sum(rowSums(X.gbd^2) <= 1)
-r <- allreduce(r.gbd)
-PI <- 4*r/(N.gbd * comm.size())
+N.loc <- 50000 / comm.size()
+X.loc <- matrix(runif(N.loc * 2), ncol = 2)
+r.loc <- sum(rowSums(X.loc^2) <= 1)
+r <- allreduce(r.loc)
+PI <- 4*r/(N.loc * comm.size())
 comm.print(PI)
 
 finalize()

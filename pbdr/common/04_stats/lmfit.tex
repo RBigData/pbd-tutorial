@@ -18,7 +18,7 @@
 
 
 \begin{frame}
-  \begin{block}{Example \showex :  Linear Regression GBD Algorithm}\pause
+  \begin{block}{Example \showex :  Linear Regression Algorithm}\pause
     \begin{enumerate}
      \item Locally, compute $tx = x^T$
      \item Locally, compute $A = tx * x$. Query every other processor for this result and sum up 
@@ -43,9 +43,9 @@ ols <- solve(A) %*% B
 \end{lstlisting}
   
 \begin{lstlisting}[title=Parallel Code]
-tX.gbd <- t(X.gbd)
-A <- allreduce(tX.gbd %*% X.gbd, op = "sum")
-B <- allreduce(tX.gbd %*% y.gbd, op = "sum")
+tX.loc <- t(X.loc)
+A <- allreduce(tX.loc %*% X.loc, op = "sum")
+B <- allreduce(tX.loc %*% y.loc, op = "sum")
 
 ols <- solve(A) %*% B
 \end{lstlisting}

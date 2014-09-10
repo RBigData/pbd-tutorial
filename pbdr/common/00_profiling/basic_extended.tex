@@ -34,6 +34,12 @@ Rprof(filename="Rprof.out", append=FALSE, interval=0.02,
 \begin{lstlisting}[language=R]
 x <- matrix(rnorm(10000*250), nrow=10000, ncol=250)
 
+Rprof()
+invisible(prcomp(x))
+Rprof(NULL)
+
+summaryRprof()
+
 Rprof(interval=.99)
 invisible(prcomp(x))
 Rprof(NULL)
@@ -45,7 +51,7 @@ summaryRprof()
 
 
 
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
   \begin{block}{Performance Profiling Tools: \code{Rprof()}}
   \vspace{-.5cm}
 \begin{lstlisting}[language=R]
