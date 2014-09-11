@@ -10,7 +10,7 @@
     \item Read directly into form needed or restructure?
     \item CSV, SQL, NetCDF4, HDF, ADIOS, custom binary
     \item $\ldots$
-    \item A lot of work needed here!
+    \item Lot of work needed to make it intuitive!
     \item Currently under development.
     \end{itemize}
   \end{block}
@@ -43,13 +43,12 @@ finalize()
 \begin{frame}[fragile]
   \begin{exampleblock}{Binary Data: Vector}\pause
     \begin{lstlisting}
-## set up start and length for reading a vector of n doubles
 size <- 8 # bytes
 
-my_ids <- get.jid(n, method="block")
+my_ids <- get.jid(n)   # my index values from n
 
-my_start <- (my_ids[1] - 1)*size
-my_length <- length(my_ids)
+my_start <- (my_ids[1] - 1)*size    # my starting byte location
+my_length <- length(my_ids)     # my number of bytes to read
 
 con <- file("binary.vector.file", "rb")
 seekval <- seek(con, where=my_start, rw="read")
@@ -59,12 +58,11 @@ x <- readBin(con, what="double", n=my_length, size=size)
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Binary Data: Matrix}\pause
+  \begin{exampleblock}{Binary Data: Matrix}\pause \vspace{-0.8ex}
     \begin{lstlisting}[escapeinside={(*@}{@*)}]
-## read an nrow by ncol matrix of doubles split by columns
 size <- 8 # bytes
 
-my_ids <- get.jid(ncol, method="block")
+my_ids <- get.jid(ncol)
 my_ncol <- length(my_ids)
 my_start <- (my_ids[1] - 1)*(*@\textcolor{red}{nrow}@*)*size
 my_length <- my_ncol*(*@\textcolor{red}{nrow}@*)
@@ -73,22 +71,19 @@ con <- file("binary.matrix.file", "rb")
 seekval <- seek(con, where=my_start, rw="read")
 x <- readBin(con, what="double", n=my_length, size=size)
 
-## glue together as a column-block ddmatrix
 gdim <- c(nrow, ncol)
 ldim <- c(nrow, my_ncol)
 bldim <- c(nrow, allreduce(my_ncol, op="max"))
-X <- new("ddmatrix", Data=matrix(x, nrow, my_ncol),
-         dim=gdim, ldim=ldim, bldim=bldim, ICTXT=1)
+X <- new("ddmatrix", Data=matrix(x, nrow, my_ncol), dim=gdim, ldim=ldim, bldim=bldim, ICTXT=1)    # glue together as column-block ddmatrix
 
-## redistribute for ScaLAPACK's block-cyclic
-X <- redistribute(X, bldim=c(2, 2), ICTXT=0)
-Xprc <- prcomp(X) 
+X <- redistribute(X, bldim=c(2, 2), ICTXT=0)  # redistribute as block-cyclic
+Xprc <- prcomp(X)   # proceed as with serial code
     \end{lstlisting}
   \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{NetCDF4 Data}\pause
+  \begin{exampleblock}{NetCDF4 Data}\pause \vspace{-0.8ex}
     \begin{lstlisting}
 ### parallel read after determining start and length
 nc <- nc_open_par(file_name)
@@ -96,8 +91,19 @@ nc <- nc_open_par(file_name)
 nc_var_par_access(nc, "variable_name")
 new.X <- ncvar_get(nc, "variable_name", start, length)
 nc_close(nc)
+    \end{lstlisting}
+  \end{exampleblock}
+  \begin{exampleblock}{ADIOS Data (.bp files) \hfill pbdADIOS is under
+    construction}\pause \vspace{-0.8ex}
+    \begin{lstlisting}
+### parallel read after determining start and length
+file <- adios_open(file_name)
 
-finalize()
+## Bounding box (start, length) access
+## Staging capability with ADIOS configured simulation codes
+## Streaming access
+
+adios_close()
     \end{lstlisting}
   \end{exampleblock}
 \end{frame}

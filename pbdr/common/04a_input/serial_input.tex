@@ -5,20 +5,19 @@
 \begin{frame}
 \begin{block}{R has a separate manual for data import/export: http://r-project.org/}
 \begin{itemize}
-\item scan()
-\item read.table()
-\item read.csv()
-\item socket
+\item scan(), readLines(), read.table(), read.csv(), $\ldots$
+\item seek(), readBin()
+\item CSV, SQL, NetCDF4, HDF, custom binary, $\ldots$
 \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \begin{exampleblock}{CSV Data: Read Serial then Distribute}\pause
-\begin{lstlisting}[title=]
+\begin{lstlisting}[title=0\_readcsv.r]
 library(pbdDMAT)
 if(comm.rank() == 0) { # only read on process 0
-  x <- read.csv("myfile.csv")
+  x <- as.matrix(read.csv("myfile.csv"))
 } else {
   x <- NULL
 }

@@ -7,9 +7,9 @@
 \begin{block}{Randomized SVD\footnotemark}
   \begin{minipage}{.55\textwidth}
     \begin{center}
-      \includegraphics[width=.95\textwidth]{../common/pics/randsvd/randSVDalg}
+      \includegraphics[height=.55\textheight]{../common/pics/randsvd/randSVDalg}
       \\
-      \includegraphics[width=.95\textwidth]{../common/pics/randsvd/randSVDalg4_4}
+      \includegraphics[height=.35\textheight]{../common/pics/randsvd/randSVDalg4_4}
     \end{center}
   \end{minipage}
 %   \hspace{.01cm}
@@ -21,8 +21,7 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ matrix(rnorm(n*2*k),@*) 
-            (*@ nrow=n, ncol=2*k) @*)
+    Omega <- (*@ matrix(rnorm(n*2*k),@*) (*@ nrow=n, ncol=2*k) @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -64,8 +63,7 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*) 
-         (*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
+    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*)(*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -93,8 +91,7 @@ commentstyle=\color{dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)
-         (*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
+    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)(*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)      
