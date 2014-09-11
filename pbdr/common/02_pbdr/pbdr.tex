@@ -98,20 +98,24 @@ allreduce(x)
 \begin{frame}[fragile]
   \begin{block}{Distributed Matrices and Statistics with \textbf{pbdDMAT}}\pause
   \begin{center}
-  \begin{minipage}{.9\textwidth}
+  \begin{minipage}{.486\textwidth}
   \centering\vspace{-.1cm}
     Matrix Exponentiation\\
 \includegraphics[width=7cm,height=5.75cm]%
 {../common/pics/benchmarks/expm_speedup}
   \end{minipage}
- \begin{minipage}{.9\textwidth}
+ \begin{minipage}{.485\textwidth}
  \centering
  \vspace{-.36cm}
 \begin{lstlisting}
 library(pbdDMAT)
+init.grid()
 
 dx <- ddmatrix("rnorm", 5000, 5000)
+
 expm(dx)
+
+finalize()
 \end{lstlisting}
  \end{minipage}
  \end{center}
@@ -122,18 +126,24 @@ expm(dx)
 \begin{frame}[fragile]
   \begin{block}{Distributed Matrices and Statistics with \textbf{pbdDMAT}}\pause
   \begin{center}
-  \begin{minipage}{.9\textwidth}
+  \begin{minipage}{.485\textwidth}
   \centering\vspace{-.1cm}
-	Least Squares Benchmark
+	Least Squares Benchmark\\
 		\includegraphics[width=7cm,height=5.75cm]{../common/pics/benchmarks/lmfit2}
   \end{minipage}
- \begin{minipage}{.9\textwidth}
+ \begin{minipage}{.485\textwidth}
  \vspace{-.36cm}
  \centering
 \begin{lstlisting}[title=\ ,basicstyle=\scriptsize,numbers=none]
+library(pbdDMAT)
+init.grid()
+
 x <- ddmatrix("rnorm", nrow=m, ncol=n)
 y <- ddmatrix("rnorm", nrow=m, ncol=1)
+
 mdl <- lm.fit(x=x, y=y)
+
+finalize()
 \end{lstlisting}
  \end{minipage}
  \end{center}
@@ -153,7 +163,7 @@ mdl <- lm.fit(x=x, y=y)
     \begin{itemize}
       \item 140 page, textbook-style vignette.
       \item Over 30 demos, utilizing all$^*$ packages.
-      \item Not just a hello world!
+      \item Not just a ``hello world''!
       \item Demos include:
       \begin{itemize}
         \item PCA
