@@ -51,7 +51,7 @@
                 \centering
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_block}
-                \caption{Block}
+                \caption{Row Block}
         \end{subfigure}
         \hspace{.1cm}
         \begin{subfigure}[b]{0.3\textwidth}
@@ -59,7 +59,7 @@
                 
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_cyclic}
-                \caption{Cyclic}
+                \caption{Row Cyclic}
         \end{subfigure}
         \hspace{.01cm}
         \begin{subfigure}[b]{0.3\textwidth}
@@ -67,9 +67,10 @@
                 
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_blockcyclic}
-                \caption{Block-Cyclic}
+                \caption{Row-Block Cyclic}
         \end{subfigure}
-        \caption{Matrix Distribution Schemes}\label{fig:dmat1d}
+        \caption{Matrix Distribution Schemes Onto a $4\times 1$
+          Processor Grid}\label{fig:dmat1d}
 \end{figure}
 \end{block}
 \end{frame}
@@ -85,7 +86,7 @@
                 
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_block2d}
-                \caption{2d Block}
+                \caption{Block}
         \end{subfigure}%
         \hspace{.1cm}
         \begin{subfigure}[b]{0.3\textwidth}
@@ -93,7 +94,7 @@
                 
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_cyclic2d}
-                \caption{2d Cyclic}
+                \caption{Column-Block Row-Cyclic}
         \end{subfigure}
         \hspace{.01cm}
         \begin{subfigure}[b]{0.3\textwidth}
@@ -101,9 +102,9 @@
                 
 \includegraphics[height=5cm,width=\textwidth]%
 {../common/pics/dmat/dmat_blockcyclic2d}
-                \caption{2d Block-Cyclic}
+                \caption{Block-Cyclic}
         \end{subfigure}
-        \caption{Matrix Distribution Schemes Onto a 2-Dimensional 
+        \caption{Matrix Distribution Schemes Onto a $2\times 2$ Processor 
 Grid}\label{fig:dmat2d}
 \end{figure}
 \end{block}
@@ -234,7 +235,7 @@ x_{99}
 
 
 \begin{frame}
-\begin{exampleblock}{\code{ddmatrix}:  1-dimensional Row Block}
+\begin{exampleblock}{\code{ddmatrix}:  Row Block}
 \begin{align*}
 x &= \left[
       \begin{array}{lllllllll}
@@ -277,15 +278,15 @@ x &= \left[
       \color{g13}2 \\
       \color{g21}3
       \end{array}
-\right| &= 
-\left|
-      \begin{tabular}{l}
-      \color{g11}(0,0) \\
-      \color{g12}(1,0) \\
-      \color{g13}(2,0) \\
-      \color{g21}(3,0) 
-      \end{tabular}
-\right|
+\right| &
+% = \left|
+%      \begin{tabular}{l}
+%      \color{g11}(0,0) \\
+%      \color{g12}(1,0) \\
+%      \color{g13}(2,0) \\
+%      \color{g21}(3,0) 
+%      \end{tabular}
+%\right|
 \end{align*}
 \end{exampleblock}
 \end{frame}
@@ -295,7 +296,7 @@ x &= \left[
 
 
 \begin{frame}
-\begin{exampleblock}{\code{ddmatrix}: 2-dimensional Row Block}
+\begin{exampleblock}{\code{ddmatrix}: Row-Column Block}
 \begin{align*}
 x &= \left[
       \begin{array}{lllll|llll}
@@ -349,7 +350,7 @@ x &= \left[
 
 
 \begin{frame}
-\begin{exampleblock}{\code{ddmatrix}: 1-dimensional Row Cyclic}
+\begin{exampleblock}{\code{ddmatrix}: Row Cyclic}
 \begin{align*}
 x &= \left[
       \begin{array}{lllllllll}
@@ -392,15 +393,15 @@ x &= \left[
       \color{g13}2 \\
       \color{g21}3
       \end{array}
-\right| &= 
-\left|
-      \begin{tabular}{lll}
-      \color{g11}(0,0) \\
-      \color{g12}(1,0) \\
-      \color{g13}(2,0) \\
-      \color{g21}(3,0) 
-      \end{tabular}
-\right|
+\right| &
+%= \left|
+%      \begin{tabular}{lll}
+%      \color{g11}(0,0) \\
+%      \color{g12}(1,0) \\
+%      \color{g13}(2,0) \\
+%      \color{g21}(3,0) 
+%      \end{tabular}
+%\right|
 \end{align*}
 \end{exampleblock}
 \end{frame}
@@ -408,7 +409,7 @@ x &= \left[
 
 
 \begin{frame}
-\begin{exampleblock}{\code{ddmatrix}: 2-dimensional Row Cyclic}
+\begin{exampleblock}{\code{ddmatrix}: Row-Cyclic Column-Block}
 \begin{align*}
 x &= \left[
       \begin{array}{lllll|llll}
@@ -463,7 +464,7 @@ x &= \left[
 
 
 \begin{frame}[shrink]
-\begin{exampleblock}{\code{ddmatrix}: 2-dimensional Block-Cyclic}
+\begin{exampleblock}{\code{ddmatrix}: Block-Cyclic}
 \begin{align*}
 x &= \left[
       \begin{array}{ll|ll|ll|ll|l}

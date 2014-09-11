@@ -4,13 +4,14 @@
 
 \begin{frame}[fragile]
   \begin{block}{The \code{ddmatrix} Structure}\pause
-    The more complicated the processor grid, the more complicated the distribution.
+    The more complicated the processor grid, the more complicated the layout.
   \end{block}
 \end{frame}
 
 
 \begin{frame}[shrink]
-\begin{exampleblock}{\code{ddmatrix}: 2-dimensional Block-Cyclic with 6 Processors}
+\begin{exampleblock}{\code{ddmatrix}: Block-Cyclic on a $2\times 3$
+    Processor Grid}
 \begin{align*}
 x &= \left[
       \begin{array}{ll|ll|ll|ll|l}
@@ -58,7 +59,8 @@ x &= \left[
 
 
 \begin{frame}[shrink]
-\begin{exampleblock}{Understanding \code{ddmatrix}: Local View}
+\begin{exampleblock}{Understanding \code{ddmatrix}: Local View of
+    Block-Cyclic on a $2\times 3$ Processor Grid}
 \begin{align*}
 \left[
       \begin{array}{ll|ll}
@@ -212,7 +214,7 @@ x &= \left[
       \begin{center}
       \begin{block}{Cons}
 	\begin{itemize}
-	  \item Confusing layout.
+	  \item Complex layout.
 	\end{itemize}
       \end{block}
       \end{center}
