@@ -4,16 +4,16 @@
 
 \begin{frame}[fragile]
 \fontsize{8pt}{10}\selectfont
-\begin{block}{Randomized SVD\footnotemark}
-  \begin{minipage}{.55\textwidth}
+\begin{block}{Randomized truncated SVD\footnotemark}
+  \begin{minipage}{.56\textwidth}
     \begin{center}
-      \includegraphics[height=.55\textheight]{../common/pics/randsvd/randSVDalg}
+      \includegraphics[height=.41\textheight]{../common/pics/randsvd/randSVDalg}
       \\
-      \includegraphics[height=.35\textheight]{../common/pics/randsvd/randSVDalg4_4}
+      \includegraphics[height=.26\textheight]{../common/pics/randsvd/randSVDalg4_4}
     \end{center}
   \end{minipage}
 %   \hspace{.01cm}
-  \begin{minipage}{0.430\textwidth}
+  \begin{minipage}{0.43\textwidth}
 \begin{lstlisting}[title=Serial 
 R,basicstyle=\tiny,backgroundcolor=\color{grayish} 
 ,numberstyle=\tiny\color{black},keywordstyle=\color{black},commentstyle=\color{ 
@@ -21,7 +21,8 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ matrix(rnorm(n*2*k),@*) (*@ nrow=n, ncol=2*k) @*)
+    Omega <- (*@ matrix(rnorm(n*2*k),@*)
+      (*@ nrow=n, ncol=2*k) @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -40,18 +41,18 @@ randSVD <- function(A, k, q=3)
     U[, 1:k]
   }
 \end{lstlisting} %balance$
+\end{minipage}
 {\fontsize{6pt}{10}\selectfont $^1$Halko, Martinsson, 
   and Tropp. 2011. Finding structure with randomness: probabilistic
-  algorithms  for constructing approximate matrix decompositions
-  \emph{SIAM Rev.} \textbf{53} 217--288}
-\end{minipage}
+  algorithms  for constructing \\[-1ex] approximate matrix decompositions
+  \emph{SIAM Review} \textbf{53} 217--288}
 \end{block}
 \end{frame}
 
 
 \begin{frame}[fragile]
  \fontsize{8pt}{10}\selectfont
-\begin{block}{Randomized SVD}
+\begin{block}{Randomized truncated SVD}
   \hfill
   \begin{minipage}{0.430\textwidth}
 \begin{lstlisting}[title=Serial 
@@ -61,7 +62,8 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*)(*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
+    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*)
+      (*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -89,7 +91,8 @@ commentstyle=\color{dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)(*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
+    Omega <- (*@ \textcolor{blue}{ddmatrix("rnorm",} @*)
+      (*@ \textcolor{blue}{nrow=n, ncol=2*k)} @*)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)      
