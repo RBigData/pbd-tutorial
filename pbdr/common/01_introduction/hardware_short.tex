@@ -17,27 +17,20 @@
 \end{frame}
 
 \begin{frame}{Big Data and Little Data}
-\begin{minipage}{10cm}
-  \includegraphics[height=0.9\textheight]
+\begin{minipage}{8.5cm}
+  \includegraphics[trim=3cm 0cm 0cm 0cm,clip=true,height=0.9\textheight]
   {../common/pics/hardware/ParallelHardware22.pdf}\hfill
 \end{minipage}
-\begin{minipage}{5cm}\small
-  \begin{block}{Analysis Workflow}\pause
-    \begin{itemize}[<+-|alert@+>]
-    \item Get Big Data
-      \begin{itemize}
-      \item Parallel data reader
-      \item Parallel data generator
-      \end{itemize}
-    \item Write analysis script
-    \item Graphics to display results
-    \item Profile and optimize code
-    \end{itemize}
+\begin{minipage}{3cm}\small
+  \begin{block}{Analysis Components}\pause
+    \scriptsize Reader or Generator \\
+    Analysis script \\
+    Display/write results
   \end{block}
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Hadoop: Will it merge with HPC in the future?}
+\begin{frame}{Hadoop: File System or HPC Cluster?}
 \begin{minipage}{8.5cm}
   \includegraphics[trim=2cm 0cm 0cm 0cm,clip=true,height=0.8\textheight]
   {../common/pics/hardware/ParallelHardware23.pdf}
@@ -53,10 +46,26 @@
 \end{minipage}
 \end{frame}
 
-\begin{frame}{The future is here}
+\begin{frame}{Adding NVRAM to New HPC Systems}
 \includegraphics[height=0.9\textheight]
 {../common/pics/hardware/ParallelHardware24.pdf}
 \end{frame}
+
+% \begin{frame}{HPC Cluster File System Evolution}
+%   \includegraphics[trim=2cm 0cm 0cm 4cm,clip=true,height=0.3\textheight]
+%   {../common/pics/hardware/ParallelHardware23.pdf}
+%   \includegraphics[trim=3cm 0cm 0cm 4cm,clip=true,height=0.3\textheight]
+%   {../common/pics/hardware/ParallelHardware22.pdf}\hfill
+%   \includegraphics[trim=2cm 0cm 0cm 4cm,clip=true,height=0.3\textheight]
+%   {../common/pics/hardware/ParallelHardware24.pdf} \\
+%   \begin{itemize}
+%   \item HPC separates disk storage from compute nodes
+%   \item HPC brings NVRAM to compute nodes
+%   \item From Slow to Fast: Disk - Storage Server - NVRAM - Other
+%     node memory - same node memory
+%   \item More memory hierarchy within node
+%   \end{itemize}
+% \end{frame}
 
 %\begin{frame}{\pbdR Interfaces to Libraries: Sustainable Path}
 %\includegraphics[height=1.05\textheight]
