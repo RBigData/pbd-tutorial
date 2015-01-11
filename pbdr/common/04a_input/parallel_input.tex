@@ -8,7 +8,7 @@
     \item How to partition data across nodes?
     \item How to structure for scalable libraries?
     \item Read directly into form needed or restructure?
-    \item CSV, SQL, NetCDF4, HDF, ADIOS, custom binary
+    \item CSV, SQL, HDFS, NetCDF4, HDF5, ADIOS, custom binary
     \item $\ldots$
     \item Lot of work needed to make it intuitive!
     \item Currently under development.
@@ -38,6 +38,22 @@ dx
 finalize()
 \end{lstlisting}
   \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Hadoop HDFS, RHadoop}\pause
+    \begin{description}
+      \item[ravro] - read and write files in avro format
+      \item[plyrmr] - higher level plyr-like data processing for
+        structured data, powered by rmr 
+    \item[rmr] - functions providing Hadoop MapReduce functionality in
+      R 
+    \item[rhdfs] - functions providing file management of the HDFS
+      from within R 
+    \item[rhbase] - functions providing database management for the
+      HBase distributed database from within R 
+    \end{description}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]

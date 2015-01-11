@@ -8,7 +8,7 @@ size <- 8 # bytes
 n <- 32
 
 my_ids <- get.jid(n, method="block")
-comm.print(my_ids, "\n", all.rank=TRUE)
+comm.cat(my_ids, "\n", all.rank=TRUE)
 
 my_start <- (my_ids[1] - 1)*size
 my_length <- length(my_ids) # contiguous ids

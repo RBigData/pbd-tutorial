@@ -1,0 +1,141 @@
+\subsection{Using \protect\pkg{pmclust} for model-based clustering}
+\makesubcontentsslidessec
+
+\begin{frame}[fragile]
+  \begin{block}{Background}
+    \begin{itemize}
+    \item Gaussian mixture model
+    \item  $\vect{X}_n \overset{iid}{\sim} \sum_{i=1}^k
+      \eta_i \mbox{MVN}(\vect{\mu}_i, \vect{\Sigma}_i)$
+    \item For k-means, take $\vect{\Sigma}_i = \sigma^2\vect{I}$
+    \item Estimate with four possible variants of EM algorithm EM (Dempster et al. 1977),
+      AECM (Meng and Van Dyk 1997), APECM (Chen and Maitra 2011), APECMa (Chen et al.
+      2013), and K-means (Lloyd 1982)
+    \item Sophisticated starting values generation
+    \item Result still a random variable but stable for good $k$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\subsection{\protect\pkg{pmclust} examples with various data locations}
+
+\begin{frame}[fragile]
+  \begin{exampleblock}{Data starts on single instance}\pause
+    \begin{lstlisting}[title=iris\_single.r]
+library(pmclust, quietl = TRUE)
+
+if(comm.rank() == .SPMD.CT$rank.source){
+  ### Load data
+  X <- as.matrix(iris[, -5])
+
+  ### Standardize
+  X.std <- scale(X)
+} else X.std <- NULL
+
+### Cluster
+library(pmclust, quietly = TRUE)
+comm.set.seed(123, diff = TRUE)
+
+ret.mb1 <- pmclust(X.std, K = 3, method.own.X = "single")
+comm.print(ret.mb1)
+
+ret.kms <- pkmeans(X.std, K = 3, method.own.X = "single")
+comm.print(ret.kms)
+
+finalize()
+    \end{lstlisting} %$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{exampleblock}{All instances have complete data}\pause
+    \begin{lstlisting}[title=iris\_common.r]
+library(pmclust, quietly = TRUE)
+
+### Load data
+X <- as.matrix(iris[, -5])
+
+### Standardize
+X.std <- scale(X)
+
+### Cluster
+library(pmclust, quietly = TRUE)
+comm.set.seed(123, diff = TRUE)
+
+ret.mb1 <- pmclust(X.std, K = 3, method.own.X = "common")
+comm.print(ret.mb1)
+
+ret.kms <- pkmeans(X.std, K = 3, method.own.X = "common")
+comm.print(ret.kms)
+
+finalize()
+    \end{lstlisting} %$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{exampleblock}{Data distributed by blocks of rows}\pause
+    \begin{lstlisting}[title=iris\_gbdr.r]
+library(pmclust, quietly = TRUE)
+
+### Load data
+X <- as.matrix(iris[, -5])
+
+### Distribute data
+jid <- get.jid(nrow(X))
+X.gbd <- X[jid,]
+
+### Standardize
+N <- allreduce(nrow(X.gbd))
+p <- ncol(X.gbd)
+mu <- allreduce(colSums(X.gbd / N))
+X.std <- sweep(X.gbd, 2, mu, FUN = "-")
+std <- sqrt(allreduce(colSums(X.std^2 / (N - 1))))
+X.std <- sweep(X.std, 2, std, FUN = "/")
+
+### Cluster
+library(pmclust, quietly = TRUE)
+comm.set.seed(123, diff = TRUE)
+
+ret.mb1 <- pmclust(X.std, K = 3)
+comm.print(ret.mb1)
+
+ret.kms <- pkmeans(X.std, K = 3)
+comm.print(ret.kms)
+
+finalize()
+    \end{lstlisting} %$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{exampleblock}{Data in block-cyclic ddmatrix layout}\pause
+    \begin{lstlisting}[title=iris\_dmat.r]
+library(pbdDMAT, quiet = TRUE)
+library(pmclust, quiet = TRUE)
+init.grid()
+
+### Load data
+X <- as.matrix(iris[, -5])
+
+### Convert to ddmatrix
+X.dmat <- as.ddmatrix(X)
+
+### Standardize
+X.std <- scale(X.dmat)
+
+### Cluster
+library(pmclust, quietly = TRUE)
+comm.set.seed(123, diff = TRUE)
+
+ret.mb1 <- pmclust(X.std, K = 3)
+comm.print(ret.mb1)
+
+ret.kms <- pkmeans(X.std, K = 3)
+comm.print(ret.kms)
+
+finalize()
+    \end{lstlisting} %$
+  \end{exampleblock}
+\end{frame}
+
