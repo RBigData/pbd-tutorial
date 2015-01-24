@@ -18,22 +18,23 @@
 
 
 \begin{frame}
-  \begin{block}{Example \showex :  Linear Regression Algorithm}\pause
+  \begin{block}{Example \showex :  Linear Regression Algorithm (Split
+      by blocks of rows)}\pause 
     \begin{enumerate}
      \item Locally, compute $tx = x^T$
-     \item Locally, compute $A = tx * x$. Query every other processor for this result and sum up 
-all 
-the results.
-     \item Locally, compute $B = tx * y$.  Query every other processor for this result and sum up 
-all the results.
-     \item Locally, compute $A^{-1} * B$
+     \item Locally, compute $A = tx * x$. Add across all processors.
+       (allreduce). 
+     \item Locally, compute $B = tx * y$.  Add across all
+       processors (allreduce). 
+     \item Locally, compute $A^{-1} * B$ 
     \end{enumerate}
   \end{block}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Example \showex :  Linear Regression Code}\pause
+  \begin{exampleblock}{Example \showex :  Linear Regression Code
+      (Split by blocks of rows.)}\pause
 \begin{lstlisting}[title=Serial Code]
 tX <- t(X)
 A <- tX %*% X

@@ -22,7 +22,7 @@
 \begin{frame}[fragile]
   \begin{exampleblock}{Data starts on single instance}\pause
     \begin{lstlisting}[title=iris\_single.r]
-library(pmclust, quietl = TRUE)
+library(pmclust, quiet = TRUE)
 
 if(comm.rank() == .SPMD.CT$rank.source){
   ### Load data
@@ -33,7 +33,7 @@ if(comm.rank() == .SPMD.CT$rank.source){
 } else X.std <- NULL
 
 ### Cluster
-library(pmclust, quietly = TRUE)
+library(pmclust, quiet = TRUE)
 comm.set.seed(123, diff = TRUE)
 
 ret.mb1 <- pmclust(X.std, K = 3, method.own.X = "single")
@@ -50,7 +50,7 @@ finalize()
 \begin{frame}[fragile]
   \begin{exampleblock}{All instances have complete data}\pause
     \begin{lstlisting}[title=iris\_common.r]
-library(pmclust, quietly = TRUE)
+library(pmclust, quiet = TRUE)
 
 ### Load data
 X <- as.matrix(iris[, -5])
@@ -59,7 +59,7 @@ X <- as.matrix(iris[, -5])
 X.std <- scale(X)
 
 ### Cluster
-library(pmclust, quietly = TRUE)
+library(pmclust, quiet = TRUE)
 comm.set.seed(123, diff = TRUE)
 
 ret.mb1 <- pmclust(X.std, K = 3, method.own.X = "common")
@@ -74,10 +74,9 @@ finalize()
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{exampleblock}{Data distributed by blocks of rows}\pause
+  \begin{exampleblock}{Data distributed by blocks of rows}\pause\small
     \begin{lstlisting}[title=iris\_gbdr.r]
-library(pmclust, quietly = TRUE)
-
+library(pmclust, quiet = TRUE)
 ### Load data
 X <- as.matrix(iris[, -5])
 
@@ -87,22 +86,17 @@ X.gbd <- X[jid,]
 
 ### Standardize
 N <- allreduce(nrow(X.gbd))
-p <- ncol(X.gbd)
 mu <- allreduce(colSums(X.gbd / N))
 X.std <- sweep(X.gbd, 2, mu, FUN = "-")
 std <- sqrt(allreduce(colSums(X.std^2 / (N - 1))))
 X.std <- sweep(X.std, 2, std, FUN = "/")
 
 ### Cluster
-library(pmclust, quietly = TRUE)
 comm.set.seed(123, diff = TRUE)
-
 ret.mb1 <- pmclust(X.std, K = 3)
 comm.print(ret.mb1)
-
 ret.kms <- pkmeans(X.std, K = 3)
 comm.print(ret.kms)
-
 finalize()
     \end{lstlisting} %$
   \end{exampleblock}
@@ -125,9 +119,7 @@ X.dmat <- as.ddmatrix(X)
 X.std <- scale(X.dmat)
 
 ### Cluster
-library(pmclust, quietly = TRUE)
 comm.set.seed(123, diff = TRUE)
-
 ret.mb1 <- pmclust(X.std, K = 3)
 comm.print(ret.mb1)
 

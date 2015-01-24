@@ -107,38 +107,6 @@ for(i in 1:max.plots)
   \end{exampleblock}
 \end{frame}
 
-% \begin{frame}[fragile,scale,shrink]
-%   \begin{exampleblock}{Plots in parallel}\pause
-% \begin{lstlisting}[title=gather.col First Attempt (1\_plot.r)]
-% gather.col <- function(x, num=min(ncol(x), comm.size()))
-% {
-%     ## gather complete columns of a global array to different ranks
-%     my.local <- as.vector(x[, comm.rank() + 1], proc.dest=comm.rank())
-%     my.local
-% }
-% \end{lstlisting}
-%   \end{exampleblock}
-% \end{frame}
-
-% \begin{frame}[fragile,scale,shrink]
-%   \begin{exampleblock}{Plots in parallel}\pause
-% \begin{lstlisting}[title=gather.col Second Attempt (2\_plot.r)]
-% gather.col <- function(x, num=min(ncol(x), comm.size()))
-% {
-%   ## gather complete columns of a global array to different ranks
-%   my.local <- NULL
-%   for(i in 1:num)
-%     {
-%       ## serial collection of unique data to each rank
-%       local <- as.vector(x[, i])
-%       if(comm.rank() + 1 == i) my.local <- local
-%     }
-%   my.local
-% }
-% \end{lstlisting}
-%   \end{exampleblock}
-% \end{frame}
-
 \begin{frame}[fragile,scale,shrink]
   \begin{exampleblock}{Plots in parallel}\pause
 \begin{lstlisting}[title=gather.col  (3\_plot.r)]
