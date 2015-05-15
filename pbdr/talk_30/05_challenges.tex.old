@@ -1,0 +1,57 @@
+\section{Challenges and Future}
+\makesubcontentsslides
+
+\subsection{Challenges}
+\makesubcontentsslidessec
+
+\begin{frame}
+  \begin{block}{Challenges}
+    \begin{itemize}[<+-|alert@+>]
+      \item Perceptions.\\
+      ``\emph{R?  Isn't that slow?}'' -- HPC people\\
+      ``\emph{HPC?  Isn't that hard?}'' -- R people
+      \item Bringing R community to large platforms
+      \item Distributed data input
+      \item Bringing interactivity back
+      \item Performance dependence on data layout
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Covariance Revisited: Data layout parameter calibration}
+    \begin{center}
+     \includegraphics[width=10cm, height=7cm]{../common/pics/cov_param}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\subsection{Future Work}
+\makesubcontentsslidessec
+
+\begin{frame}
+  \begin{block}{Future Work}
+  \begin{itemize}
+    \item Starting a 3 year NSF grant to
+      \begin{itemize}
+      \item Bring back interactivity via client/server
+      \item Simplify parallel data input
+      \item Begin DPLASMA integration
+      \item Outreach to the statistics community
+      \end{itemize}
+    \item Optimization for heterogeneous architectures
+    \item In-situ or staging use with simulations
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Where to learn more?}
+  \begin{itemize}
+    \item \url{http://r-pbd.org/}
+    \item \textbf{pbdDEMO} vignette
+    \item \url{Google group: RBigDataProgramming}
+  \end{itemize}
+  \end{block}
+\end{frame}
+

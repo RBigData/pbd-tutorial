@@ -1,0 +1,108 @@
+\section{Getting Started}
+\makesubcontentsslides
+
+
+\begin{frame}[fragile,shrink]
+  \begin{block}{Embarrassingly Parallel Computation}\pause
+    \vspace{-1ex}
+    \begin{minipage}[t]{.45\textwidth}
+      \begin{lstlisting}[title=EPforeach.R "asking for parallel",basicstyle=\tiny]
+library(doMPI, quiet=TRUE)
+cl <- startMPIcluster()
+registerDoMPI(cl)
+
+n <- 10
+myIn <- vector("list", n)
+
+myFun <- function(x) {
+  s <- sum(rnorm(10000))
+  rank <- mpi.comm.rank(comm=0)
+  return(paste(s, "from", rank))
+}
+
+results <- foreach(i = 1:n) %dopar% {
+  out <- myFun(myIn[[i]])
+}
+
+print(results)
+
+closeCluster(cl)
+mpi.quit()
+      \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.5\textwidth}
+      \begin{lstlisting}[title=EPpbdR.R "thinking parallel",basicstyle=\tiny]
+library(pbdMPI, quiet=TRUE)
+init()
+
+myChunk <- get.jid(n <- 10)
+myIn <- vector("list", length(myChunk))
+myOut <- vector("list", length(myChunk))
+
+myFun = function(x) {
+  s <- sum(rnorm(10000))
+  rank <- comm.rank()
+  return(paste(s, "from", rank))
+}
+
+for(i in 1:length(myChunk)) {
+  myOut[[i]] <- myFun(myIn[[i]])
+}
+results <- unlist(gather(myOut), recursive=FALSE)
+
+comm.print(results)
+finalize()
+      \end{lstlisting}
+    \end{minipage}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile,shrink]
+  \begin{block}{ddmatrix Computation}\pause
+    \vspace{-1ex}
+    \begin{lstlisting}[title=pbdRddmatrix.R "being parallel",basicstyle=\tiny]
+library(pbdDMAT, quiet=TRUE)
+init.grid()
+
+x <- ddmatrix(1:70, nrow=10, ncol=7)
+comm.print(x@Data, all.rank=TRUE)
+y <- as.rowblock(x)
+comm.print(y@Data, all.rank=TRUE)
+
+cx <- t(x) %*% x
+cx2 <- crossprod(x)
+
+all.equal(cx, cx2)
+
+comm.print(cx@Data, all.rank=TRUE)
+
+x.pca <- prcomp(x)
+
+comm.print(x.pca)
+comm.print(names(x.pca))
+comm.print(x.pca$rotation)
+comm.print(x.pca$rotation@Data, all.rank=TRUE)
+
+finalize()
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Where to learn more?}
+  \begin{itemize}
+    \item \url{http://r-pbd.org/}
+    \item \textbf{pbdDEMO} vignette
+    \item \url{Google group: RBigDataProgramming}
+    \item An In-Depth Introduction to Using R for HPC
+      \begin{itemize}
+      \item This afternoon: Claxton Education Bldg, Room 206, 1-5 PM
+      \item Webcast available: http://www.nimbios.org/tutorials/TT\_RforHPC
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}

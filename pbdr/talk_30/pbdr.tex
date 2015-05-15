@@ -1,0 +1,38 @@
+\input{../common/preamble/documentclass}
+%%% Presentation slides
+\renewcommand{\slidesfinal}{
+  \documentclass[handout,style=authortitle,aspectratio=43]{beamer}
+}
+\slidesfinal
+% \slidestest
+% \makehandouts
+
+%%% Styles and settings
+\input{../common/preamble/settings}
+
+\allpresou
+\neutralbg
+
+\myfulltitle{Taking Statistical Computing to Parallel Platforms \\
+  with R and pbdR}
+\myabbrvtitle{Parallel Statistical Computing}
+\myauthor{George Ostrouchov\\[1ex]
+  Oak Ridge National Laboratory and University of Tennessee}
+\myshortauthor{\pbdR Core Team}
+\mydate{\textcolor{blue}{UTK Business Analytics and
+    Statistics \\
+Knoxville, February 27, 2015}} % insert conference title
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\input{00_firstfew}
+\tableofcontents[hideallsubsections]
+\input{01_intro}
+\input{02_pbdR}
+\input{03_benchmarks}
+\input{04_applications}
+\input{05_challenges}
+\input{09_scripts}
+
+\end{document}
