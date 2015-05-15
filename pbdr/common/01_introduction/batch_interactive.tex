@@ -1,0 +1,51 @@
+\subsection{Batch and Interactive}
+\makesubcontentsslidessec
+
+\begin{frame}
+  \begin{block}{Data analysis is interactive!}
+    \pause
+    \begin{itemize}[<+-|alert@+>]
+    \item Data reduction to knowledge
+    \item Iterative process with same data
+      \begin{itemize}
+      \item Exploration, model construction
+      \item Diagnostics of fit and quantification of uncertainty
+      \item Interpretation
+      \end{itemize}
+    \item S (and R) interactive ``answer'' to batch data analysis
+    \item Efficient use of expensive people
+    \end{itemize}
+  \end{block}
+  \begin{block}{Supercomputing is batch!}
+    \pause
+    \begin{itemize}[<+-|alert@+>]
+    \item Traditionally data generation by simulation science
+    \item Data processed mostly by visualization
+    \item Efficient use of expensive platforms
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{When in Rome, do as the Romans do! \hfill Batch!}
+    \begin{itemize}
+    \item Parallel visualization systems (VisIt and ParaView) are
+      client-server (batch on server)
+    \item Current \pbdR packages address server side (batch)
+    \item \pbdR client under development
+      \begin{itemize}
+      \item Bridge laptop to login node to resource manager to cluster
+      \item Site configuration file
+      \item Manage relationship of big data (server side) to little
+        data (client side)
+      \end{itemize}
+    %\item Need intuitive parallel data input
+    \end{itemize}
+  \end{block}
+  \begin{block}{Batch and Interactive. Is there a difference?}
+    \begin{itemize}
+    \item High-level functional language: a function is a ``batch'' script
+    \item \R ``An interactive environment to use batch scripts''
+    \end{itemize}
+  \end{block}
+\end{frame}
