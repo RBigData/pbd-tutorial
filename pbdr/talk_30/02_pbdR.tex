@@ -15,8 +15,7 @@
     \item \emph{They're tested.} \emph{They're
         fast.}  \emph{They're scalable.}
     \item Many science communities are invested in their API.
-    \item You're not going to beat Jack Dongarra's lab at dense linear
-      algebra!
+    \item Data analysis uses much of the same math as simulation science.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -25,13 +24,11 @@
 \makesubcontentsslidessec
 
 \begin{frame}
-  \begin{block}{pbdMPI: Simplified, Extensible, and Fast Communication Operations}\pause
+  \begin{block}{pbdMPI: a High Level Interface to MPI}
     \begin{itemize}
-    \item S4 methods for collective communication: extensible to other
-      \R objects.
-    \item Default methods (like \code{Robj} in \pkg{Rmpi}) check for
-      data type: safe for general users.
     \item API is simplified: defaults in control objects.
+    \item S4 methods: extensible to complex \R objects.
+    \item Additional error checking
     \item Array and matrix methods without serialization: faster than
       \pkg{Rmpi}.
     \end{itemize}
@@ -39,10 +36,10 @@
       \vspace{0.2cm}\scriptsize
       \begin{tabular}{ll} \hline\hline
         \pkg{pbdMPI} (S4) & \pkg{Rmpi}                \\ \hline
-        \code{allgather}    & \code{mpi.allgather},
+        \code{\color{blue}allreduce}    & \code{mpi.allreduce}      \\
+        \code{\color{blue}allgather}    & \code{mpi.allgather},
         \code{mpi.allgatherv},
         \code{mpi.allgather.Robj} \\
-        \code{allreduce}    & \code{mpi.allreduce}      \\
         \code{bcast}        & \code{mpi.bcast},
         \code{mpi.bcast.Robj}     \\
         \code{gather}       & \code{mpi.gather},
@@ -62,7 +59,18 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{block}{pbdMPI: Does the Right Thing for You}\pause
+  \begin{block}{Integer?\qquad Not always obvious in R.}
+    \vspace{-.2cm}
+    \begin{lstlisting}
+> is.integer(1)
+[1] FALSE
+> is.integer(2)
+[1] FALSE
+> is.integer(1:2)
+[1] TRUE
+    \end{lstlisting}
+  \end{block}
+  \begin{block}{Often it's best to let the machine figure it out}\pause
     \begin{minipage}[t]{.475\textwidth}
       \begin{lstlisting}[title=Rmpi]
 # int
@@ -80,56 +88,112 @@ allreduce(x)
       % \hspace{1em}{\small S4. Batch only! (No spawning)}
     \end{minipage}
   \end{block}
-  \begin{block}{Types in R}
-    \vspace{-.2cm}
-    \begin{lstlisting}
-> is.integer(1)
-[1] FALSE
-> is.integer(2)
-[1] FALSE
-> is.integer(1:2)
-[1] TRUE
-    \end{lstlisting}
-  \end{block}
 \end{frame}
 
-% \begin{frame}[fragile]{Single Program (SPMD): Runs Asynchronous Parallel}
-%   \begin{exampleblock}{Rank Query Example}
-%     \centering
-%     \begin{lstlisting}[title=1\_rank.r]
-% library(pbdMPI, quiet = TRUE)
+
+
+% \begin{frame}[fragile,shrink]
+%   \begin{block}{Embarrassingly Parallel Computation}\pause
+%     \vspace{-1ex}
+%     \begin{minipage}[t]{.45\textwidth}
+%       \begin{lstlisting}[title=EPforeach.R "asking for parallel",basicstyle=\tiny]
+% library(doMPI, quiet=TRUE)
+% cl <- startMPIcluster()
+% registerDoMPI(cl)
+
+% n <- 10
+% myIn <- vector("list", n)
+
+% myFun <- function(x) {
+%   s <- sum(rnorm(10000))
+%   rank <- mpi.comm.rank(comm=0)
+%   return(paste(s, "from", rank))
+% }
+
+% results <- foreach(i = 1:n) %dopar% {
+%   out <- myFun(myIn[[i]])
+% }
+
+% print(results)
+
+% closeCluster(cl)
+% mpi.quit()
+%       \end{lstlisting}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}[t]{.5\textwidth}
+%       \begin{lstlisting}[title=EPpbdR.R "thinking parallel",basicstyle=\tiny]
+% library(pbdMPI, quiet=TRUE)
 % init()
 
-% my.rank <- comm.rank()
-% comm.print(my.rank, all.rank=TRUE)
+% myChunk <- get.jid(n <- 10)
+% myIn <- vector("list", length(myChunk))
+% myOut <- vector("list", length(myChunk))
 
+% myFun = function(x) {
+%   s <- sum(rnorm(10000))
+%   rank <- comm.rank()
+%   return(paste(s, "from", rank))
+% }
+
+% for(i in 1:length(myChunk)) {
+%   myOut[[i]] <- myFun(myIn[[i]])
+% }
+% results <- gather(myOut)
+
+% comm.print(results)
 % finalize()
-%     \end{lstlisting}
-%     \begin{columns}[t,onlytextwidth]
-%       \begin{column}{0.62\textwidth}
-%         \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
-% title=Execute this batch script via:]
-% mpirun -np 2 Rscript 1_rank.r
-%         \end{lstlisting}
-%       \end{column}
-%       \hfill
-%       \begin{column}{0.35\textwidth}
-%         \begin{lstlisting}[title=Sample Output:]
-% COMM.RANK = 0
-% [1] 0
-% COMM.RANK = 1
-% [1] 1
-%         \end{lstlisting}
-%       \end{column}
-%     \end{columns}
-%   \end{exampleblock}
+%       \end{lstlisting}
+%     \end{minipage}
+%   \end{block}
 % \end{frame}
+
+
+\begin{frame}[fragile]{SPMD Runs Many Copies of One Code}
+  \begin{exampleblock}{SPMD Hello World: a ``map-reduce'' to all}
+    \vspace{-1.5ex}
+    \centering
+    \begin{lstlisting}[title=map-reduce.r]
+library(pbdMPI, quiet = TRUE)
+init()
+
+## Your "Map" code
+n <- comm.rank() + 1
+
+## Now "Reduce" but give the result to all
+all_sum <- allreduce(n) # Sum is default
+
+text <- paste("Hello: n is", n, "sum is", all_sum )
+comm.print(text, all.rank=TRUE)
+
+finalize()
+    \end{lstlisting}
+    \vspace{-4.5ex}
+    \begin{columns}[t,onlytextwidth]
+      \begin{column}{0.54\textwidth}
+        \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
+title=Execute this batch script via:]
+mpirun -np 2 Rscript map-reduce.r
+        \end{lstlisting}
+      \end{column}
+      \hfill
+      \begin{column}{0.46\textwidth}
+        \begin{lstlisting}[title=Output:]
+COMM.RANK = 0
+[1] "Hello: n is 1 sum is 3"
+COMM.RANK = 1
+[1] "Hello: n is 2 sum is 3"
+        \end{lstlisting}
+      \end{column}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
 
 \subsection{pbdDMAT}
 \makesubcontentsslidessec
 
-\begin{frame}{Mapping a Matrix to Processors}
-  \begin{block}{Processor Grid Shapes}
+\begin{frame}{Dense Matrix and Vector Operations}
+  \begin{block}{A matrix is mapped to a processor grid shape}
     \begin{table}[ht]
       \centering
       % \begin{subfigure}[b]{0.23\textwidth}
@@ -287,7 +351,7 @@ x &= \left[
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{block}{\pbdR\ Example Syntax}
+  \begin{block}{\pbdR\ No change in syntax. \hfill Data redistribution functions.}
 \vspace{-2ex}
   \begin{lstlisting}
 x <- x[-1, 2:5]
@@ -318,132 +382,6 @@ Class:  matrix numeric numeric numeric numeric
   \end{block}
 \end{frame}
 
-% \begin{frame}[fragile]
-%   \begin{block}{Covariance \hspace{2.1cm}Serial\hspace{0.5cm}Parallel}
-%     \begin{minipage}{5cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=low-level]
-% N <- nrow(X)
-% mu <- colSums(X) / N
-% X <- sweep(X, 2, mu)
-% cX <- crossprod(X)/(N-1)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=high-level]
-% cX <- cov(X)
-%       \end{lstlisting}
-%     \end{minipage}
-%     \begin{minipage}{6.9cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title=low-level (row-block)]
-% N <- allreduce(nrow(X))
-% mu <- allreduce(colSums(X))/N
-% X <- sweep(X, 2, mu)
-% cX <- allreduce(crossprod(X))/(N-1)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title={\tt ddmatrix}]
-% cX <- cov(X)
-%       \end{lstlisting}
-%     \end{minipage}
-%   \end{block}
-%   \begin{block}{Regression models}
-%     \begin{minipage}{5cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=low-level]
-% tX <- t(X)
-% A <- tx %*% X
-% B <- tx %*% Y
-% ols <- solve(A, B)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=high-level]
-% Lm.X <- lm.fit(X, Y)
-%       \end{lstlisting}
-%     \end{minipage}
-%     \begin{minipage}{6.9cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title=low-level (row-block)]
-% tX <- t(X)
-% A <- allreduce(tx %*% X)
-% B <- allreduce(tx %*% Y)
-% ols <- solve(A, B)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title={\tt ddmatrix}]
-% Lm.X <- lm.fit(X, Y)
-%       \end{lstlisting}
-%     \end{minipage}
-%   \end{block}
-% \end{frame}
+\input{../common/06_dmatstats/randsvd.tex}
 
-% \subsection{Advanced R Profiling}
-% \makesubcontentsslidessec
-
-% \begin{frame}[fragile]
-%   \small
-%   \begin{block}{Profiling MPI codes with \textbf{pbdPROF}}
-%   \begin{minipage}[t]{.58\textwidth}
-%   \vspace{.2cm}
-%   1. Rebuild \pbdR\ packages
-% \vspace*{-.5cm}
-% \begin{lstlisting}[language=shl,title=\ ]
-% R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
-% \end{lstlisting}
-% 2. Run code
-% \vspace*{-.5cm}
-% \begin{lstlisting}[language=shl,title=\ ]
-% mpirun -np 64 Rscript my_script.R
-% \end{lstlisting}
-
-% 3. Analyze results
-% \vspace{-.5cm}
-% \begin{lstlisting}[title=\ ]
-% library(pbdPROF)
-% prof <- read.prof( "profiler_output.mpiP")
-% plot(prof, plot.type="messages2")
-% \end{lstlisting}
-%   \end{minipage}
-%   \hfill
-%   \begin{minipage}[t]{.4\textwidth}
-%   \vspace{0pt}
-%     \centering
-%     \includegraphics[scale=.25]{../common/pics/mpip}
-%     \\[.1cm]
-%     \includegraphics[scale=0.3]{../common/pics/gsoc}
-%   \end{minipage}
-%   \centering
-%   Supports fpmpi and mpiP.  Expanding to include support for TAU!
-%   \end{block}
-% \end{frame}
-
-% \begin{frame}[fragile]
-%   \small
-%   \begin{block}{Profiling with \textbf{pbdPAPI}}
-%     \begin{minipage}{.6\textwidth}
-%       \begin{itemize}
-%       \item Bindings for Performance Application Programming Interface (PAPI)
-%       \item Gathers detailed hardware counter data.
-%       \item High and low level interfaces
-%       \end{itemize}
-%     \end{minipage}
-%     \begin{minipage}{.38\textwidth}
-%       \centering
-%       \includegraphics[scale=0.12]{../common/pics/gsoc_2014}
-%     \end{minipage}
-%     \begin{center}
-%       \begin{tabular}{ll} \hline\hline
-%         Function & Description of Measurement \\ \hline
-%         \code{system.flips()} & Time, floating point instructions, and Mflips \\
-%         \code{system.flops()} & Time, floating point operations, and Mflops \\
-%         \code{system.cache()} & Cache misses, hits, accesses, and reads \\
-%         \code{system.epc()} & Events per cycle \\
-%         \code{system.idle()} & Idle cycles \\
-%         \code{system.cpuormem()} & CPU or RAM bound$^*$ \\
-%         \code{system.utilization()} & CPU utilization$^*$ \\
-%         \hline\hline
-%       \end{tabular}
-%     \end{center}
-%   \end{block}
-% \end{frame}
 

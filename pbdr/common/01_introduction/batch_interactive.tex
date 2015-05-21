@@ -20,20 +20,21 @@
     \pause
     \begin{itemize}[<+-|alert@+>]
     \item Traditionally data generation by simulation science
-    \item Data processed mostly by visualization
+    \item Data used mostly for visualization
     \item Efficient use of expensive platforms
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}
-  \begin{block}{When in Rome, do as the Romans do! \hfill Batch!}
+  \begin{block}{When in Rome, do as the Romans do! \hfill SPMD Batch!}
     \begin{itemize}
     \item Parallel visualization systems (VisIt and ParaView) are
       client-server (batch on server)
     \item Current \pbdR packages address server side (batch)
     \item \pbdR client under development
       \begin{itemize}
+      \item SPMD interactive (pbdCS, alpha on GitHub)
       \item Bridge laptop to login node to resource manager to cluster
       \item Site configuration file
       \item Manage relationship of big data (server side) to little
@@ -42,10 +43,11 @@
     %\item Need intuitive parallel data input
     \end{itemize}
   \end{block}
-  \begin{block}{Batch and Interactive. Is there a difference?}
+  \begin{block}{High-Level Language: Batch and Interactive Distinction Blurred.}
     \begin{itemize}
-    \item High-level functional language: a function is a ``batch'' script
+    \item A function is a ``batch'' script
     \item \R ``An interactive environment to use batch scripts''
+    \item Interactive matters most for development.
     \end{itemize}
   \end{block}
 \end{frame}
