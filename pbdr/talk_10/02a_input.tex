@@ -1,0 +1,26 @@
+\subsection{Data Input}
+
+\begin{frame}
+  \begin{block}{Parallel reading brings new issues}\pause
+    \begin{itemize}
+    \item How to partition data across nodes?
+    \item How to structure for scalable libraries?
+    \item Read directly into form needed or restructure?
+    \end{itemize}
+  \end{block}
+  \begin{block}{Answers}\pause
+    \begin{itemize}
+    \item Read the most natural way from disk
+      \begin{itemize}
+      \item C: by blocks of rows
+      \item FORTRAN: by blocks of columns
+      \item Binary, fixed format, or groups of files
+      \end{itemize}
+    \item Restructure after reading
+      \begin{itemize}
+      \item redistribute(), as.ddmatrix(), etc.
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+

@@ -9,6 +9,6 @@ gt <- gather(n)
 comm.print(unlist(gt))
 
 sm <- allreduce(n, op='sum')
-comm.print(sm, all.rank=T)
+comm.print(sm, all.rank=TRUE)
 
 finalize()

@@ -1,8 +1,7 @@
 \section{pbdR}
-\makesubcontentsslides
+%\makesubcontentsslides
 
-\subsection{The pbdR Project}
-\makesubcontentsslidessec
+\subsection{The Project}
 
 \begin{frame}{\pbdR Interfaces to Libraries: Sustainable Path}
   \vspace{-1ex}
@@ -11,20 +10,19 @@
   \scriptsize
   \begin{block}{Why use HPC libraries?}
     \begin{itemize}[<+-|alert@+>]
-    \item The HPC community is 30 years beyond ``embarrassingly parallel.''
+    \item Data analysis uses much of the same math as simulation science.
+    \item 30+ years of building libraries
     \item \emph{They're tested.} \emph{They're
         fast.}  \emph{They're scalable.}
     \item Many science communities are invested in their API.
-    \item Data analysis uses much of the same math as simulation science.
     \end{itemize}
   \end{block}
 \end{frame}
 
 \subsection{pbdMPI}
-\makesubcontentsslidessec
 
 \begin{frame}
-  \begin{block}{pbdMPI: a High Level Interface to MPI}
+  \begin{block}{pbdMPI: new High Level Interface to MPI}
     \begin{itemize}
     \item API is simplified: defaults in control objects.
     \item S4 methods: extensible to complex \R objects.
@@ -70,7 +68,7 @@
 [1] TRUE
     \end{lstlisting}
   \end{block}
-  \begin{block}{It's best to let the machine figure it out}\pause
+  \begin{block}{pbdMPI lets the machine figure it out}\pause
     \begin{minipage}[t]{.475\textwidth}
       \begin{lstlisting}[title=Rmpi]
 # int
@@ -91,76 +89,18 @@ allreduce(x)
 \end{frame}
 
 
-
-% \begin{frame}[fragile,shrink]
-%   \begin{block}{Embarrassingly Parallel Computation}\pause
-%     \vspace{-1ex}
-%     \begin{minipage}[t]{.45\textwidth}
-%       \begin{lstlisting}[title=EPforeach.R "asking for parallel",basicstyle=\tiny]
-% library(doMPI, quiet=TRUE)
-% cl <- startMPIcluster()
-% registerDoMPI(cl)
-
-% n <- 10
-% myIn <- vector("list", n)
-
-% myFun <- function(x) {
-%   s <- sum(rnorm(10000))
-%   rank <- mpi.comm.rank(comm=0)
-%   return(paste(s, "from", rank))
-% }
-
-% results <- foreach(i = 1:n) %dopar% {
-%   out <- myFun(myIn[[i]])
-% }
-
-% print(results)
-
-% closeCluster(cl)
-% mpi.quit()
-%       \end{lstlisting}
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[t]{.5\textwidth}
-%       \begin{lstlisting}[title=EPpbdR.R "thinking parallel",basicstyle=\tiny]
-% library(pbdMPI, quiet=TRUE)
-% init()
-
-% myChunk <- get.jid(n <- 10)
-% myIn <- vector("list", length(myChunk))
-% myOut <- vector("list", length(myChunk))
-
-% myFun = function(x) {
-%   s <- sum(rnorm(10000))
-%   rank <- comm.rank()
-%   return(paste(s, "from", rank))
-% }
-
-% for(i in 1:length(myChunk)) {
-%   myOut[[i]] <- myFun(myIn[[i]])
-% }
-% results <- gather(myOut)
-
-% comm.print(results)
-% finalize()
-%       \end{lstlisting}
-%     \end{minipage}
-%   \end{block}
-% \end{frame}
-
-
-\begin{frame}[fragile]{SPMD Runs Many Copies of One Code}
-  \begin{exampleblock}{SPMD Hello World: a simple ``map-reduce'' to all}
+\begin{frame}[fragile]{SPMD: Run Many Copies of One Code}
+  \begin{exampleblock}{SPMD ``Hello World:'' a simple ``map\_reduce'' to all}
     \vspace{-1.5ex}
     \centering
-    \begin{lstlisting}[title=map-reduce.r]
+    \begin{lstlisting}[title=map\_reduce.r]
 library(pbdMPI, quiet = TRUE)
 init()
 
 ## Your "Map" code
 n <- comm.rank() + 1
 
-## Now "Reduce" but give the result to all
+## Now "Reduce" and give the result to all
 all_sum <- allreduce(n) # Sum is default
 
 text <- paste("Hello: n is", n, "sum is", all_sum )
@@ -189,20 +129,12 @@ COMM.RANK = 1
   \end{exampleblock}
 \end{frame}
 
-\subsection{pbdDMAT}
-\makesubcontentsslidessec
+\subsection{pbdDMAT (and pbdBASE, pbdSLAP)}
 
-\begin{frame}{Dense Matrix and Vector Operations}
+\begin{frame}{Distributed Dense Matrix and Vector Operations for Analytics}
   \begin{block}{A matrix is mapped to a processor grid shape}
     \begin{table}[ht]
       \centering
-      % \begin{subfigure}[b]{0.23\textwidth}
-      %   \centering
-      %   $\left[\begin{tabular}{l}
-      %       0 \\ 1 \\ 2 \\ 3 \\ 4 \\ 5
-      %     \end{tabular}\right]^T$
-      %   \caption{$1\times 6$}
-      % \end{subfigure}
       \begin{subfigure}[b]{0.23\textwidth}
         \centering
         $\left[\begin{tabular}{llllll}
@@ -382,6 +314,9 @@ Class:  matrix numeric numeric numeric numeric
   \end{block}
 \end{frame}
 
-\input{../common/06_dmatstats/randsvd.tex}
+\subsubsection{RandSVD}
+
+\input{../common/06_dmatstats/randsvd-slide}
+
 
 

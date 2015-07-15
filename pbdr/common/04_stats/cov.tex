@@ -7,7 +7,7 @@
   \begin{align*}
     cov(x_{n\times p}) = \frac{1}{n-1}\sum_{i=1}^n\left(x_i-\mu_x\right)^T\left(x_i-\mu_x\right),
   \end{align*}
-  where $x_i$ is row $i$ of $x$, and \\ $\mu_x$ is a vector of the column 
+  where $x_i$ is row $i$ of $x$, and \\ $\mu_x$ is a vector of the column
   means of $x$. \\[1em]
   Note that the sum can be broken up by blocks of rows.
   \end{block}
@@ -39,7 +39,7 @@ Cov.X <- crossprod(X) / (N-1)
 
 print(Cov.X)
 \end{lstlisting}
-  
+
 \begin{lstlisting}[title=Parallel Code]
 N <- allreduce(nrow(X.loc), op="sum")
 mu <- allreduce(colSums(X.loc) / N, op="sum")

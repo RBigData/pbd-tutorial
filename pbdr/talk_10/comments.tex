@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage{color}
+\begin{document}
+\definecolor{auburn}{rgb}{0.43, 0.21, 0.1}
+\section{Notes for pbdR: R for HPC Data Analysis}
+\begin{enumerate}
+\item The pbdR Core Team
+  \begin{itemize}
+  \item This is the team that built and continues to build the pbdR software
+  \end{itemize}
+\item Overview: Three parts
+  \begin{enumerate}
+  \item Brief introduction to R (mostly where to get help)
+  \item The pbdR infrastructure for HPC
+  \item The Demos
+  \end{enumerate}
+\item What is R?
+  \begin{itemize}
+  \item Built for interactive data analysis
+  \item Has roots in S laguage from Bell Labs in the 1970's
+  \item Extensible: The most comprehensive and cutting-edge collection
+    of techniques
+  \end{itemize}
+\item Who uses R?
+  \begin{itemize}
+  \item Microsoft bought Revolution Analytics
+  \item R Consortium recently formed: https://www.r-consortium.org/about
+  \end{itemize}
+\item Learning R?
+  \begin{itemize}
+  \item Many books and resources
+  \item {\em aRrgh} is a funny one you may enjoy if with a CS background
+  \end{itemize}
+\item Other resources?
+  \begin{itemize}
+  \item Task Views: give a great overview of the diversity in R
+  \item Stackoverflow is a great source of specific help
+  \end{itemize}
+\item pbdR: Sustainble Path, Infrastructure overview
+  \begin{itemize}
+  \item {\bf Linear algebra} that powers PDE solvers in simulation science
+    is the same math under much of data analysis
+  \item Excellent {\bf scalable librarie}s exist and continue to be
+    developed
+  \item Picture: {\bf Three flavors} of parallel hardware: distributed memory,
+    shared memory, and co-processor
+  \item Libraries are placed on the hardware they use
+  \item {\color{blue}Free libraries are blue}, {\color{auburn}vendor libraries are brown}
+  \item On the right are profiling libraries and I/O libraries
+  \item pbdR packages are indicated in blue bubbles, dashed lines
+    under development
+  \item The pbdDEMO package is a good place to start learning pbdR. It
+    contains a textbook-style vignette tutorial.
+  \item We first talk about pbdMPI
+  \end{itemize}
+\item pbdMPI
+  \begin{itemize}
+  \item pbdMPI is a high-level interface to MPI. The object oriented
+    code handles object details. Rmpi is an older package that is
+    closer to the low level API of MPI.
+  \end{itemize}
+\item pbdMPI
+  \begin{itemize}
+  \item An example where the machine knows more than you do so it's
+    preferable to let it do the work.
+  \end{itemize}
+\item SPMD pbdMPI
+  \begin{itemize}
+  \item An example SPMD script that can implement a simplified
+    MapReduce. Scripts are executed with mpirun.
+  \end{itemize}
+\item pbdDMAT
+  \begin{itemize}
+  \item ddmatrix methods map data onto a processor grid.
+  \end{itemize}
+\item pbdDMAT
+  \begin{itemize}
+  \item An example layout of a 9 x 9 block-cyclic matrix with a 2 x 2
+    block size on a 2 x 3 processor grid.
+  \item Easy methods are available to intuitively manage such layouts.
+  \end{itemize}
+\item pbdDMAT
+  \begin{itemize}
+  \item The local view of the 9 x 9 matrix.
+  \end{itemize}
+\item pbdDMAT
+  \begin{itemize}
+  \item The power of the ddmatrix class is {\bf no change in syntax} for
+    over 100 functions.
+  \item as.rowblock etc. intuitively manage data redistributions.
+  \end{itemize}
+\item Truncated SVD
+  \begin{itemize}
+  \item An example of fast prototyping of code from a journal.
+  \item Took an evening of reading the paper, then an hour to have
+    serial code working.
+  \end{itemize}
+\item Truncated SVD
+  \begin{itemize}
+  \item Parallel version has very few changes when working with ddmatrix.
+  \end{itemize}
+\item Truncated SVD
+  \begin{itemize}
+  \item Scaling results in one day!
+  \end{itemize}
+\item Data Input
+  \begin{itemize}
+  \item Parallel reading of data is the hardest part.
+  \item Read the most natural way, then redistribute.
+  \item Binary formats are best, pbdADIOS and pbdNCDF4 are available.
+  \end{itemize}
+\item Now the Demos
+\item Where to learn more?
+\end{enumerate}
+\section{Running pbdR Example Scripts}
+\begin{verbatim}
+$ ls scripts
+0_mpirun        3_mcsim.r       5b_cov_2.r      8a_rf_fgl.r
+1_hello.r       4_jid.r         6_ols.r         8b_rf_Boston.r
+2_gt.r          5a_cov_1.r      7_pca.r         9_cluster.r
+\end{verbatim}
+Each of these scripts can be run as shown in {\tt 0\_mpirun}.
+\begin{verbatim}
+$ cat 0_mpirun
+mpirun -np 4 Rscript _scriptfile_
+\end{verbatim}
+Scripts 8 and 9 will require installing two more R packages in the
+virtual machine image as follows. The command will pop up a list to
+choose a mirror site. Choose one close to your location.
+\begin{verbatim}
+$ R
+> install.packages("randomForest")
+> install.packages("pmclust")
+\end{verbatim}
+
+\paragraph{1\_hello.r} A "Hello World" with some printing function
+details.
+
+\paragraph{2\_gt.r} High-level basic MPI use and random number
+generation.
+
+\paragraph{3\_mcsim.r} The standard $\pi$ estimation via parallel
+simulation on a circle and a square.
+
+\paragraph{4\_jid.r} The {\tt get.jid( )} function helps splitting
+work among processors.
+
+\paragraph{5a\_cov\_1.r} Computes a covariance matrix to illustrate
+low-level tools that may be needed when building custom scripts.
+
+\paragraph{5a\_cov\_1.r} Computes a covariance matrix the easy way
+using ddmatrix class.
+
+\paragraph{6\_ols.r} Computes least squares regression via normal
+equations to illustrate low-level tools that may be needed when
+building custom scripts. For fitting linear models the easy and more
+numerically accurate way, there is a function lm.fit( ) that uses the
+ddmatrix class.
+
+\paragraph{7\_pca.r} Computes principal components decomposition of a
+random matrix and figures out how many components are needed to
+represent 90\% of variability. Because the matrix is random, thei
+should be just under 90\% of the columns.
+
+\paragraph{8a\_rf\_fgl.r} Random forest classification of the Forensic
+Glass Data set. Forest is generated in parallel, the classifier votes
+are combined, then used to classify new data in parallel (the example
+script actually classifies the same data).
+
+\paragraph{8b\_rf\_Boston.r} Random forest regression on Boston housing
+data. Proceeds as the script above. Predicts housing value.
+
+\paragraph{9\_cluster.r} Model based clustering (fits a Gaussian
+mixture model) and also computes k-means clustering (the special case
+of identically spherical Gaussians). Uses ddmatrix class to manage
+distributed data.
+
+\section{Running ADIOS/pbdR Heat Transfer Example}
+From virtual machine home directory:
+\begin{verbatim}
+$ cd Tutorial/heat_transfer
+$ mpirun -np 12 ./heat_transfer_adios1 heat  3 4    50 40   20 500
+$ cd R
+$ mpirun -np 4 Rscript test_heat.r
+\end{verbatim}
+To view the resulting png file sequences, which are split into four pieces on output:
+\begin{verbatim}
+$ eog *_0.png
+$ eog *_1.png
+$ eog *_2.png
+$ eog *_3.png
+\end{verbatim}
+The image is split because R does not have distributed graphics. A
+connection via VisIt is partially done and may not be far in the
+future. Currently pbdR can accept a communicator when running in situ
+with other software so the data access need not involve moving data.
+\end{document}

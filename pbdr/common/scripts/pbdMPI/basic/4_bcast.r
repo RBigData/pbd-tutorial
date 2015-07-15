@@ -7,10 +7,9 @@ if (comm.rank()==0){
   x <- NULL
 }
 
-y <- bcast(x, rank.source=0)
+y <- bcast(x)
 
-comm.print(y, rank=1)
-comm.print(x, rank=1)
-comm.print(x)
+comm.print(y, all.rank=TRUE)
+comm.print(x, all.rank=TRUE)
 
 finalize()

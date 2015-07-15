@@ -29,7 +29,7 @@ X <- new("ddmatrix", Data=matrix(x, nrow, my_ncol),
          dim=gdim, ldim=ldim, bldim=bldim, ICTXT=1)
 comm.print(X@Data, all.rank=TRUE)
 
-X <- redistribute(X, bldim=c(2, 2), ICTXT=0)
+X <- redistribute(X, bldim=c(2, 2), ICTXT=0) # ScaLAPACK-powered!
 comm.print(X@Data, all.rank=TRUE)
 
 Xprc <- prcomp(X) # ScaLAPACK-powered!
