@@ -6,7 +6,7 @@
 \begin{frame}
   \begin{block}{Message Passing Interface (MPI)}\pause
     \begin{itemize}
-      \item \textit{MPI}: Standard for managing communications (data and instructions) between 
+      \item \textit{MPI}: Standard for managing communications (data and instructions) between
 different nodes/computers.
       \item \textit{Implementations}:  OpenMPI, MPICH2, Cray MPT, \dots
       \item Enables parallelism (via communication) on distributed machines.
@@ -30,7 +30,7 @@ different nodes/computers.
       \item \textbf{Printing}:  Printing output from various ranks.\\
       \code{comm.print(x)}\\
       \code{comm.cat(x)}\\
-      \textbf{WARNING}: only use these functions on \emph{results}, never on yet-to-be-computed 
+      \textbf{WARNING}: only use these functions on \emph{results}, never on yet-to-be-computed
 things.\\
     \end{itemize}
   \end{block}
@@ -51,10 +51,10 @@ finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.62\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this
 script via:]
 mpirun -np 2 Rscript 1_rank.r
-\end{lstlisting}    
+\end{lstlisting}
     \end{column}
     \hfill
     \begin{column}{0.35\textwidth}
@@ -79,16 +79,18 @@ init()
 
 comm.print("Hello, world")
 
-comm.print("Hello again", all.rank=TRUE, quietly=TRUE)
+comm.print("Hello, world too")
+
+comm.print("Hello again", all.rank=TRUE, quiet=TRUE)
 
 finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this
 script via:]
 mpirun -np 2 Rscript 2_hello.r
-\end{lstlisting}    
+\end{lstlisting}
     \end{column}
     \hfill
     \begin{column}{0.4\textwidth}

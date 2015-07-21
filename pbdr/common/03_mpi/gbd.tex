@@ -45,7 +45,7 @@
 \begin{block}{Distributing a Matrix Across 4 Processors: Block Distribution}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.5\textwidth}
-      \hfill Data \hfill\ 
+      \hfill Data \hfill\
       \begin{align*}
       x &= \left[
             \begin{array}{lll}
@@ -64,13 +64,13 @@
       \end{align*}
     \end{column}
     \begin{column}{0.5\textwidth}
-    \hfill Processors \hfill\ 
+    \hfill Processors \hfill\
       \begin{align*}
       \begin{tabular}{l}
         \color{g11}0 \\
         \color{g12}1 \\
         \color{g13}2 \\
-        \color{g21}3 
+        \color{g21}3
       \end{tabular}
       \end{align*}
     \end{column}
@@ -83,7 +83,7 @@
 \begin{block}{Distributing a Matrix Across 4 Processors: Local Load Balance}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.5\textwidth}
-      \hfill Data \hfill\ 
+      \hfill Data \hfill\
       \begin{align*}
       x &= \left[
             \begin{array}{lll}
@@ -102,13 +102,13 @@
       \end{align*}
     \end{column}
     \begin{column}{0.5\textwidth}
-    \hfill Processors \hfill\ 
+    \hfill Processors \hfill\
       \begin{align*}
       \begin{tabular}{l}
         \color{g11}0 \\
         \color{g12}1 \\
         \color{g13}2 \\
-        \color{g21}3 
+        \color{g21}3
       \end{tabular}
       \end{align*}
     \end{column}
@@ -116,63 +116,5 @@
 \end{block}
 \end{frame}
 
-
-
-% 
-% \begin{frame}[fragile]
-%   \fontsize{8pt}{10}\selectfont
-%   \begin{block}{The \code{GBD} Data Structure}\pause
-%   Throughout the examples, we will make use of the Generalized Block Distribution, or \code{GBD} 
-% distributed matrix structure.
-%   \begin{columns}[c,onlytextwidth]
-%     \begin{column}{0.64\textwidth}
-%   \begin{enumerate}
-%     \item \code{GBD} is \emph{distributed}.  No processor owns all the data.
-%     \item \code{GBD} is \emph{non-overlapping}. Rows uniquely assigned to processors.
-%     \item \code{GBD} is \emph{row-contiguous}.  If a processor owns one element of a row, it owns 
-% the entire row.
-%     \item \code{GBD} is globally \emph{row-major}, locally \emph{column-major}.
-%     \item \code{GBD} is often \emph{locally balanced}, where each processor owns (almost) the same 
-% amount of data.  But this is not required.
-%     \end{enumerate}
-%     \end{column}
-%     \begin{column}{0.35\textwidth}
-%       \begin{align*}
-%       \left[
-%             \begin{array}{lll}
-%             \color{g11}x_{1,1} & \color{g11}x_{1,2} & \color{g11}x_{1,3} \\
-%             \color{g11}x_{2,1} & \color{g11}x_{2,2} & \color{g11}x_{2,3} \\
-%             \color{g11}x_{3,1} & \color{g11}x_{3,2} & \color{g11}x_{3,3} \\\hline
-%             \color{g12}x_{4,1} & \color{g12}x_{4,2} & \color{g12}x_{4,3} \\
-%             \color{g12}x_{5,1} & \color{g12}x_{5,2} & \color{g12}x_{5,3} \\
-%             \color{g12}x_{6,1} & \color{g12}x_{6,2} & \color{g12}x_{6,3} \\\hline
-%             \color{g13}x_{7,1} & \color{g13}x_{7,2} & \color{g13}x_{7,3} \\
-%             \color{g13}x_{8,1} & \color{g13}x_{8,2} & \color{g13}x_{8,3} \\\hline
-%             \color{g21}x_{9,1} & \color{g21}x_{9,2} & \color{g21}x_{9,3} \\\
-%             \color{g21}x_{10,1} & \color{g21}x_{10,2} & \color{g21}x_{10,3} \\
-%             \end{array}
-%       \right]
-%       \end{align*}
-%     \end{column}
-%   \end{columns}
-%   \begin{enumerate}
-%     \setcounter{enumi}{5}
-%     \item The last row of the local storage of a processor is adjacent (by global row) to the first 
-% row of the local storage of next processor (by communicator number) that owns data.
-%     \item \code{GBD} is (relatively) easy to understand, but can lead to bottlenecks if you have 
-% many more columns than rows.
-%   \end{enumerate}
-%   \end{block}
-% \end{frame}
-
-
-
-
-% \begin{frame}[fragile]
-%   \begin{block}{Quick Comment for GBD}\pause
-%     Local pieces of \code{GBD} distributed objects will be given the suffix \code{.gbd} to visually 
-% help distinguish them from global objects.  This suffix carries no semantic meaning.
-%   \end{block}
-% \end{frame}
 
 

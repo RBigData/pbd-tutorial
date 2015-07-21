@@ -2,21 +2,21 @@
 \begin{frame}[shrink]
   \begin{block}{MPI Operations (2 of 2)}\pause
     \begin{itemize}
-      \item \textbf{Reduction}:  each processor has a number \code{x}; add all of them up, find the 
+      \item \textbf{Reduction}:  each processor has a number \code{x}; add all of them up, find the
 largest/smallest, \dots .\\
       \code{reduce(x, op='sum')} --- reduce to one\\
       \code{allreduce(x, op='sum')} --- reduce to all\\[.4cm]
       %
-      \item \textbf{Gather}: each processor has a number; create a new object on some processor 
+      \item \textbf{Gather}: each processor has a number; create a new object on some processor
 containing all of those numbers.\\
       \code{gather(x)} --- gather to one\\
       \code{allgather(x)} --- gather to all\\[.4cm]
       %
-      \item \textbf{Broadcast}: one processor has a number \code{x} that every other processor 
+      \item \textbf{Broadcast}: one processor has a number \code{x} that every other processor
 should also have.\\
       \code{bcast(x)}
       \\[.4cm]
-      \item \textbf{Barrier}: ``computation wall''; no processor can proceed until \emph{all} 
+      \item \textbf{Barrier}: ``computation wall''; no processor can proceed until \emph{all}
 processors can proceed.\\
 \code{barrier()}
     \end{itemize}
@@ -29,7 +29,7 @@ processors can proceed.\\
 \begin{frame}[fragile,shrink]
   \begin{exampleblock}{Quick Example 3}
 \begin{lstlisting}[title=Reduce and Gather: 3\_gt.r]
-library(pbdMPI, quietly=TRUE)
+library(pbdMPI, quiet=TRUE)
 init()
 
 comm.set.seed(diff=TRUE)
@@ -40,16 +40,16 @@ gt <- gather(n)
 comm.print(unlist(gt))
 
 sm <- allreduce(n, op='sum')
-comm.print(sm, all.rank=T)
+comm.print(sm, all.rank=TRUE)
 
 finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this
 script via:]
 mpirun -np 2 Rscript 3_gt.r
-\end{lstlisting}    
+\end{lstlisting}
     \end{column}
     \hfill
     \begin{column}{0.4\textwidth}
@@ -70,7 +70,7 @@ COMM.RANK = 1
 \begin{frame}[fragile,shrink]
   \begin{exampleblock}{Quick Example 4}
 \begin{lstlisting}[title=Broadcast: 4\_bcast.r]
-library(pbdMPI, quietly=T)
+library(pbdMPI, quiet=TRUE)
 init()
 
 if (comm.rank()==0){
@@ -79,15 +79,16 @@ if (comm.rank()==0){
   x <- NULL
 }
 
-y <- bcast(x, rank.source=0)
+y <- bcast(x)
 
-comm.print(y, rank=1)
+comm.print(y, all.rank=TRUE)
+comm.print(x, all.rank=TRUE)
 
 finalize()
 \end{lstlisting}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.58\textwidth}
-\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this 
+\begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},title=Execute this
 script via:]
 mpirun -np 2 Rscript 4_bcast.r
 \end{lstlisting}
@@ -95,10 +96,11 @@ mpirun -np 2 Rscript 4_bcast.r
     \hfill
     \begin{column}{0.4\textwidth}
 \begin{lstlisting}[title=Sample Output:]
-COMM.RANK = 1
+COMM.RANK = 0
      [,1] [,2]
 [1,]    1    3
 [2,]    2    4
+. . .
 \end{lstlisting}
     \end{column}
 ​  \end{columns}
