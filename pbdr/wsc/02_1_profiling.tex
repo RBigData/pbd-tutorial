@@ -1,0 +1,150 @@
+\section{Profiling and Benchmarking}
+\makesubcontentsslides
+
+
+%%% The need for profiling
+\subsection{Why Profile?}
+\makesubcontentsslidessec
+
+\begin{frame}
+  \begin{block}{Why Profile?}
+  \begin{itemize}
+    \item Because performance matters.
+    \item Bad practices scale up!
+    \item Your bottlenecks may surprise you.
+    \item Because R is dumb.
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]{Compilers often correct bad behavior\dots}
+  \begin{center}
+\begin{minipage}{.4\textwidth}
+\vspace{0pt}
+\begin{lstlisting}[title=A Really Dumb Loop,language=Rcpp]
+int main(){
+    int x, i;
+    for (i=0; i<10; i++)
+        x = 1;
+    return 0;
+}
+\end{lstlisting}
+\begin{lstlisting}[language=shl,title=clang -O3 example.c]
+main:
+        .cfi_startproc
+# BB#0:
+        xorl    %eax, %eax
+        ret
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{.57\textwidth}
+\begin{lstlisting}[language=shl,title=clang example.c]
+main:
+        .cfi_startproc
+# BB#0:
+        movl    $0, -4(%rsp)
+        movl    $0, -12(%rsp)
+.LBB0_1:
+        cmpl    $10, -12(%rsp)
+        jge     .LBB0_4
+# BB#2:
+        movl    $1, -8(%rsp)
+# BB#3:
+        movl    -12(%rsp), %eax
+        addl    $1, %eax
+        movl    %eax, -12(%rsp)
+        jmp     .LBB0_1
+.LBB0_4:
+        movl    $0, %eax
+        ret
+\end{lstlisting}
+\end{minipage}
+
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{R will not!}
+    \begin{center}
+\begin{minipage}[t]{.45\textwidth}
+\begin{lstlisting}[title=Dumb Loop,escapeinside={(*@}{@*)}]
+
+
+for (i in 1:n){
+  Y <- (*@ \textcolor{red}{t(A)} @*) %*% Q
+  Q <- qr.Q(qr(Y))
+  Y <- A %*% Q
+  Q <- qr.Q(qr(Y))
+}
+
+Q
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}[t]{.45\textwidth}
+\begin{lstlisting}[title=Better Loop,escapeinside={(*@}{@*)}]
+(*@ \textcolor{red}{tA <- t(A)} @*)
+
+for (i in 1:n){
+  Y <- tA %*% Q
+  Q <- qr.Q(qr(Y))
+  Y <- A %*% Q
+  Q <- qr.Q(qr(Y))
+}
+
+Q
+\end{lstlisting}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Example from a Real R Package}
+    \begin{center}
+\begin{minipage}[t]{.6\textwidth}
+\vspace{-.9cm}
+\begin{lstlisting}[title=Exerpt from Original function,escapeinside={(*@}{@*)}]
+while(i<=N){
+  for(j in 1:i){
+    (*@ \textcolor{red}{d.k <- as.matrix(x)[l==j,l==j]}@*)
+      ...
+\end{lstlisting}
+\vspace{-.3cm}
+\begin{lstlisting}[title=Exerpt from Modified function,escapeinside={(*@}{@*)}]
+(*@\textcolor{red}{x.mat <- as.matrix(x)}@*)
+
+while(i<=N){
+  for(j in 1:i){
+    (*@ \textcolor{red}{d.k <- x.mat[l==j,l==j]}
+@*)
+      ...
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}[t]{.34\textwidth}
+\vspace{1.1cm}
+By changing just 1 line of code, performance of the main
+method improved by \textbf{over 3.5$\times$} !
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Some Thoughts}
+    \begin{itemize}
+      \item R is slow.
+      \item Bad programs are slower.
+      \item High-level language: one statement can touch a lot of data
+      \item R will not fix bad programming
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%% Basic profiling
+\input{../common/00_profiling/basic_extended.tex}
+
+%%% Advanced profiling
+%\input{../common/00_profiling/advanced.tex}
+
+\input{../common/00_profiling/summary.tex}
