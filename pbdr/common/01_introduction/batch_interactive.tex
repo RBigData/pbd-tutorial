@@ -16,18 +16,25 @@
     \item Efficient use of expensive people
     \end{itemize}
   \end{block}
-  \begin{block}{Supercomputing is batch!}
+  \begin{block}{Big platform computing is batch!}
     \pause
     \begin{itemize}[<+-|alert@+>]
+    \item Libraries built for batch computing
     \item Traditionally data generation by simulation science
-    \item Data used mostly for visualization
     \item Efficient use of expensive platforms
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}
-  \begin{block}{When in Rome, do as the Romans do! \hfill SPMD Batch!}
+  \begin{block}{High-Level Language: Batch and Interactive Distinction Blurred.}
+    \begin{itemize}
+    \item A function is a ``batch'' script
+    \item \R ``An interactive environment to use batch scripts''
+    \end{itemize}
+  \end{block}
+  \begin{block}{Ideal solution: Interactive Client with a Batch
+      Server} 
     \begin{itemize}
     \item Parallel visualization systems (VisIt and ParaView) are
       client-server (batch on server)
@@ -40,14 +47,6 @@
       \item Manage relationship of big data (server side) to little
         data (client side)
       \end{itemize}
-    %\item Need intuitive parallel data input
-    \end{itemize}
-  \end{block}
-  \begin{block}{High-Level Language: Batch and Interactive Distinction Blurred.}
-    \begin{itemize}
-    \item A function is a ``batch'' script
-    \item \R ``An interactive environment to use batch scripts''
-    \item Interactive matters most for development.
     \end{itemize}
   \end{block}
 \end{frame}

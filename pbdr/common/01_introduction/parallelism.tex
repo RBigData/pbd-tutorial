@@ -74,120 +74,55 @@
 % \end{frame}
 
 
-
-
-% \subsection{Common Terminology}
-
-
 \begin{frame}
-  \begin{block}{Difficulty in Parallelism}
-  \begin{enumerate}[<+-|alert@+>]
+  \begin{block}{Common Terminology}
+    \begin{itemize}[<+-|alert@+>]
     \item \emph{Implicit parallelism}:  Parallel details hidden from user
     \item \emph{Explicit parallelism}:  Some assembly required\dots
     \item \emph{Embarrassingly Parallel}:  Also called \emph{loosely coupled}.  
-Obvious how to make parallel; lots of independence in computations.
-    \item \emph{Tightly Coupled}:  Opposite of embarrassingly parallel; lots of 
-dependence in computations.
-  \end{enumerate}  
-  \end{block}
-\end{frame}
-
-
-\begin{frame}
-  \begin{block}{Speedup}
-  \begin{itemize}
-    \item \emph{Wallclock Time}:  Time of the clock on the wall from start to 
-finish
-    \item \emph{Speedup}:  unitless measure of improvement; more is better.
-  \begin{align*}
-   S_{n_1, n_2} =  \frac{\text{Run time for } n_1 \text{ cores}}{\text{Run time 
-for } n_2 \text{ cores}}
-  \end{align*}
-  \begin{itemize}
-    \item   $n_1$ is often taken to be 1
-    \item In this case, comparing parallel algorithm to serial algorithm
-  \end{itemize}
+      Obvious how to make parallel; lots of independence in computations.
+    \item \emph{Tightly Coupled}:  Opposite of embarrassingly
+      parallel; lots of dependence in computations.
+    \item \emph{Wallclock Time}:  Time of the clock on the wall from
+      start to finish
+    \item \emph{Speedup}:  unitless measure of improvement; more is
+      better. 
+      \begin{align*}
+        S_{n_1, n_2} =  \frac{\text{Run time for } n_1 \text{
+        cores}}{\text{Run time  
+        for } n_2 \text{ cores}}
+      \end{align*}
+      $n_1$ is often taken to be 1, comparing parallel algorithm to
+      serial algorithm 
   \end{itemize}
   \end{block}
 \end{frame}
 
 
 \begin{frame}
-   \begin{center}
+  \begin{center}
     \begin{minipage}{.475\textwidth}
-    \begin{block}{Good Speedup}
-      \centering
-      \includegraphics[width=.95\textwidth]{../common/pics/scale_good}
-    \end{block}
+      \begin{block}{Strong Scaling: Speedup}
+        \begin{center}
+          \includegraphics[width=.95\textwidth]{../common/pics/scaling/scaling_strong}
+        \end{center}
+        Fixed \textbf{total} problem size.
+      \end{block}
     \end{minipage}
     \hspace{.1cm}
     \begin{minipage}{.475\textwidth}
-    \begin{block}{Bad Speedup}
-      \centering
-      \includegraphics[width=.95\textwidth]{../common/pics/scale_bad}
-    \end{block}
+      \begin{block}{Weak Scaling: Overhead}
+        \begin{center}
+          \includegraphics[width=.95\textwidth]{../common/pics/scaling/scaling_weak}
+        \end{center}
+        Fixed \textbf{local} (per core) problem size.
+      \end{block}
     \end{minipage}
-    \end{center}
+  \end{center}
 \end{frame}
 
 
-\begin{frame}
-  \begin{block}{Scalability and Benchmarking}
-  \begin{enumerate}[<+-|alert@+>]
-    \item \emph{Strong}:  Fixed \textbf{total} problem size.\\
-    Less work per core as more cores are added.\\[.4cm]
-    \item \emph{Weak}:  Fixed \textbf{local} (per core) problem size.\\
-    Same work per core as more cores are added.
-  \end{enumerate}  
-  \end{block}
-\end{frame}
-
-
-\begin{frame}
-   \begin{center}
-    \begin{minipage}{.475\textwidth}
-    \begin{block}{Good Strong Scaling}
-      \centering
-      \includegraphics[width=.95\textwidth]{../common/pics/scaling_strong}
-    \end{block}
-    \end{minipage}
-    \hspace{.1cm}
-    \begin{minipage}{.475\textwidth}
-    \begin{block}{Good Weak Scaling}
-      \centering
-      \includegraphics[width=.95\textwidth]{../common/pics/scaling_weak}
-    \end{block}
-    \end{minipage}
-    \end{center}
-\end{frame}
-
-
-
-\begin{frame}{Shared and Distributed Memory Machines}
-   \begin{center}
-    \begin{minipage}{.475\textwidth}
-    \begin{block}{Shared Memory}
-     Direct access to read/change memory (one node) \vspace{.3cm} \ 
-      \begin{center}
-      \includegraphics[width=.95\textwidth]{../common/pics/arch_shared}
-      \end{center}
-      \vspace{.3cm} \
-    \end{block}
-    \end{minipage}
-    \hspace{.1cm}
-    \begin{minipage}{.475\textwidth}
-    \begin{block}{Distributed}
-    No direct access to read/change memory (many nodes); requires communication
-      \begin{center}
-      \includegraphics[width=.95\textwidth]{../common/pics/arch_distributed}
-      \end{center}
-    \end{block}
-    \end{minipage}
-    \end{center}
-\end{frame}
-
-
-\begin{frame}{Shared and Distributed Memory Machines}
+\begin{frame}{Distributed Architectures Enable Larger Scale}
    \begin{center}
     \begin{minipage}[t]{.47\textwidth}
     \begin{block}{Shared Memory Machines}

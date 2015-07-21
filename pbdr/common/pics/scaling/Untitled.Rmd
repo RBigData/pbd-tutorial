@@ -1,0 +1,34 @@
+---
+title: "Scaling"
+output: html_document
+---
+
+```{r}
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(reshape2)
+library(ggplot2)
+setwd("~/pbdR/Git/pbd-tutorial/pbdr/common/pics/scaling")
+powers <- 0:10
+cores <- 2^powers
+perfect_strong <- cores
+one_weak <- 5
+perfect_weak <- rep(one_weak, length(cores))
+good_strong <- cores*(0.99^(powers*powers))
+bad_strong <- cores*(0.95^(powers*powers))
+good_weak <- perfect_weak + (1:length(cores) - 1)*one_weak*0.05
+bad_weak <- perfect_weak + (1:length(cores) - 1)*one_weak*0.5
+df <- data.frame(cores, perfect_strong, perfect_weak, good_strong, good_weak, bad_strong, bad_weak)
+df.m <- melt(df, id="cores")
+df.m$variable <- levels(df.m$variable)[df.m$variable]
+df.m <- separate(df.m, variable, c("kind", "scaling"), "_")
+png("scaling_strong.png", width=480, height=350)
+p <- ggplot(filter(df.m, scaling == "strong"), aes(cores, value, color=kind)) + geom_point() + geom_line() + scale_y_log10() + scale_x_log10()
+print(p)
+dev.off()
+png("scaling_weak.png", width=480, height=350)
+p <- ggplot(filter(df.m, scaling == "weak"), aes(cores, value, color=kind)) + geom_point() + geom_line() + scale_x_log10()
+print(p)
+dev.off()
+```
