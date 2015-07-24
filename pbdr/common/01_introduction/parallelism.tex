@@ -1,28 +1,28 @@
-\subsection{A Concise Introduction to Parallelism}
-\makesubcontentsslidessec
+%\subsection{A Concise Introduction to Parallelism}
+%\makesubcontentsslidessec
 
 
-\begin{frame}
-  \begin{block}{Parallelism}\pause
-    \begin{center}
-    \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Serial Programming}
-      \begin{center}
-      \includegraphics[width=.975\textwidth]{../common/pics/parallelism1}
-      \end{center}
-      \end{block}
-    \end{minipage}
-    \hspace{.15cm}
-    \begin{minipage}{.46\textwidth}
-    \begin{block}{\centering Parallel Programming}
-      \begin{center}
-      \includegraphics[width=.975\textwidth]{../common/pics/parallelism2}
-      \end{center}
-      \end{block}
-    \end{minipage}
-    \end{center}
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \begin{block}{Parallelism}\pause
+%     \begin{center}
+%     \begin{minipage}{.46\textwidth}
+%     \begin{block}{\centering Serial Programming}
+%       \begin{center}
+%       \includegraphics[width=.975\textwidth]{../common/pics/parallelism1}
+%       \end{center}
+%       \end{block}
+%     \end{minipage}
+%     \hspace{.15cm}
+%     \begin{minipage}{.46\textwidth}
+%     \begin{block}{\centering Parallel Programming}
+%       \begin{center}
+%       \includegraphics[width=.975\textwidth]{../common/pics/parallelism2}
+%       \end{center}
+%       \end{block}
+%     \end{minipage}
+%     \end{center}
+%   \end{block}
+% \end{frame}
 
 % \begin{frame}
 %   \begin{block}{Parallelism}\pause
@@ -99,7 +99,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}{Measuring Parallelism: Scalability}
   \begin{center}
     \begin{minipage}{.475\textwidth}
       \begin{block}{Strong Scaling: Speedup}
@@ -122,27 +122,82 @@
 \end{frame}
 
 
+\begin{frame}{Parallel Programming Paradigms}
+  \begin{block}{Mostly Shared Memory (view from serial)}
+    \begin{itemize}
+    \item Manager-Workers (Master-Slaves)
+      \begin{itemize}
+      \item One process hands out work and merges results
+      \end{itemize}
+    \item Fork-Join
+      \begin{itemize}
+      \item One process splits into many then results are joined
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+  \begin{block}{Mostly Distributed Memory (view from parallel)}
+    \begin{itemize}
+    \item Map-Reduce (on a virtual matrix)
+      \begin{itemize}
+      \item Map = Row operations
+      \item Reduce = Column operations
+      \item Shuffle = Transpose (Hidden from user)
+      \end{itemize}
+    \item Single Program Multiple Data (SPMD)
+      \begin{itemize}
+      \item Many copies of one program run in parallel
+      \item A 30+ year tradition in HPC
+      \item Appears harder than it is
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
 \begin{frame}{Distributed Architectures Enable Larger Scale}
-   \begin{center}
+  \begin{center}
     \begin{minipage}[t]{.47\textwidth}
-    \begin{block}{Shared Memory Machines}
-    \begin{center}
-    Thousands of cores\\[.2cm]
-    \includegraphics[scale=.65]{../common/pics/nautilus}\\
-    {\tiny \emph{Nautilus}, University of Tennessee\\1024 cores \\4 TB RAM\\}
-    \end{center}
-    \end{block}
+      \begin{block}{Shared Memory Machines}
+        \begin{center}
+          Thousands of cores\\[.2cm]
+          \includegraphics[scale=.65]{../common/pics/nautilus}\\
+          {\tiny \emph{Nautilus}, University of Tennessee\\1024 cores
+            \\4 TB RAM\\}
+        \end{center}
+      \end{block}
     \end{minipage}
     \hspace{.1cm}
     \begin{minipage}[t]{.47\textwidth}
-    \begin{block}{Distributed Memory Machines}
-    \begin{center}
-    Hundreds of thousands of cores\\[.2cm]
-    \includegraphics[width=.95\textwidth]{../common/pics/kraken}\\
-    {\tiny \emph{Kraken}, University of Tennessee\\ 112,896 cores \\147 TB 
-RAM\\}
-    \end{center}
-    \end{block}
+      \begin{block}{Distributed Memory Machines}
+        \begin{center}
+          Hundreds of thousands of cores\\[.2cm]
+          \includegraphics[width=.95\textwidth]{../common/pics/kraken}\\
+          {\tiny \emph{Kraken}, University of Tennessee\\ 112,896
+            cores \\147 TB RAM\\}
+        \end{center}
+      \end{block}
     \end{minipage}
-    \end{center}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Random Number Generators in Parallel}
+    \begin{itemize}
+    \item Guarantee stream independence and reproducibility
+    \item Aided by \pkg{rlecuyer}, \pkg{rsprng}, and \pkg{doRNG} packages.
+    \item Be careful!
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Parallel Programming:  In Theory}
+  \begin{center}
+    \includegraphics[scale=.7]{../common/pics/parallel/mt_theory}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Parallel Programming:  In Practice}
+  \begin{center}
+    \includegraphics[scale=.7]{../common/pics/parallel/mt_practice}
+  \end{center}
 \end{frame}

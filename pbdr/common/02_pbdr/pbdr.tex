@@ -2,27 +2,45 @@
 \makesubcontentsslidessec
 
 
+% \begin{frame}
+%   \begin{block}{Programming with Big Data in R (pbdR)}
+%        \centering Striving for \emph{Productivity, Portability, Performance}\\[.4cm]\pause
+%   \begin{columns}[onlytextwidth]
+%     \begin{column}{0.30\textwidth}
+%       \centering
+%        \includegraphics[width=3.4cm]{../common/pics/simple}\\[.2cm]
+%     \end{column}
+%     \begin{column}{0.65\textwidth}
+%   \begin{itemize}[<+-|alert@+>]
+%     \item \emph{Free}\footnote{MPL, BSD, and GPL licensed} R packages.
+%     \item Bridging high-performance compiled code with high-productivity of R
+%     \item Portable, multiplatform packages available on CRAN and maintained on
+% GitHub.
+%     \item Scalable, big data analytics.
+%     \item Offers implicit and explicit parallelism.
+%     \item Methods have syntax \emph{identical} to R.
+%   \end{itemize}
+%     \end{column}
+% ​  \end{columns}
+% \end{block}
+% \end{frame}
 \begin{frame}
   \begin{block}{Programming with Big Data in R (pbdR)}
-       \centering Striving for \emph{Productivity, Portability, Performance}\\[.4cm]\pause
-  \begin{columns}[onlytextwidth]
-    \begin{column}{0.30\textwidth}
-      \centering
-       \includegraphics[width=3.4cm]{../common/pics/simple}\\[.2cm]
-    \end{column}
-    \begin{column}{0.65\textwidth}
-  \begin{itemize}[<+-|alert@+>]
-    \item \emph{Free}\footnote{MPL, BSD, and GPL licensed} R packages.
-    \item Bridging high-performance compiled code with high-productivity of R
-    \item Portable, multiplatform packages available on CRAN and maintained on
-GitHub.
-    \item Scalable, big data analytics.
-    \item Offers implicit and explicit parallelism.
-    \item Methods have syntax \emph{identical} to R.
-  \end{itemize}
-    \end{column}
-​  \end{columns}
-\end{block}
+    Strive for \emph{Productivity, Portability, Performance}
+    \hfill\includegraphics[width=3.4cm]{../common/pics/simple} \\[1ex]
+    \begin{itemize}[<+-|alert@+>]
+    \item Bridge high-performance compiled code with
+      high-productivity of R 
+    \item Keep syntax \emph{identical} to R, when possible.
+    \item Software reuse philosophy:
+      \begin{itemize}
+      \item Don't make up new stuff if it's already solved in HPC
+      \item Introduce HPC standards with R flavor
+      \item Use scalable HPC libraries with R convenience
+      \end{itemize}
+    \item Simplify and use R intelligence where possible
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 
@@ -48,37 +66,36 @@ GitHub.
 
 %%% MPI
 \begin{frame}[fragile]
-  \begin{block}{Simple Interface for MPI Operations with \textbf{pbdMPI}}\pause
-\begin{minipage}[t]{.475\textwidth}
-\begin{lstlisting}[title=Rmpi]
-# int
-mpi.allreduce(x, type=1)
-# double
-mpi.allreduce(x, type=2)
-\end{lstlisting}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.475\textwidth}
-\begin{lstlisting}[title=pbdMPI]
-allreduce(x)
-\end{lstlisting}
-\end{minipage}
-\end{block}
-%
-\begin{block}{Types in R}
-\vspace{-.2cm}
-\begin{lstlisting}
+  \begin{block}{Integer?\qquad Not always obvious in R.}
+    \vspace{-.2cm}
+    \begin{lstlisting}
 > is.integer(1)
 [1] FALSE
 > is.integer(2)
 [1] FALSE
 > is.integer(1:2)
 [1] TRUE
-\end{lstlisting}
-\end{block}
+    \end{lstlisting}
+  \end{block}
+  \begin{block}{pbdMPI lets R figure it out}\pause
+    \begin{minipage}[t]{.475\textwidth}
+      \begin{lstlisting}[title=Rmpi]
+# int
+mpi.allreduce(x, type=1)
+# double
+mpi.allreduce(x, type=2)
+      \end{lstlisting}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{.475\textwidth}
+      \begin{lstlisting}[title=pbdMPI]
+allreduce(x)
+      \end{lstlisting}
+      % \vspace{1em}
+      % \hspace{1em}{\small S4. Batch only! (No spawning)}
+    \end{minipage}
+  \end{block}
 \end{frame}
-
-
 
 
 %%% DMAT/BASE/SLAP

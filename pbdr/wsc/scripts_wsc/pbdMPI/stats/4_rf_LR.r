@@ -10,7 +10,7 @@ comm.set.seed(seed=123, diff=FALSE) # everyone gets same training data
 n <- nrow(LetterRecognition)
 ## get same train data
 n_train <- floor(0.8*n)
-i_train <- sample.int(n, n_train) # Use 1/4 of the data to train
+i_train <- sample.int(n, n_train) # Use 4/5 of the data to train
 train <- LetterRecognition[i_train, ]
 ## get different test data
 my.test_rows <- get.jid(n - n_train)
