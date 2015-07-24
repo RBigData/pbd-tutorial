@@ -42,10 +42,12 @@
      \item Build simple regression trees from random subsets of
        columns
      \item Use model averaging for prediction
-     \item Package \pkg{randomForest} has a \code{combine} function
+     \item Package \pkg{randomForest} has a \code{combine()} function
+       that enables the following parallel approach:
        \begin{enumerate}
        \item Everyone gets the same training data
        \item Split regression tree building among processors
+         (\pkg{randomForest})
        \item Use \code{allgather} to bring built predictors to all
        \item Everyone \code{combine} predictors
        \item Split prediction work by blocks of rows
