@@ -5,20 +5,22 @@
 \begin{frame}[fragile]
   \begin{block}{Summary}\pause
     \begin{itemize}
-      \item Start by loading the package:
-\vspace{-.4cm}
-\begin{lstlisting}
+    \item Start by loading the package:
+      \vspace{-.4cm}
+      \begin{lstlisting}
 library(pbdMPI, quiet = TRUE)
-\end{lstlisting}
-      \item Always initialize before starting and finalize when finished:
-\vspace{-.4cm}
-\begin{lstlisting}
+      \end{lstlisting}
+    \item Always initialize before starting and finalize when finished:
+      \vspace{-.4cm}
+      \begin{lstlisting}
 init()
 
 # ...
 
 finalize()
-\end{lstlisting}
-\end{itemize}
-\end{block}
+      \end{lstlisting}
+    \item Need to distribute your data? Try splitting by blocks of
+      rows or by blocks of columns.
+    \end{itemize}
+  \end{block}
 \end{frame}

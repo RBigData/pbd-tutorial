@@ -12,6 +12,47 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{A Matrix is Mapped onto a Processor Grid}
+\begin{block}{Processor Grid Shapes}
+\begin{table}[ht]
+        \centering
+      \begin{subfigure}[b]{0.23\textwidth}
+        \centering
+        $\left[\begin{tabular}{llllll}
+            0 & 1 & 2 & 3 & 4 & 5
+          \end{tabular}\right]$
+        \vspace{1.5cm}
+        \caption{$1\times 6$}
+      \end{subfigure}%\hspace{-1cm}
+      \begin{subfigure}[b]{0.23\textwidth}
+        \centering
+        $\left[\begin{tabular}{lll}
+            0 & 1 & 2\\
+            3 & 4 & 5
+          \end{tabular}\right]$
+        \caption{$2\times 3$}
+      \end{subfigure}%
+      \begin{subfigure}[b]{0.23\textwidth}
+        \centering
+        $\left[\begin{tabular}{ll}
+            0 & 1 \\
+            2 & 3\\
+            4 & 5
+          \end{tabular}\right]$
+        \caption{$3\times 2$}
+      \end{subfigure}
+      \begin{subfigure}[b]{0.23\textwidth}
+        \centering
+        $\left[\begin{tabular}{l}
+            0 \\ 1 \\ 2 \\ 3 \\ 4 \\ 5
+          \end{tabular}\right]$
+        \caption{$6\times 1$}
+      \end{subfigure}
+        \caption{Processor Grid Shapes with 6 Processors}\label{fig:gridshapes}
+\end{table}
+\end{block}
+\end{frame}
+
 \begin{frame}
 \begin{block}{Distributed Matrices}
 \begin{figure}[ht]
@@ -73,47 +114,6 @@ Grid}\label{fig:dmat2d}
 \end{frame}
 
 \begin{frame}
-\begin{block}{Processor Grid Shapes}
-\begin{table}[ht]
-        \centering
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{llllll}
-            0 & 1 & 2 & 3 & 4 & 5
-          \end{tabular}\right]$
-        \vspace{1.5cm}
-        \caption{$1\times 6$}
-      \end{subfigure}%\hspace{-1cm}
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{lll}
-            0 & 1 & 2\\
-            3 & 4 & 5
-          \end{tabular}\right]$
-        \caption{$2\times 3$}
-      \end{subfigure}%
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{ll}
-            0 & 1 \\
-            2 & 3\\
-            4 & 5
-          \end{tabular}\right]$
-        \caption{$3\times 2$}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{l}
-            0 \\ 1 \\ 2 \\ 3 \\ 4 \\ 5
-          \end{tabular}\right]$
-        \caption{$6\times 1$}
-      \end{subfigure}
-        \caption{Processor Grid Shapes with 6 Processors}\label{fig:gridshapes}
-\end{table}
-\end{block}
-\end{frame}
-
-\begin{frame}
   \begin{block}{The ddmatrix Class}\pause
     For \textbf{d}istributed \textbf{d}ense \textbf{matrix} objects,
     we use the special S4 class \code{ddmatrix}.
@@ -126,6 +126,12 @@ Grid}\label{fig:dmat2d}
         $\textbf{ICTXT}$ & $MPI Grid Context$
       \end{cases}
     \end{align*}
+    Predefined contexts:
+    \begin{description}
+      \item[ICTXT = 0] Block-Cyclic
+      \item[ICTXT = 1] Row Block
+      \item[ICTXT = 2] Column Block
+    \end{description}
   \end{block}
 \end{frame}
 

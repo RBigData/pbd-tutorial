@@ -34,7 +34,7 @@ Blue}}}{\text{\color{blue}{\# Blue}}+\text{\color{red}{\# Red}}}\right)
   \begin{exampleblock}{Example \showex :  Monte Carlo Simulation Code}\pause
 \begin{lstlisting}[title=Serial Code]
 set.seed(seed=1234567)
-N <- 50000
+N <- 1e7
 X <- matrix(runif(N * 2), ncol=2)
 r <- sum(rowSums(X^2) <= 1)
 PI <- 4*r/N
