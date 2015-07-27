@@ -12,10 +12,10 @@
 {../common/pics/hardware/ParallelHardware10.pdf}
 \end{frame}
 
-\begin{frame}{R and \pbdR Interfaces to HPC Libraries}
-\includegraphics[height=\textheight]
-{../common/pics/hardware/ParallelHardware26.pdf}
-\end{frame}
+% \begin{frame}{R and \pbdR Interfaces to HPC Libraries}
+% \includegraphics[height=\textheight]
+% {../common/pics/hardware/ParallelHardware26.pdf}
+% \end{frame}
 
 \begin{frame}{Parallel Programming Packages for R}
   \begin{block}{CRAN HPC Task View}\small
@@ -27,7 +27,7 @@
     \end{block}
     \begin{block}{Distributed works in Shared Memory}
       \pbdR: \pkg{pbdMPI}, \pkg{pbdDMAT} (\pkg{pbdSLAP} and
-      \pkg{pbdBASE}) 
+      \pkg{pbdBASE})
     \end{block}
   \end{center}
 \end{frame}
@@ -54,7 +54,7 @@
     \end{itemize}
     \begin{center}
       $\pkg{parallel} \hspace{.2cm} = \pkg{snow} \hspace{.2cm} +
-      \hspace{.2cm} \pkg{multicore}$ 
+      \hspace{.2cm} \pkg{multicore}$
     \end{center}
 
   \end{block}
@@ -193,7 +193,7 @@ stopCluster(cl)
     \begin{itemize}
     \item On Cran (Revolution Analytics).
     \item \pkg{foreach} is a single interface for a number of
-      ``backend'' packages. 
+      ``backend'' packages.
     \item Backends:  \pkg{doMC}, \pkg{doMPI}, \pkg{doParallel}, \pkg{doRedis},
       \pkg{doRNG}, \pkg{doSNOW}.
     \item A Manager-Workers approach

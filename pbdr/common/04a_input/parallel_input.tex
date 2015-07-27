@@ -1,17 +1,26 @@
 \subsection{Parallel Data Input}
 \makesubcontentsslidessec
 
-
 \begin{frame}
   \begin{block}{Parallel reading brings new issues}\pause
     \begin{itemize}
     \item How to partition data across nodes?
     \item How to structure for scalable libraries?
     \item Read directly into form needed or restructure?
-    \item CSV, SQL, HDFS, NetCDF4, HDF5, ADIOS, custom binary
-    \item $\ldots$
-    \item Lot of work needed to make it intuitive!
-    \item Currently under development.
+    \end{itemize}
+  \end{block}
+  \begin{block}{Answers}\pause
+    \begin{itemize}
+    \item Read the most natural way from disk
+      \begin{itemize}
+      \item C: by blocks of rows
+      \item FORTRAN: by blocks of columns
+      \item Binary, fixed format, or groups of files
+      \end{itemize}
+    \item Restructure after reading
+      \begin{itemize}
+      \item redistribute(), as.ddmatrix(), etc.
+      \end{itemize}
     \end{itemize}
   \end{block}
 \end{frame}
@@ -30,7 +39,7 @@ x
 library(pbdDEMO, quiet = TRUE)
 init.grid()
 
-dx <- read.csv.ddmatrix("x.csv", header=TRUE, sep=",", 
+dx <- read.csv.ddmatrix("x.csv", header=TRUE, sep=",",
           nrows=10, ncols=10, num.rdrs=2, ICTXT=0)
 
 dx
@@ -38,22 +47,6 @@ dx
 finalize()
 \end{lstlisting}
   \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-  \begin{block}{Hadoop HDFS, RHadoop}\pause
-    \begin{description}
-      \item[ravro] - read and write files in avro format
-      \item[plyrmr] - higher level plyr-like data processing for
-        structured data, powered by rmr 
-    \item[rmr] - functions providing Hadoop MapReduce functionality in
-      R 
-    \item[rhdfs] - functions providing file management of the HDFS
-      from within R 
-    \item[rhbase] - functions providing database management for the
-      HBase distributed database from within R 
-    \end{description}
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
