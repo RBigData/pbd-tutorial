@@ -1,0 +1,74 @@
+\begin{frame}
+  \begin{block}{An Interesting Tweet...}
+    \begin{center}
+      \includegraphics[width=.95\textwidth]{../common/pics/decomprecomp/tweet1}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{A Clarification}
+    \begin{center}
+      \includegraphics[width=.95\textwidth]{../common/pics/decomprecomp/tweet2}
+    \end{center}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{The Idea}
+    \begin{align*}
+      X = U \Sigma V^T
+    \end{align*}
+    % TODO finish the math
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Properties}
+    Say we remove the first principal component:
+    \begin{itemize}
+      \item PC2 becomes PC1
+      \item PC3 becomes PC2
+      \item Variance of PC3 is 0.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \begin{block}{Algorithm}
+    \begin{itemize}
+      \item Compute SVD $X = U\Sigma V^T$ with \code{La.svd()}.
+      \item Drop desired columns of $U$, $\Sigma$, and $V$.
+      \item Use \code{sweep()} to multiply reduced $U$ by reduced $\Sigma$, column-wise to form $U\Sigma$.
+      \item Multiply $(U\Sigma)$ on the right by reduced $V^T$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\fontsize{8pt}{10}\selectfont
+\begin{block}{Decomp-Recomp}
+\begin{lstlisting}[title=Serial And Parallel]
+decomp_recomp <- function(x, exclude, center=TRUE, scale=FALSE)
+{
+  if (center || scale)
+    x <- scale(x, center=center, scale=scale)
+  
+  svd <- La.svd(x)
+  
+  u <- svd$u
+  d <- svd$d
+  vt <- svd$vt
+  
+  ud <- sweep(u[, -exclude], MARGIN=2, FUN="*", STAT=d[-exclude])
+  ud %*% vt[-exclude, ]
+}
+\end{lstlisting}
+\end{block}
+\end{frame}
