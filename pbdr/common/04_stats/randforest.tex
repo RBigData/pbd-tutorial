@@ -64,24 +64,24 @@
   \begin{exampleblock}{Example \showex :  Random Forest Code \\
       (Split learning by blocks of trees. Split prediction by blocks
       of rows.)}\pause
-    \begin{lstlisting}[title=Serial Code]
+    \begin{lstlisting}[title=Serial Code 4\_rf\_s.r]
+library(randomForest)
+library(mlbench)
 data(LetterRecognition) # 26 Capital Letters Data 20,000 x 17
-set.seed(seed=1234567)
+set.seed(seed=123)
 n <- nrow(LetterRecognition)
-## get train data
-n_train <- floor(0.8*n)
-i_train <- sample.int(n, n_train) # Use 4/5 of the data to train
-train <- LetterRecognition[i_train, ]
-test <- LetterRecognition[-i_train, ]
+n_test <- floor(0.2*n)
+i_test <- sample.int(n, n_test) # Use 1/5 of the data to test
+train <- LetterRecognition[-i_test, ]
+test <- LetterRecognition[i_test, ]
 
 ## train random forest
-my.k <- 500
-rf.all <- randomForest(lettr ~ ., train, ntree=my.k, norm.votes=FALSE)
+rf.all <- randomForest(lettr ~ ., train, ntree=500, norm.votes=FALSE)
 
 ## predict test data
 pred <- predict(rf.all, test)
 correct <- sum(pred == test$lettr)
-cat("Proportion Correct:", correct/(n - n_train), "\n")
+cat("Proportion Correct:", correct/(n_test), "\n")
     \end{lstlisting} %$
   \end{exampleblock}
 \end{frame}
@@ -91,26 +91,53 @@ cat("Proportion Correct:", correct/(n - n_train), "\n")
   \begin{exampleblock}{Example \showex :  Random Forest Code \\
       (Split learning by blocks of trees. Split prediction by blocks
       of rows.)}\pause
-    \begin{lstlisting}[title=Parallel Code,escapeinside={(*@}{@*)}]
-data(LetterRecognition) # 26 Capital Letters Data 20,000 x 17
+    \begin{lstlisting}[title=Parallel Code 4\_rf\_p.r,escapeinside={(*@}{@*)}]
+library(randomForest)
+library(mlbench)
+data(LetterRecognition)
 (*@\textcolor{red}{comm.}@*)set.seed(seed=123(*@\textcolor{red}{, diff=FALSE}@*)) # same training data
 n <- nrow(LetterRecognition)
-n_train <- floor(0.8*n)
-i_train <- sample.int(n, n_train) # Use 4/5 of the data to train
-train <- LetterRecognition[i_train, ]
-(*@\textcolor{red}{my.test\_rows <- get.jid(n - n\_train)}@*)  # different test data
-test <- LetterRecognition[-i_train, ](*@\textcolor{red}{[my.test\_rows, ]}@*)
+n_test <- floor(0.2*n)
+i_test <- sample.int(n, n_test) # Use 1/5 of the data to test
+train <- LetterRecognition[-i_test, ]
+test <- LetterRecognition[i_test, ](*@\textcolor{red}{[get.jid(n\_test), ]}@*)
 
-(*@\textcolor{red}{comm.}@*)set.seed(seed=1e6*runif(1)(*@\textcolor{red}{, diff=TRUE}@*))
-my.k <- floor(500(*@\textcolor{red}{/comm.size()}@*))
-my.rf <- randomForest(lettr ~ ., train, ntree=my.k, norm.votes=FALSE)
-
-(*@\textcolor{red}{rf.each <- allgather(my.rf)}@*)
-(*@\textcolor{red}{rf.all <- do.call(combine, rf.each)}@*)
+(*@\textcolor{red}{comm.set.seed(seed=1e6*runif(1), diff=TRUE)}@*)
+my.rf <- randomForest(lettr ~ ., train, ntree=500(*@\textcolor{red}{\%/\%comm.size()}@*), norm.votes=FALSE)
+(*@\textcolor{red}{rf.all <- do.call(combine, allgather(my.rf))}@*)
 
 pred <- predict(rf.all, test)
-correct <- (*@\textcolor{red}{allreduce(}@*)sum(pred == test\$lettr)(*@\textcolor{red}{)}@*)
-(*@\textcolor{red}{comm.}@*)cat("Proportion Correct:", correct/(n - n_train), "\n")
+correct <- (*@\textcolor{red}{allreduce(}@*)sum(pred == test$lettr)(*@\textcolor{red}{)}@*)
+(*@\textcolor{red}{comm.}@*)cat("Proportion Correct:", correct/(n_test), "\n")
     \end{lstlisting} %$
   \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{Runs serial or on any number of cores}
+\vspace{-2ex}
+\begin{lstlisting}[escapeinside={(*@}{@*)}]
+[beacon-login2 stats]$ time (*@\textcolor{red}{Rscript 4\_rf\_s.r}@*)
+Proportion Correct: 0.96725
+real	(*@\textcolor{red}{0m49.028s}@*)   user	0m48.626s    sys	0m0.335s
+[beacon-login2 stats]$ time (*@\textcolor{red}{Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.96425
+real	(*@\textcolor{red}{0m52.634s}@*)   user	0m51.914s    sys	0m0.598s
+[beacon-login2 stats]$ time (*@\textcolor{red}{mpirun -np 2 Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.96425
+real	(*@\textcolor{red}{0m28.349s}@*)   user	0m54.570s    sys	0m1.070s
+[beacon-login2 stats]$ time (*@\textcolor{red}{mpirun -np 4 Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.963
+real	(*@\textcolor{red}{0m16.380s}@*)   user	1m1.559s     sys	0m1.664s
+[beacon-login2 stats]$ time (*@\textcolor{red}{mpirun -np 8 Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.963
+real	(*@\textcolor{red}{0m11.010s}@*)   user	1m19.301s    sys	0m3.421s
+[beacon-login2 stats]$ time (*@\textcolor{red}{mpirun -np 16 Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.9635
+real	(*@\textcolor{red}{0m10.655s}@*)   user	2m32.508s    sys	0m6.624s
+[beacon-login2 stats]$ time (*@\textcolor{red}{mpirun -np 32 Rscript 4\_rf\_p.r}@*)
+Proportion Correct: 0.96325
+real	(*@\textcolor{red}{0m21.692s}@*)   user	4m44.114s    sys	0m20.179s
+\end{lstlisting}
+\end{block}
 \end{frame}

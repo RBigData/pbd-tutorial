@@ -11,12 +11,13 @@
   \scriptsize
   \begin{block}{Why use HPC libraries?}
     \begin{itemize}[<+-|alert@+>]
-    \item The HPC community is 30 years beyond ``embarrassingly parallel.''
+    \item The libraries represent 30+ years of research by the HPC
+      community
     \item \emph{They're tested.} \emph{They're
         fast.}  \emph{They're scalable.}
     \item Many science communities are invested in their API.
-    \item You're not going to beat Jack Dongarra's lab at dense linear
-      algebra!
+    \item HPC Simulation Science uses much of the same math as data
+      analysis
     \end{itemize}
   \end{block}
 \end{frame}
@@ -62,7 +63,18 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{block}{pbdMPI: Does the Right Thing for You}\pause
+  \begin{block}{Integer?\qquad Not always obvious in R.}
+    \vspace{-.2cm}
+    \begin{lstlisting}
+> is.integer(1)
+[1] FALSE
+> is.integer(2)
+[1] FALSE
+> is.integer(1:2)
+[1] TRUE
+    \end{lstlisting}
+  \end{block}
+  \begin{block}{pbdMPI lets R figure it out}\pause
     \begin{minipage}[t]{.475\textwidth}
       \begin{lstlisting}[title=Rmpi]
 # int
@@ -80,50 +92,40 @@ allreduce(x)
       % \hspace{1em}{\small S4. Batch only! (No spawning)}
     \end{minipage}
   \end{block}
-  \begin{block}{Types in R}
-    \vspace{-.2cm}
-    \begin{lstlisting}
-> is.integer(1)
-[1] FALSE
-> is.integer(2)
-[1] FALSE
-> is.integer(1:2)
-[1] TRUE
-    \end{lstlisting}
-  \end{block}
 \end{frame}
 
-% \begin{frame}[fragile]{Single Program (SPMD): Runs Asynchronous Parallel}
-%   \begin{exampleblock}{Rank Query Example}
-%     \centering
-%     \begin{lstlisting}[title=1\_rank.r]
-% library(pbdMPI, quiet = TRUE)
-% init()
 
-% my.rank <- comm.rank()
-% comm.print(my.rank, all.rank=TRUE)
+\begin{frame}[fragile]{Single Program (SPMD): Runs Asynchronous Parallel}
+  \begin{exampleblock}{Rank Query Example}
+    \centering
+    \begin{lstlisting}[title=1\_rank.r]
+library(pbdMPI, quiet = TRUE)
+init()
 
-% finalize()
-%     \end{lstlisting}
-%     \begin{columns}[t,onlytextwidth]
-%       \begin{column}{0.62\textwidth}
-%         \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
-% title=Execute this batch script via:]
-% mpirun -np 2 Rscript 1_rank.r
-%         \end{lstlisting}
-%       \end{column}
-%       \hfill
-%       \begin{column}{0.35\textwidth}
-%         \begin{lstlisting}[title=Sample Output:]
-% COMM.RANK = 0
-% [1] 0
-% COMM.RANK = 1
-% [1] 1
-%         \end{lstlisting}
-%       \end{column}
-%     \end{columns}
-%   \end{exampleblock}
-% \end{frame}
+my.rank <- comm.rank()
+comm.print(my.rank, all.rank=TRUE)
+
+finalize()
+    \end{lstlisting}
+    \begin{columns}[t,onlytextwidth]
+      \begin{column}{0.62\textwidth}
+        \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
+title=Execute this batch script via:]
+mpirun -np 2 Rscript 1_rank.r
+        \end{lstlisting}
+      \end{column}
+      \hfill
+      \begin{column}{0.35\textwidth}
+        \begin{lstlisting}[title=Sample Output:]
+COMM.RANK = 0
+[1] 0
+COMM.RANK = 1
+[1] 1
+        \end{lstlisting}
+      \end{column}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
 
 \subsection{pbdDMAT}
 \makesubcontentsslidessec
@@ -318,132 +320,86 @@ Class:  matrix numeric numeric numeric numeric
   \end{block}
 \end{frame}
 
-% \begin{frame}[fragile]
-%   \begin{block}{Covariance \hspace{2.1cm}Serial\hspace{0.5cm}Parallel}
-%     \begin{minipage}{5cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=low-level]
-% N <- nrow(X)
-% mu <- colSums(X) / N
-% X <- sweep(X, 2, mu)
-% cX <- crossprod(X)/(N-1)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=high-level]
-% cX <- cov(X)
-%       \end{lstlisting}
-%     \end{minipage}
-%     \begin{minipage}{6.9cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title=low-level (row-block)]
-% N <- allreduce(nrow(X))
-% mu <- allreduce(colSums(X))/N
-% X <- sweep(X, 2, mu)
-% cX <- allreduce(crossprod(X))/(N-1)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title={\tt ddmatrix}]
-% cX <- cov(X)
-%       \end{lstlisting}
-%     \end{minipage}
-%   \end{block}
-%   \begin{block}{Regression models}
-%     \begin{minipage}{5cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=low-level]
-% tX <- t(X)
-% A <- tx %*% X
-% B <- tx %*% Y
-% ols <- solve(A, B)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[backgroundcolor=\color{white},title=high-level]
-% Lm.X <- lm.fit(X, Y)
-%       \end{lstlisting}
-%     \end{minipage}
-%     \begin{minipage}{6.9cm}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title=low-level (row-block)]
-% tX <- t(X)
-% A <- allreduce(tx %*% X)
-% B <- allreduce(tx %*% Y)
-% ols <- solve(A, B)
-%       \end{lstlisting}
-%       \vspace{-1ex}
-%       \begin{lstlisting}[title={\tt ddmatrix}]
-% Lm.X <- lm.fit(X, Y)
-%       \end{lstlisting}
-%     \end{minipage}
-%   \end{block}
-% \end{frame}
+\begin{frame}
+  \begin{block}{pbdDMAT Scalability Benchmarks}
+    \begin{itemize}[<+-|alert@+>]
+      \item Default choices throughout (no MKL, ACML, etc.)
+      \item 1 core = 1 MPI process (Kraken: 6-core Opterons)
+      \item Generate random matrix
+        \begin{itemize}
+        \item Global Columns: 500, 1000, and 2000
+        \item Global Rows: fixed per core to make $43.4 MiB$
+        \end{itemize}
+      \item Measure wall clock time
+      \item ``weak scaling'' = global problem grows with core count
+    \end{itemize}
+    \vspace{.8cm}
+    \centering\includegraphics{../common/pics/krakenWide}
+  \end{block}
+\end{frame}
 
-% \subsection{Advanced R Profiling}
-% \makesubcontentsslidessec
+\begin{frame}[fragile]
+  \begin{block}{pbdDMAT Scalability Benchmarks}
+    \begin{minipage}{0.44\textwidth}
+      \vspace{-3ex}
+      \begin{lstlisting}
+x <- ddmatrix("rnorm", nrow=n, ncol=p)
+cov.x <- cov(x)
+      \end{lstlisting}
+      \vspace{-3ex}
+      \begin{center}
+        \includegraphics[trim=3mm 1mm 2mm 11.5mm,clip,width=.98\textwidth]{../common/pics/cov}
+      \end{center}
+    \end{minipage}
+%    \hspace{.01ex}
+    \begin{minipage}{0.55\textwidth}
+      \vspace{-3.5ex}
+      \begin{lstlisting}
+b <- ddmatrix("runif", nrow=p, ncol=1)
+y <- x %*% b
+b.hat <- lm.fit(x, y)$coefficients
+      \end{lstlisting} %$
+      \vspace{-3ex}
+      \begin{center}
+        \includegraphics[trim=3mm 1mm 2mm
+        12mm,clip,width=.98\textwidth]{../common/pics/benchmarks/lmfit2}
+      \end{center}
+    \end{minipage}
+  \end{block}
+\end{frame}
 
-% \begin{frame}[fragile]
-%   \small
-%   \begin{block}{Profiling MPI codes with \textbf{pbdPROF}}
-%   \begin{minipage}[t]{.58\textwidth}
-%   \vspace{.2cm}
-%   1. Rebuild \pbdR\ packages
-% \vspace*{-.5cm}
-% \begin{lstlisting}[language=shl,title=\ ]
-% R CMD INSTALL pbdMPI_0.2-1.tar.gz \ --configure-args= \ "--enable-pbdPROF"
-% \end{lstlisting}
-% 2. Run code
-% \vspace*{-.5cm}
-% \begin{lstlisting}[language=shl,title=\ ]
-% mpirun -np 64 Rscript my_script.R
-% \end{lstlisting}
+\begin{frame}
+  \begin{block}{Matrix Exponentiation (pbdDMAT)}
+    \begin{minipage}{5cm}
+      \begin{itemize}\tiny
+      \item Fitting biogeography models requires many matrix exponentiations
+      \item Benchmark: Matrix exponential of 5000$\times$5000 matrix.
+      \item R 3.1.0, Matrix 1.1-2, rexpokit 0.25, pbdDMAT 0.3-0
+      \item Libs: Cray LibSci, NETLIB ScaLAPACK, Compilers: gnu 4.8.2
+      \item Configuration: 1 thread == 1 MPI rank == 1 physical core
+      \end{itemize}
+      \vspace{-4ex}
+      \begin{center}
+        \includegraphics[trim=4cm 2cm 3.5cm 2.2cm,clip=true,height=4cm]{pics/Biogeography}
+      \end{center}
+    \end{minipage}
+    \begin{minipage}{6.9cm}
+      \includegraphics[trim=1mm 1mm 1mm 1mm,clip=true,height=7cm]{pics/MatExp}
+    \end{minipage}
+  \end{block}
+  \begin{raggedright}\tiny
+    Schmidt and Matzke (2014) Distributed matrix exponentiation, The R
+    User Conference (UseR! 2014), \\[-2ex] Los Angeles, CA, August 2014 .
+  \end{raggedright}
+\end{frame}
 
-% 3. Analyze results
-% \vspace{-.5cm}
-% \begin{lstlisting}[title=\ ]
-% library(pbdPROF)
-% prof <- read.prof( "profiler_output.mpiP")
-% plot(prof, plot.type="messages2")
-% \end{lstlisting}
-%   \end{minipage}
-%   \hfill
-%   \begin{minipage}[t]{.4\textwidth}
-%   \vspace{0pt}
-%     \centering
-%     \includegraphics[scale=.25]{../common/pics/mpip}
-%     \\[.1cm]
-%     \includegraphics[scale=0.3]{../common/pics/gsoc}
-%   \end{minipage}
-%   \centering
-%   Supports fpmpi and mpiP.  Expanding to include support for TAU!
-%   \end{block}
-% \end{frame}
+\input{../common/06_dmatstats/randsvd.tex}
 
-% \begin{frame}[fragile]
-%   \small
-%   \begin{block}{Profiling with \textbf{pbdPAPI}}
-%     \begin{minipage}{.6\textwidth}
-%       \begin{itemize}
-%       \item Bindings for Performance Application Programming Interface (PAPI)
-%       \item Gathers detailed hardware counter data.
-%       \item High and low level interfaces
-%       \end{itemize}
-%     \end{minipage}
-%     \begin{minipage}{.38\textwidth}
-%       \centering
-%       \includegraphics[scale=0.12]{../common/pics/gsoc_2014}
-%     \end{minipage}
-%     \begin{center}
-%       \begin{tabular}{ll} \hline\hline
-%         Function & Description of Measurement \\ \hline
-%         \code{system.flips()} & Time, floating point instructions, and Mflips \\
-%         \code{system.flops()} & Time, floating point operations, and Mflops \\
-%         \code{system.cache()} & Cache misses, hits, accesses, and reads \\
-%         \code{system.epc()} & Events per cycle \\
-%         \code{system.idle()} & Idle cycles \\
-%         \code{system.cpuormem()} & CPU or RAM bound$^*$ \\
-%         \code{system.utilization()} & CPU utilization$^*$ \\
-%         \hline\hline
-%       \end{tabular}
-%     \end{center}
-%   \end{block}
-% \end{frame}
+\input{../common/04_stats/randforest.tex}
+
+\input{../common/04_stats/fda.tex}
+
+
+%\input{../common/06_dmatstats/decomprecomp.tex}
+
 

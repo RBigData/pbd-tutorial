@@ -1,8 +1,233 @@
 \section{Introduction to HPC and Its View from R}
 \makesubcontentsslides
 
-\input{../common/01_introduction/batch_interactive}
-
 \input{../common/01_introduction/hardware_short}
 
-\input{../common/01_introduction/communication}
+\input{../common/01_introduction/batch_interactive}
+
+\subsection{Programming Models}
+\makesubcontentsslidessec
+
+\begin{frame}{Manager-Workers}
+  \begin{block}{}
+    \begin{itemize}
+    \item A serial program (Manager) divides up work and/or data
+    \item Workers run in parallel without interaction
+    \item Manager collects/combines results from workers
+    \item Divide-Recombine fits this model
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{MapReduce}
+  \begin{block}{}
+    \begin{itemize}
+    \item A concept born of a search engine
+    \item Decouples certain coupled problems with an intermediate
+      communication - shuffle
+    \item User writes two serial codes: Map and Reduce
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{MapReduce: a Parallel Search Engine Concept}
+  \begin{block}{Search MANY documents \hfill Serve MANY users}
+    \begin{center}\scriptsize
+      \begin{equation*}
+        \begin{array}{c@{\hspace{-2ex}}r@{\hspace{-2ex}}c}
+          \begin{array}{c}
+            \mbox{\scriptsize Web} \\
+            \mbox{\scriptsize Pages} \\
+            \mbox{\scriptsize (records)}
+          \end{array} &
+          \begin{array}{c}\tiny
+            \\ \mbox{\tiny p0} \\ \mbox{\tiny p1} \\
+            \mbox{\tiny p2} \\ \mbox{\tiny p3}
+          \end{array} &
+          \begin{array}{c}
+            \mbox{\scriptsize Index Words (keys)} \\
+            \left[
+            \begin{array}{cccc}
+              A_1 & A_2  & A_3 & A_4 \\
+              \hline
+              B_1 & B_2  & B_3 & B_4 \\
+              \hline
+              C_1 & C_2  & C_3 & C_4 \\
+              \hline
+              D_1 & D_2  & D_3 & D_4
+            \end{array}
+            \right]
+          \end{array}
+        \end{array}
+        \hbox{\hspace{-2ex}}
+        \begin{array}{c}
+          \hbox{Shuffle} \\
+          \longrightarrow \\
+          \mbox{\code{MPI\_Alltoallv}}
+        \end{array}
+        \hbox{\hspace{-2ex}}
+        \begin{array}{c@{\hspace{-2ex}}r@{\hspace{-2ex}}c}
+          \begin{array}{c}
+            \mbox{\scriptsize Index} \\
+            \mbox{\scriptsize Words} \\
+            \mbox{\scriptsize (keys)}
+          \end{array} &
+          \begin{array}{c}
+            \\  \mbox{\tiny p0} \\ \mbox{\tiny p1} \\
+            \mbox{\tiny p2} \\ \mbox{\tiny p3}
+          \end{array} &
+          \begin{array}{c}
+            \mbox{\scriptsize Web Pages (records)} \\
+            \left[
+            \begin{array}{cccc}
+              A_1 & B_1  & C_1 & D_1 \\
+              \hline
+              A_2 & B_2  & C_2 & D_2 \\
+              \hline
+              A_3 & B_3  & C_3 & D_3 \\
+              \hline
+              A_4 & B_4  & C_4 & D_4
+            \end{array}
+            \right]
+          \end{array}
+        \end{array}
+      \end{equation*}
+    \end{center}
+    \vspace{2em}
+    \begin{center}
+      Matrix transpose in another language?
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Can use different sets of processors}
+    \begin{center}
+      \begin{equation*}\scriptsize
+        \begin{array}{c@{\hspace{-2ex}}r@{\hspace{-2ex}}c}
+          \begin{array}{c}
+            \mbox{\scriptsize Web} \\
+            \mbox{\scriptsize Pages} \\
+            \mbox{\scriptsize (records)}
+          \end{array} &
+          \begin{array}{c}\tiny
+            \\ \mbox{\tiny p0} \\ \mbox{\tiny p1} \\
+            \mbox{\tiny p2} \\ \mbox{\tiny p3}
+          \end{array} &
+          \begin{array}{c}
+            \mbox{\scriptsize Index Words (keys)} \\
+            \left[
+            \begin{array}{cccc}
+              \\
+              \hline
+              B_1 & B_2  & B_3 & B_4 \\
+              \hline
+              \\
+              \hline
+              \\
+            \end{array}
+            \right]
+          \end{array}
+        \end{array}
+        \hbox{\hspace{-2ex}}
+        \begin{array}{c}
+          \hbox{Streaming} \\
+          \hbox{Shuffle} \\
+          \longrightarrow \\
+          \mbox{\code{MPI\_Scatter}}
+        \end{array}
+        \hbox{\hspace{-2ex}}
+        \begin{array}{c@{\hspace{-2ex}}r@{\hspace{-2ex}}c}
+          \begin{array}{c}
+            \mbox{\scriptsize Index} \\
+            \mbox{\scriptsize Words} \\
+            \mbox{\scriptsize (keys)}
+          \end{array} &
+          \begin{array}{c}
+            \\  \mbox{\tiny p4} \\ \mbox{\tiny p5} \\
+            \mbox{\tiny p6} \\ \mbox{\tiny p7}
+          \end{array} &
+          \begin{array}{c}
+            \mbox{\scriptsize Web Pages (records)} \\
+            \left[
+            \begin{array}{cccc}
+              \quad  & B_1  & \quad & \quad \\
+              \hline
+              \quad  & B_2  & \quad  &  \quad \\
+              \hline
+              \quad  & B_3  & \quad  &  \quad \\
+              \hline
+              \quad  & B_4  & \quad  & \quad
+            \end{array}
+            \right]
+          \end{array}
+        \end{array}
+      \end{equation*}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{MPI and MapReduce}
+  \begin{block}{Both Concepts are about Communitation}
+    \begin{itemize}
+    \item One makes communication explicit, gives choices
+    \item The other hides communication, gives one choice (shuffle)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{SPMD: Single Program Multiple Data}
+  \begin{block}{}
+    \begin{itemize}
+    \item The prevalent way of distributed programming
+    \item Can handle tightly coupled parallel computations
+    \item It is designed for batch computing
+    \item There is usually no manager - rather, all cooperate
+    \item Prime driver behind MPI specification
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Early SPMD Work in Statistics: Crossproduct (Row-Block)}
+  \includegraphics[width=\textwidth]
+  {../common/pics/comm/Crossprod1987.png} \\
+  \begin{block}{Hypercube: Individual send() and recv() over each dimension}
+    {\scriptsize Ostrouchov (1987). Parallel Computing on a
+      Hypercube: An overview of the architecture and some
+      applications. {\em Proceedings of the 19th Symposium on the
+        Interface of Computer Science and Statistics}, p.27-32.}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Simplified with MPI (and further with pbdMPI)}
+  \includegraphics[trim=0cm 6cm 0cm 4cm,clip=true,width=\textwidth]
+  {../common/pics/comm/ParallelHardware30.pdf}
+  \vspace{-1ex}
+  \begin{block}{Architecture-specific vendor optimizations}
+    \begin{itemize}
+    \item \small Cray MPT
+    \item \small SGI MPT
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Data-flow: Parallel Runtime Scheduling and Execution
+    Controller (PaRSEC)}
+  \vspace{-.1cm}
+  \hspace{2cm}\includegraphics[trim=0cm 0cm 0cm
+  1cm,clip=true,width=7.5cm]{../common/pics/comm/PaRSEC1.png}
+ \\[-3.4cm]
+  \includegraphics[width=4cm]{../common/pics/comm/PaRSEC2.png}
+  \hspace{5cm}{\tiny Graphic from icl.cs.utk.edu}
+  \begin{block}
+    {\tiny Bosilca, G., Bouteiller, A., Danalis, A., Faverge,
+      M., Herault, T., Dongarra, J. "PaRSEC: Exploiting Heterogeneity
+      to Enhance Scalability," IEEE Computing in Science and
+      Engineering, Vol. 15, No. 6, 36-45, November, 2013.}
+    \begin{itemize}\small
+    \item Master data-flow controller runs distributed on all cores.
+    \item Dynamic generation of current level in flow graph
+    \item Effectively removes collective synchronizations
+    \end{itemize}
+  \end{block}
+\end{frame}

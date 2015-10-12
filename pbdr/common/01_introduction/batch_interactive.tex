@@ -34,15 +34,16 @@
     \end{itemize}
   \end{block}
   \begin{block}{Ideal solution: Interactive Client with a Batch
-      Server} 
+      Server}
     \begin{itemize}
     \item Parallel visualization systems (VisIt and ParaView) are
       client-server (batch on server)
     \item Current \pbdR packages address server side (batch)
-    \item \pbdR client under development
+    \item pbdCS 0.1-0 released on GitHub
       \begin{itemize}
-      \item SPMD interactive (pbdCS, alpha on GitHub)
-      \item Bridge laptop to login node to resource manager to cluster
+      \item Interactive SPMD
+      \item Based on ZeroMQ distributed messaging (pbdZMQ 0.1-1 on CRAN)
+      \item Bridge resource manager (pbdSCHED 0.1-0 on GitHub)
       \item Site configuration file
       \item Manage relationship of big data (server side) to little
         data (client side)
