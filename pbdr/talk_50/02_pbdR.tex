@@ -4,6 +4,19 @@
 \subsection{The pbdR Project}
 \makesubcontentsslidessec
 
+\begin{frame}{R Continues to Move Up in Popularity!}
+\vspace{-2em}
+  \begin{center}
+    IEEE Spectrum's 2015 Ranking of Programming Languages\\[1ex]
+    \includegraphics[scale=.45]{../common/pics/IEEE_Spectrum_Rank.png}
+  \end{center}
+  \vspace{-3em}
+ {\scriptsize
+\url{%
+http://spectrum.ieee.org/computing/software/the-2015-top-ten-programming-languages
+}}
+\end{frame}
+
 \begin{frame}{\pbdR Interfaces to Libraries: Sustainable Path}
   \vspace{-1ex}
   \centering\includegraphics[trim=0cm 5cm 0cm 3cm,clip=true,width=0.85\textwidth]
@@ -11,13 +24,11 @@
   \scriptsize
   \begin{block}{Why use HPC libraries?}
     \begin{itemize}[<+-|alert@+>]
-    \item The libraries represent 30+ years of research by the HPC
-      community
+    \item Many simulation science communities are invested in their API
+    \item Data analysis uses much of the same basic math as simulation science
+    \item The libraries represent 30+ years of parallel algorithm research
     \item \emph{They're tested.} \emph{They're
         fast.}  \emph{They're scalable.}
-    \item Many science communities are invested in their API.
-    \item HPC Simulation Science uses much of the same math as data
-      analysis
     \end{itemize}
   \end{block}
 \end{frame}
@@ -26,13 +37,11 @@
 \makesubcontentsslidessec
 
 \begin{frame}
-  \begin{block}{pbdMPI: Simplified, Extensible, and Fast Communication Operations}\pause
+  \begin{block}{pbdMPI: a High Level Interface to MPI}
     \begin{itemize}
-    \item S4 methods for collective communication: extensible to other
-      \R objects.
-    \item Default methods (like \code{Robj} in \pkg{Rmpi}) check for
-      data type: safe for general users.
     \item API is simplified: defaults in control objects.
+    \item S4 methods: extensible to complex \R objects.
+    \item Additional error checking
     \item Array and matrix methods without serialization: faster than
       \pkg{Rmpi}.
     \end{itemize}
@@ -40,10 +49,10 @@
       \vspace{0.2cm}\scriptsize
       \begin{tabular}{ll} \hline\hline
         \pkg{pbdMPI} (S4) & \pkg{Rmpi}                \\ \hline
-        \code{allgather}    & \code{mpi.allgather},
+        \code{\color{blue}allreduce}    & \code{mpi.allreduce}      \\
+        \code{\color{blue}allgather}    & \code{mpi.allgather},
         \code{mpi.allgatherv},
         \code{mpi.allgather.Robj} \\
-        \code{allreduce}    & \code{mpi.allreduce}      \\
         \code{bcast}        & \code{mpi.bcast},
         \code{mpi.bcast.Robj}     \\
         \code{gather}       & \code{mpi.gather},
@@ -146,7 +155,7 @@ COMM.RANK = 1
         $\left[\begin{tabular}{llllll}
             0 & 1 & 2 & 3 & 4 & 5
           \end{tabular}\right]$
-        \vspace{1.5cm}
+        \vspace{1.4cm}
         \caption{$1\times 6$}
       \end{subfigure}%\hspace{-1cm}
       \begin{subfigure}[b]{0.23\textwidth}
@@ -178,12 +187,29 @@ COMM.RANK = 1
   \end{block}
 \end{frame}
 
-\begin{frame}[shrink]
-\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors:
-    Global view ``ddmatrix'' class}
-\begin{align*}
-x &= \left[
-      \begin{array}{ll|ll|ll|ll|l}
+
+\subsection{pbdDMAT (and pbdBASE, pbdSLAP)}
+\newcommand{\Sp}{\hspace{3pt}}
+\begin{frame}{Distributed Matrix and Vector Operations \hfill pbdDMAT}
+  \begin{block}{Powered by ScaLAPACK, PBLAS, and BLACS (MKL, SciLIB,
+      or ACML)}
+    \begin{itemize}
+    \item Block-cyclic data layout for scalability and efficiency
+    \item No change in R syntax
+    \item High-level convenience for data layout redistributions
+      \begin{itemize}
+      \item Row-major data: read row-block then convert to block-cyclic
+      \item Column-major data: read column-block then convert to block-cyclic
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+  \begin{block}{Global and local views of block-cyclic on a 2 $\times$ 3
+      processor grid}
+\tiny
+\begin{minipage}{4.4cm}
+$
+\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} & \color{g13}x_{16} & \color{g11}x_{17} & \color{g11}x_{18} & \color{g12}x_{19}\\
       \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} & \color{g13}x_{26} & \color{g11}x_{27} & \color{g11}x_{28} & \color{g12}x_{29}\\\hline
       \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} & \color{g23}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g22}x_{39}\\
@@ -194,102 +220,68 @@ x &= \left[
       \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} & \color{g23}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & \color{g22}x_{89}\\\hline
       \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} & \color{g13}x_{96} & \color{g11}x_{97} & \color{g11}x_{98} & \color{g12}x_{99}\\
       \end{array}
-\right]_{9\times 9}
-\end{align*}
-\begin{align*}
-\text{Processor grid = }\left|
-      \begin{array}{lll}
-      \color{g11}0 & \color{g12}1 & \color{g13}2\\
-      \color{g21}3 & \color{g22}4 & \color{g23}5
-      \end{array}
-\right| &=
-\left|
-      \begin{tabular}{lll}
-      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
-      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
-      \end{tabular}
-\right|
-\end{align*}
-\end{exampleblock}
-\end{frame}
-
-
-\begin{frame}[shrink]
-\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors:
-    Local view ``ddmatrix'' class}
-\begin{align*}
-\left[
-      \begin{array}{ll|ll}
+\right]_{9\times 9}$
+\end{minipage} \hspace{4.4em}
+\begin{minipage}{6.5cm}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g11}x_{11} & \color{g11}x_{12} & \color{g11}x_{17} & \color{g11}x_{18}\\
       \color{g11}x_{21} & \color{g11}x_{22} & \color{g11}x_{27} & \color{g11}x_{28}\\\hline
       \color{g11}x_{51} & \color{g11}x_{52} & \color{g11}x_{57} & \color{g11}x_{58}\\
       \color{g11}x_{61} & \color{g11}x_{62} & \color{g11}x_{67} & \color{g11}x_{68}\\\hline
       \color{g11}x_{91} & \color{g11}x_{92} & \color{g11}x_{97} & \color{g11}x_{98}\\
       \end{array}
-\right]_{5\times 4}
-\left[
-      \begin{array}{ll|l}
+\right]_{5\times 4}$\hspace{-1.4ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g12}x_{13} & \color{g12}x_{14} & \color{g12}x_{19}\\
       \color{g12}x_{23} & \color{g12}x_{24} & \color{g12}x_{29}\\\hline
       \color{g12}x_{53} & \color{g12}x_{54} & \color{g12}x_{59}\\
       \color{g12}x_{63} & \color{g12}x_{64} & \color{g12}x_{69}\\\hline
       \color{g12}x_{93} & \color{g12}x_{94} & \color{g12}x_{99}\\
       \end{array}
-\right]_{5\times 3}
-\left[
-      \begin{array}{ll}
+\right]_{5\times 3}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g13}x_{15} & \color{g13}x_{16}\\
       \color{g13}x_{25} & \color{g13}x_{26}\\\hline
       \color{g13}x_{55} & \color{g13}x_{56}\\
       \color{g13}x_{65} & \color{g13}x_{66}\\\hline
       \color{g13}x_{95} & \color{g13}x_{96}\\
       \end{array}
-\right]_{5\times 2}
+\right]_{5\times 2}$
 \\
-\left[
-      \begin{array}{ll|ll}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g21}x_{31} & \color{g21}x_{32} & \color{g21}x_{37} & \color{g21}x_{38}\\
       \color{g21}x_{41} & \color{g21}x_{42} & \color{g21}x_{47} & \color{g21}x_{48}\\\hline
       \color{g21}x_{71} & \color{g21}x_{72} & \color{g21}x_{77} & \color{g21}x_{78}\\
       \color{g21}x_{81} & \color{g21}x_{82} & \color{g21}x_{87} & \color{g21}x_{88}\\
       \end{array}
-\right]_{4\times 4}
-\left[
-      \begin{array}{ll|l}
+\right]_{4\times 4}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g22}x_{33} & \color{g22}x_{34} & \color{g22}x_{39}\\
       \color{g22}x_{43} & \color{g22}x_{44} & \color{g22}x_{49}\\\hline
       \color{g22}x_{73} & \color{g22}x_{74} & \color{g22}x_{79}\\
       \color{g22}x_{83} & \color{g22}x_{84} & \color{g22}x_{89}\\
       \end{array}
-\right]_{4\times 3}
-\left[
-      \begin{array}{ll}
+\right]_{4\times 3}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g23}x_{35} & \color{g23}x_{36} \\
       \color{g23}x_{45} & \color{g23}x_{46} \\\hline
       \color{g23}x_{75} & \color{g23}x_{76} \\
       \color{g23}x_{85} & \color{g23}x_{86} \\
       \end{array}
-\right]_{4\times 2}
-\end{align*}
-\begin{align*}
-\text{Processor grid = }\left|
-      \begin{array}{lll}
-      \color{g11}0 & \color{g12}1 & \color{g13}2\\
-      \color{g21}3 & \color{g22}4 & \color{g23}5
-      \end{array}
-\right| &=
-\left|
-      \begin{tabular}{lll}
-      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
-      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
-      \end{tabular}
-\right|
-\end{align*}
-\end{exampleblock}
+\right]_{4\times 2}$
+\end{minipage}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{block}{\pbdR\ Example Syntax}
+  \begin{block}{\pbdR\ No change in syntax \hfill + Data
+      redistribution functions}
 \vspace{-2ex}
   \begin{lstlisting}
 x <- x[-1, 2:5]
@@ -393,7 +385,9 @@ b.hat <- lm.fit(x, y)$coefficients
   \end{raggedright}
 \end{frame}
 
-\input{../common/06_dmatstats/randsvd.tex}
+\subsection{pbdDMAT Example: Truncated SVD from Random Projections}
+\makesubcontentsslidessec
+\input{../common/06_dmatstats/randsvd-slide}
 
 \input{../common/04_stats/randforest.tex}
 

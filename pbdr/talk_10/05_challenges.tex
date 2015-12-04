@@ -1,27 +1,60 @@
 \section{Demos and More $\ldots$}
 
-\begin{frame}
-  \begin{center}
-    \LARGE Demos
-  \end{center}
+\begin{frame}{Demo 1: Read and Write .bp Files in R \hfill pbdADIOS}
+  \begin{block}{\code{test\_heat.r} \hfill heat\_transfer data}
+    \begin{center}
+      \begin{itemize}
+      \item Streaming read of heat.bp temperature (T) variable
+        \begin{itemize}
+        \item Maintains a buffer of 10 time steps
+        \item Fits a regression model to every pixel across the time steps
+        \item Writes T, coefficients, and max residual into a .bp file
+        \item Should work in a staging setup
+        \end{itemize}
+      \end{itemize}
+    \end{center}
+  \end{block}
+  \begin{block}{Connects with ADIOS and VisIt infrastructure}
+    \begin{center}
+      \begin{itemize}
+      \item Visualize .bp file R results with VisIt
+      \item Use excellent R graphics directly from .bp files
+      \item Engage R's statistical computing and machine learning
+        capabilities
+      \end{itemize}
+    \end{center}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Demo 2: Bring Statistical Reasoning to Data Analysis}
+  \vspace{-1ex}
+  \begin{block}{\code{kmeans.r} \hfill 4d iris data}
+    \begin{center}\small
+      \begin{itemize}\small
+      \item Uncertainty in k-means: Random starts, finite sample,
+        unknown k
+      \item Parallel resampling and parallel graphics (5,000 samples,
+        each 100 starts)
+      \end{itemize}
+    \end{center}
+  \end{block}
+  \vspace{-1ex}
+  \begin{block}{2d views of 4d k means (blue) \hfill Uncertainty up
+    when k too large}
+    \vspace{-1ex}
+    \begin{center}
+      \includegraphics[trim=0cm 11cm 0cm 0cm,clip=true,width=\textwidth]%
+      {{../common/pics/apps/applications.001}.jpg}
+    \end{center}
+  \end{block}
 \end{frame}
 
 \begin{frame}
-  \begin{block}{Where to learn more?}
+  \begin{block}{Where to learn more about \pbdR ?}
   \begin{itemize}
-    \item \url{http://r-pbd.org/}
+    \item \url{http://pbdr.org/}
     \item \textbf{pbdDEMO} vignette: a book style tutorial
     \item \url{Google group: RBigDataProgramming}
-    \item Upcoming tutorials:
-      \begin{itemize}\scriptsize
-      \item July 25 at 60$th$ World Statistics Congress in Rio de
-        Janeiro, Brazil:
-        \url{http://www.isi2015.org/images/isi2015/Short\_Courses/SC12.pdf}
-      \item July 27 at XSEDE'15 in St. Louis, Missouri:
-        \url{https://conferences.xsede.org/xsede15}
-      \item November 15-20 at SC15 in Austin, Texas:
-        \url{http://sc15.supercomputing.org/program/tutorials}
-      \end{itemize}
     \end{itemize}
   \end{block}
 \end{frame}

@@ -1,7 +1,7 @@
 
 \begin{frame}[fragile]
 \fontsize{8pt}{10}\selectfont
-\begin{block}{Randomized truncated SVD\footnotemark}
+\begin{block}{Truncated SVD from random projections\footnotemark}
   \begin{minipage}{.56\textwidth}
     \begin{center}
       \includegraphics[height=.41\textheight]{../common/pics/randsvd/randSVDalg}
@@ -49,7 +49,7 @@ randSVD <- function(A, k, q=3)
 
 \begin{frame}[fragile]
  \fontsize{8pt}{10}\selectfont
-\begin{block}{Randomized truncated SVD}
+\begin{block}{Truncated SVD from random projections}
   \hfill
   \begin{minipage}{0.430\textwidth}
 \begin{lstlisting}[title=Serial
@@ -59,8 +59,7 @@ dkgreen},stringstyle=\color{black},escapeinside={(*@}{@*)}]
 randSVD <- function(A, k, q=3)
   {
     ## Stage A
-    Omega <- (*@ \textcolor{blue}{matrix(rnorm(n*2*k),} @*)
-      (*@ \textcolor{blue}{ nrow=n, ncol=2*k)} @*)
+    Omega <- matrix(rnorm(n*2*k), nrow=n, ncol=2*k)
     Y <- A %*% Omega
     Q <- qr.Q(qr(Y))
     At <- t(A)
@@ -119,6 +118,8 @@ randSVD <- function(A, k, q=3)
       \includegraphics[width=.4\textwidth]{../common/pics/randsvd/randSVDspeedup}
       \hspace{1cm}
       \includegraphics[width=.4\textwidth]{../common/pics/randsvd/randSpeedupSVD}
+      \\ \scriptsize
+Speedup relative to 1 core \hspace{2.5cm} RandSVD speedup relative to full SVD
     \end{center}
   \end{block}
 \end{frame}

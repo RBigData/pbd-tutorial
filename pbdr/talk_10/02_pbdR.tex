@@ -10,8 +10,8 @@
   \scriptsize
   \begin{block}{Why use HPC libraries?}
     \begin{itemize}[<+-|alert@+>]
-    \item Data analysis uses much of the same math as simulation science.
-    \item 30+ years of building libraries
+    \item Data analysis uses much of the same basic math as simulation science.
+    \item The libraries represent 30+ years of parallel algorithm research
     \item \emph{They're tested.} \emph{They're
         fast.}  \emph{They're scalable.}
     \item Many science communities are invested in their API.
@@ -22,7 +22,7 @@
 \subsection{pbdMPI}
 
 \begin{frame}
-  \begin{block}{pbdMPI: new High Level Interface to MPI}
+  \begin{block}{pbdMPI: a High Level Interface to MPI}
     \begin{itemize}
     \item API is simplified: defaults in control objects.
     \item S4 methods: extensible to complex \R objects.
@@ -56,128 +56,70 @@
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]
-  \begin{block}{Integer?\qquad Not always obvious in R.}
-    \vspace{-.2cm}
-    \begin{lstlisting}
-> is.integer(1)
-[1] FALSE
-> is.integer(2)
-[1] FALSE
-> is.integer(1:2)
-[1] TRUE
-    \end{lstlisting}
-  \end{block}
-  \begin{block}{pbdMPI lets the machine figure it out}\pause
-    \begin{minipage}[t]{.475\textwidth}
-      \begin{lstlisting}[title=Rmpi]
-# int
-mpi.allreduce(x, type=1)
-# double
-mpi.allreduce(x, type=2)
-      \end{lstlisting}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{.475\textwidth}
-      \begin{lstlisting}[title=pbdMPI]
-allreduce(x)
-      \end{lstlisting}
-      % \vspace{1em}
-      % \hspace{1em}{\small S4. Batch only! (No spawning)}
-    \end{minipage}
-  \end{block}
-\end{frame}
+% \begin{frame}[fragile]{SPMD: Run Many Copies of One Code}
+%   \begin{exampleblock}{SPMD ``Hello World:'' a simple ``map\_reduce'' to all}
+%     \vspace{-1.5ex}
+%     \centering
+%     \begin{lstlisting}[title=map\_reduce.r]
+% library(pbdMPI, quiet = TRUE)
+% init()
+
+% ## Your "Map" code
+% n <- comm.rank() + 1
+
+% ## Now "Reduce" and give the result to all
+% all_sum <- allreduce(n) # Sum is default
+
+% text <- paste("Hello: n is", n, "sum is", all_sum )
+% comm.print(text, all.rank=TRUE)
+
+% finalize()
+%     \end{lstlisting}
+%     \vspace{-4.5ex}
+%     \begin{columns}[t,onlytextwidth]
+%       \begin{column}{0.54\textwidth}
+%         \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
+% title=Execute this batch script via:]
+% mpirun -np 2 Rscript map-reduce.r
+%         \end{lstlisting}
+%       \end{column}
+%       \hfill
+%       \begin{column}{0.46\textwidth}
+%         \begin{lstlisting}[title=Output:]
+% COMM.RANK = 0
+% [1] "Hello: n is 1 sum is 3"
+% COMM.RANK = 1
+% [1] "Hello: n is 2 sum is 3"
+%         \end{lstlisting}
+%       \end{column}
+%     \end{columns}
+%   \end{exampleblock}
+% \end{frame}
 
 
-\begin{frame}[fragile]{SPMD: Run Many Copies of One Code}
-  \begin{exampleblock}{SPMD ``Hello World:'' a simple ``map\_reduce'' to all}
-    \vspace{-1.5ex}
-    \centering
-    \begin{lstlisting}[title=map\_reduce.r]
-library(pbdMPI, quiet = TRUE)
-init()
-
-## Your "Map" code
-n <- comm.rank() + 1
-
-## Now "Reduce" and give the result to all
-all_sum <- allreduce(n) # Sum is default
-
-text <- paste("Hello: n is", n, "sum is", all_sum )
-comm.print(text, all.rank=TRUE)
-
-finalize()
-    \end{lstlisting}
-    \vspace{-4.5ex}
-    \begin{columns}[t,onlytextwidth]
-      \begin{column}{0.54\textwidth}
-        \begin{lstlisting}[backgroundcolor=\color{white},keywordstyle=\color{black},
-title=Execute this batch script via:]
-mpirun -np 2 Rscript map-reduce.r
-        \end{lstlisting}
-      \end{column}
-      \hfill
-      \begin{column}{0.46\textwidth}
-        \begin{lstlisting}[title=Output:]
-COMM.RANK = 0
-[1] "Hello: n is 1 sum is 3"
-COMM.RANK = 1
-[1] "Hello: n is 2 sum is 3"
-        \end{lstlisting}
-      \end{column}
-    \end{columns}
-  \end{exampleblock}
-\end{frame}
 
 \subsection{pbdDMAT (and pbdBASE, pbdSLAP)}
-
-\begin{frame}{Distributed Dense Matrix and Vector Operations for Analytics}
-  \begin{block}{A matrix is mapped to a processor grid shape}
-    \begin{table}[ht]
-      \centering
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{llllll}
-            0 & 1 & 2 & 3 & 4 & 5
-          \end{tabular}\right]$
-        \vspace{1.5cm}
-        \caption{$1\times 6$}
-      \end{subfigure}%\hspace{-1cm}
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{lll}
-            0 & 1 & 2\\
-            3 & 4 & 5
-          \end{tabular}\right]$
-        \caption{$2\times 3$}
-      \end{subfigure}%
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{ll}
-            0 & 1 \\
-            2 & 3\\
-            4 & 5
-          \end{tabular}\right]$
-        \caption{$3\times 2$}
-      \end{subfigure}
-      \begin{subfigure}[b]{0.23\textwidth}
-        \centering
-        $\left[\begin{tabular}{l}
-            0 \\ 1 \\ 2 \\ 3 \\ 4 \\ 5
-          \end{tabular}\right]$
-        \caption{$6\times 1$}
-      \end{subfigure}
-      \caption{Processor Grid Shapes with 6 Processors}\label{fig:gridshapes}
-    \end{table}
+\newcommand{\Sp}{\hspace{3pt}}
+\begin{frame}{Matrix and Vector Operations for Analytics \hfill pbdDMAT}
+  \begin{block}{Powered by ScaLAPACK, PBLAS, and BLACS (MKL, SciLIB,
+      or ACML)}
+    \begin{itemize}
+    \item Block-cyclic data layout for scalability and efficiency
+    \item No change in R syntax
+    \item High-level convenience for data redistributions
+      \begin{itemize}
+      \item Row-major data: read row-block then convert to block-cyclic
+      \item Column-major data: read column-block then convert to block-cyclic
+      \end{itemize}
+    \end{itemize}
   \end{block}
-\end{frame}
-
-\begin{frame}[shrink]
-\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors:
-    Global view ``ddmatrix'' class}
-\begin{align*}
-x &= \left[
-      \begin{array}{ll|ll|ll|ll|l}
+  \begin{block}{Global and local views of block-cyclic on a 2 $\times$ 3
+      processor grid}
+\tiny
+\begin{minipage}{4.4cm}
+$
+\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g11}x_{11} & \color{g11}x_{12} & \color{g12}x_{13} & \color{g12}x_{14} & \color{g13}x_{15} & \color{g13}x_{16} & \color{g11}x_{17} & \color{g11}x_{18} & \color{g12}x_{19}\\
       \color{g11}x_{21} & \color{g11}x_{22} & \color{g12}x_{23} & \color{g12}x_{24} & \color{g13}x_{25} & \color{g13}x_{26} & \color{g11}x_{27} & \color{g11}x_{28} & \color{g12}x_{29}\\\hline
       \color{g21}x_{31} & \color{g21}x_{32} & \color{g22}x_{33} & \color{g22}x_{34} & \color{g23}x_{35} & \color{g23}x_{36} & \color{g21}x_{37} & \color{g21}x_{38} & \color{g22}x_{39}\\
@@ -188,102 +130,67 @@ x &= \left[
       \color{g21}x_{81} & \color{g21}x_{82} & \color{g22}x_{83} & \color{g22}x_{84} & \color{g23}x_{85} & \color{g23}x_{86} & \color{g21}x_{87} & \color{g21}x_{88} & \color{g22}x_{89}\\\hline
       \color{g11}x_{91} & \color{g11}x_{92} & \color{g12}x_{93} & \color{g12}x_{94} & \color{g13}x_{95} & \color{g13}x_{96} & \color{g11}x_{97} & \color{g11}x_{98} & \color{g12}x_{99}\\
       \end{array}
-\right]_{9\times 9}
-\end{align*}
-\begin{align*}
-\text{Processor grid = }\left|
-      \begin{array}{lll}
-      \color{g11}0 & \color{g12}1 & \color{g13}2\\
-      \color{g21}3 & \color{g22}4 & \color{g23}5
-      \end{array}
-\right| &=
-\left|
-      \begin{tabular}{lll}
-      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
-      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
-      \end{tabular}
-\right|
-\end{align*}
-\end{exampleblock}
-\end{frame}
-
-
-\begin{frame}[shrink]
-\begin{exampleblock}{2$\times$3 block-cyclic grid on 6 processors:
-    Local view ``ddmatrix'' class}
-\begin{align*}
-\left[
-      \begin{array}{ll|ll}
+\right]_{9\times 9}$
+\end{minipage} \hspace{4em}
+\begin{minipage}{6.5cm}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g11}x_{11} & \color{g11}x_{12} & \color{g11}x_{17} & \color{g11}x_{18}\\
       \color{g11}x_{21} & \color{g11}x_{22} & \color{g11}x_{27} & \color{g11}x_{28}\\\hline
       \color{g11}x_{51} & \color{g11}x_{52} & \color{g11}x_{57} & \color{g11}x_{58}\\
       \color{g11}x_{61} & \color{g11}x_{62} & \color{g11}x_{67} & \color{g11}x_{68}\\\hline
       \color{g11}x_{91} & \color{g11}x_{92} & \color{g11}x_{97} & \color{g11}x_{98}\\
       \end{array}
-\right]_{5\times 4}
-\left[
-      \begin{array}{ll|l}
+\right]_{5\times 4}$\hspace{-1.4ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g12}x_{13} & \color{g12}x_{14} & \color{g12}x_{19}\\
       \color{g12}x_{23} & \color{g12}x_{24} & \color{g12}x_{29}\\\hline
       \color{g12}x_{53} & \color{g12}x_{54} & \color{g12}x_{59}\\
       \color{g12}x_{63} & \color{g12}x_{64} & \color{g12}x_{69}\\\hline
       \color{g12}x_{93} & \color{g12}x_{94} & \color{g12}x_{99}\\
       \end{array}
-\right]_{5\times 3}
-\left[
-      \begin{array}{ll}
+\right]_{5\times 3}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g13}x_{15} & \color{g13}x_{16}\\
       \color{g13}x_{25} & \color{g13}x_{26}\\\hline
       \color{g13}x_{55} & \color{g13}x_{56}\\
       \color{g13}x_{65} & \color{g13}x_{66}\\\hline
       \color{g13}x_{95} & \color{g13}x_{96}\\
       \end{array}
-\right]_{5\times 2}
+\right]_{5\times 2}$
 \\
-\left[
-      \begin{array}{ll|ll}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g21}x_{31} & \color{g21}x_{32} & \color{g21}x_{37} & \color{g21}x_{38}\\
       \color{g21}x_{41} & \color{g21}x_{42} & \color{g21}x_{47} & \color{g21}x_{48}\\\hline
       \color{g21}x_{71} & \color{g21}x_{72} & \color{g21}x_{77} & \color{g21}x_{78}\\
       \color{g21}x_{81} & \color{g21}x_{82} & \color{g21}x_{87} & \color{g21}x_{88}\\
       \end{array}
-\right]_{4\times 4}
-\left[
-      \begin{array}{ll|l}
+\right]_{4\times 4}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}|@{\Sp}l@{\Sp}}
       \color{g22}x_{33} & \color{g22}x_{34} & \color{g22}x_{39}\\
       \color{g22}x_{43} & \color{g22}x_{44} & \color{g22}x_{49}\\\hline
       \color{g22}x_{73} & \color{g22}x_{74} & \color{g22}x_{79}\\
       \color{g22}x_{83} & \color{g22}x_{84} & \color{g22}x_{89}\\
       \end{array}
-\right]_{4\times 3}
-\left[
-      \begin{array}{ll}
+\right]_{4\times 3}$ \hspace{-2ex}
+$\left[
+      \begin{array}{@{\Sp}l@{\Sp}l@{\Sp}}
       \color{g23}x_{35} & \color{g23}x_{36} \\
       \color{g23}x_{45} & \color{g23}x_{46} \\\hline
       \color{g23}x_{75} & \color{g23}x_{76} \\
       \color{g23}x_{85} & \color{g23}x_{86} \\
       \end{array}
-\right]_{4\times 2}
-\end{align*}
-\begin{align*}
-\text{Processor grid = }\left|
-      \begin{array}{lll}
-      \color{g11}0 & \color{g12}1 & \color{g13}2\\
-      \color{g21}3 & \color{g22}4 & \color{g23}5
-      \end{array}
-\right| &=
-\left|
-      \begin{tabular}{lll}
-      \color{g11}(0,0) & \color{g12}(0,1) & \color{g13}(0,2)\\
-      \color{g21}(1,0) & \color{g22}(1,1) & \color{g23}(1,2)
-      \end{tabular}
-\right|
-\end{align*}
-\end{exampleblock}
+\right]_{4\times 2}$
+\end{minipage}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{block}{\pbdR\ No change in syntax. \hfill Data redistribution functions.}
+  \begin{block}{\pbdR\ No change in syntax. \hfill + Data redistribution functions.}
 \vspace{-2ex}
   \begin{lstlisting}
 x <- x[-1, 2:5]
@@ -292,7 +199,7 @@ x.pca <- prcomp(x)
 xtx <- t(x) %*% x
 ans <- svd(solve(xtx))
   \end{lstlisting}
-\vspace{-1ex}
+\vspace{-2ex}
   \begin{center}
   \emph{The above (and over 100 other functions) runs on 1 core with R \\
     or 10,000 cores with \pbdR ddmatrix class}
@@ -318,5 +225,26 @@ Class:  matrix numeric numeric numeric numeric
 
 \input{../common/06_dmatstats/randsvd-slide}
 
+\subsubsection{Analytics and Machine Learning}
 
-
+\begin{frame}{Analytics and Machine Learning}
+  \begin{block}{\pbdR Infrastructure Enables Scalability of R Analytics}
+  \begin{itemize}
+  \item Already scalable in packages and examples
+    \begin{itemize}
+    \item Model-based clustering (including k-means)
+    \item Regression model fitting
+    \item Random forest ensemble learning
+    \item Functional data analysis basis functions
+    \item Principal components analysis
+    \item Random projection truncated SVD
+    \item $\ldots$ others in progress
+    \end{itemize}
+  \item Opportunities for scaling with \pbdR
+    \begin{itemize}
+    \item Many R packages become ``low hanging fruit'' for scaling with \pbdR
+    \item Opportunities for new statistical inference in scaling
+    \end{itemize}
+  \end{itemize}
+  \end{block}
+\end{frame}

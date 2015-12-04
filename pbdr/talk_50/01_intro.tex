@@ -171,7 +171,7 @@
   \begin{block}{Both Concepts are about Communication}
     \begin{itemize}
     \item One makes communication explicit, gives choices
-    \item The other hides communication, gives one choice (shuffle)
+    \item The other hides communication, uses one choice (shuffle)
     \end{itemize}
   \end{block}
 \end{frame}
@@ -199,15 +199,23 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Simplified with MPI (and further with pbdMPI)}
+\begin{frame}{SPMD Simplified with MPI (and further with pbdMPI)}
   \includegraphics[trim=0cm 6cm 0cm 4cm,clip=true,width=\textwidth]
   {../common/pics/comm/ParallelHardware30.pdf}
   \vspace{-1ex}
-  \begin{block}{Architecture-specific vendor optimizations}
-    \begin{itemize}
-    \item \small Cray MPT
-    \item \small SGI MPT
-    \end{itemize}
+  \begin{block}{Vendor MPI implementations: distributed + shared
+      memory optimized}
+    \begin{minipage}{4cm}
+      \begin{itemize}
+      \item \small Cray MPT
+      \item \small SGI MPT
+      \end{itemize}
+    \end{minipage}
+    \begin{minipage}{4cm}
+      \begin{itemize}
+      \item \small Intel MPI
+      \end{itemize}
+    \end{minipage}
   \end{block}
 \end{frame}
 
